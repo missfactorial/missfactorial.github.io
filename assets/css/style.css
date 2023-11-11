@@ -23,7 +23,7 @@ h4,
 h5,
 h6,
 .font-primary {
-  font-family: "Raleway", sans-serif;
+  font-family: "Open Sans", "Raleway", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -128,7 +128,6 @@ h6,
   line-height: 1;
   font-weight: 400;
   letter-spacing: 3px;
-  text-transform: uppercase;
 }
 
 #header .logo h1 a,
@@ -487,7 +486,7 @@ h6,
 }
 
 #hero .btn-get-started {
-  font-family: "Raleway", sans-serif;
+  font-family: "Open Sans", "Raleway", sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -844,7 +843,7 @@ section {
 .counts .count-box p {
   padding: 0;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: "Open Sans", "Raleway", sans-serif;
   font-size: 14px;
 }
 
