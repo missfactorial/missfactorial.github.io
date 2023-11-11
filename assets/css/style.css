@@ -1132,7 +1132,7 @@ section {
   bottom: -48px;
   left: 20px;
   right: 20px;
-  background: linear-gradient(360deg, #6621B0 0%, #CB62B2 100%);
+  background: linear-gradient(360deg, rgb(28, 7, 62) 0%, rgba(28, 7, 62, 0.9) 35%, rgba(203, 98, 178, 0.8) 100%);
   padding: 15px 0;
   border-radius: 4px;
 }
@@ -1174,7 +1174,7 @@ section {
 }
 
 .team .member .social a:hover {
-  color: #6621B0;
+  color: #CB62B2;
 }
 
 .team .member .social i {
@@ -1229,7 +1229,7 @@ section {
 
 .contact .info-box h3 {
   font-size: 20px;
-  color: #666;
+  color: #1C073E;
   font-weight: 700;
   margin: 10px 0;
 }
@@ -1320,7 +1320,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: #629fd3;
+  background: #6621B0;
 }
 
 @keyframes animate-loading {
@@ -1383,8 +1383,8 @@ section {
 }
 
 #footer .footer-top .social-links a:hover {
-  background: #f2f1f4;
-  color: #6621B0;
+  background: #6621B0;
+  color: #f2f1f4;
   text-decoration: none;
 }
 
@@ -1408,7 +1408,7 @@ section {
 
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: #6621B0;
+  color: #CB62B2;
   font-size: 18px;
   line-height: 1;
 }
@@ -1431,7 +1431,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul a:hover {
-  color: #6621B0;
+  color: #CB62B2;
 }
 
 #footer .footer-top .footer-newsletter form {
@@ -1464,7 +1464,7 @@ section {
 }
 
 #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-  background: #5295ce;
+  background: #6621B0;
 }
 
 #footer .copyright {
