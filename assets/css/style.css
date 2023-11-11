@@ -11,7 +11,7 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #1C073E;
+  color: #444;
 }
 
 a {
@@ -31,7 +31,7 @@ h4,
 h5,
 h6,
 .font-primary {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -80,7 +80,7 @@ h6,
 # Top Bar
 --------------------------------------------------------------*/
 #topbar {
-  background: #1C073E;
+  background: #fff;
   border-bottom: 1px solid #eee;
   font-size: 15px;
   height: 40px;
