@@ -373,7 +373,7 @@
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>Miss Factorial Academy</h3>
             <p>
-              Worldwide, US based LLC<br>
+              Worldwide, U.S. based LLC<br>
               Jupiter, FL 33469 USA<br>
               <strong>Email:</strong> viviana@missfactorial.com<br>
             </p>
@@ -451,15 +451,24 @@
       .then(response => response.json())
       .then(response => {
         if (response.result == 'success') {
-          // Update the DOM with a success message
-          form.innerHTML = '<p class="form-success">Thank you for your submission!</p>';
+          if (form.id === 'contactForm') {
+            // Update the contact form with a success message
+            form.innerHTML = '<p class="form-success">Thank you for your message, we will be in touch soon!</p>';
+          } else if (form.id === 'newsletterForm') {
+            // Show an alert for the newsletter form
+            alert('Thank you for subscribing to our newsletter!');
+            // Optionally reset the form or update the page with a success message
+            form.reset();
+            // You can also display a success message on the page if preferred
+            // document.getElementById('newsletterMessage').textContent = 'Thank you for subscribing to our newsletter!';
+          }
         } else {
-          // Update the DOM with an error message
+          // Update the DOM with an error message for both forms
           form.innerHTML = '<p class="form-error">There was a problem with your submission. Please try again.</p>';
         }
       })
       .catch(error => {
-        // Update the DOM with a network error message
+        // Update the DOM with a network error message for both forms
         form.innerHTML = '<p class="form-error">Network error. Please try again later.</p>';
       });
     }
@@ -474,6 +483,7 @@
       submitForm(e, this);
     });
   </script>
+  
   
     
 
