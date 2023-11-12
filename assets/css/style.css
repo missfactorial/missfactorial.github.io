@@ -207,7 +207,7 @@ h6,
   opacity: 0;
   visibility: hidden;
   background: #1C073E;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  box-shadow: 0px 0px 30px #CB62B2;
   transition: 0.3s;
 }
 
@@ -342,7 +342,7 @@ h6,
   opacity: 1;
   visibility: visible;
   background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  box-shadow: 0px 0px 30px #CB62B2;
 }
 
 .navbar-mobile .dropdown ul li {
