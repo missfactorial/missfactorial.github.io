@@ -127,7 +127,6 @@ h6,
   padding: 10px 0;
   line-height: 1;
   font-weight: 400;
-  letter-spacing: 2px;
   color: #f2f1f4;
   white-space: nowrap;
 }
@@ -292,7 +291,7 @@ h6,
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(31, 53, 72, 0.9);
+  background: #CB62B2;
   transition: 0.3s;
   z-index: 998;
 }
@@ -320,7 +319,7 @@ h6,
 .navbar-mobile a:focus {
   padding: 10px 20px;
   font-size: 15px;
-  color: #1f3548;
+  color: #CB62B2;
 }
 
 .navbar-mobile a:hover,
