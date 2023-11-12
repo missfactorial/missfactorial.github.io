@@ -207,7 +207,7 @@ h6,
   opacity: 0;
   visibility: hidden;
   background: #1C073E;
-  box-shadow: 0px 0px 30px #CB62B2;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
   transition: 0.3s;
 }
 
@@ -262,7 +262,7 @@ h6,
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #1f3548;
+  color: #CB62B2;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -291,7 +291,7 @@ h6,
   right: 0;
   left: 0;
   bottom: 0;
-  background: #CB62B2;
+  background: #1C073E;
   transition: 0.3s;
   z-index: 998;
 }
@@ -342,7 +342,7 @@ h6,
   opacity: 1;
   visibility: visible;
   background: #fff;
-  box-shadow: 0px 0px 30px #CB62B2;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
 
 .navbar-mobile .dropdown ul li {
