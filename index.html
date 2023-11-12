@@ -337,13 +337,13 @@
           </div>
           
           <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-            <form action="https://script.google.com/macros/s/AKfycbzqNfulSmeHjP_bIuPyijgsO8rJU0lnVrpCuiwe7nSriJQmdZqF5qM8uYG_r_4F0ITh8Q/exec" method="post" class="gform">
+            <form id="contactForm" action="https://script.google.com/macros/s/AKfycbzqNfulSmeHjP_bIuPyijgsO8rJU0lnVrpCuiwe7nSriJQmdZqF5qM8uYG_r_4F0ITh8Q/exec" method="post" class="gform">
               <div class="row">
                 <div class="col-lg-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
                 <div class="col-lg-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="contactEmail" id="email" placeholder="Your Email" required>
                 </div>
               </div>
               <div class="form-group">
@@ -411,8 +411,8 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Stay in the Loop!</h4>
             <p>Be the first one to hear about new course launches and receive occasional free study guides. No spam – just the good stuff!</p>
-            <form action="https://script.google.com/macros/s/AKfycbxdWQb1yIC5jpirTZud1lgDpzJ5vAy8OcDwn4US6q3rXwhqzTQ7BqNQ_6q-PnJTClbPDw/exec" method="post" class="gform">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+            <form id="newsletterForm" action="https://script.google.com/macros/s/AKfycbxdWQb1yIC5jpirTZud1lgDpzJ5vAy8OcDwn4US6q3rXwhqzTQ7BqNQ_6q-PnJTClbPDw/exec" method="post" class="gform">
+              <input type="email" name="newsletterEmail"><input type="submit" value="Subscribe">
             </form>
 
           </div>
@@ -437,29 +437,44 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- AJAX Script Contact Form -->
+  <!-- AJAX Script Forms -->
   <script>
-    document.querySelector('.gform').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent the default form submit
-      var formData = new FormData(this);
-      fetch(this.action, {
+    function submitForm(e, form) {
+      e.preventDefault();
+      var formData = new FormData(form);
+      var formAction = form.action;
+  
+      fetch(formAction, {
         method: 'POST',
         body: formData
-      }).then(response => response.json())
-        .then(response => {
-          if (response.result == 'success') {
-            // Handle successful submission here, e.g., show a thank you message
-            alert('Thank you for your message. It has been sent.');
-          } else {
-            // Handle errors here
-            alert('Oops! There was a problem with your submission.');
-          }
-        }).catch(error => {
-          // Handle network errors here
-          alert('Error: Could not send your message.');
-        });
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (response.result == 'success') {
+          // Update the DOM with a success message
+          form.innerHTML = '<p class="form-success">Thank you for your submission!</p>';
+        } else {
+          // Update the DOM with an error message
+          form.innerHTML = '<p class="form-error">There was a problem with your submission. Please try again.</p>';
+        }
+      })
+      .catch(error => {
+        // Update the DOM with a network error message
+        form.innerHTML = '<p class="form-error">Network error. Please try again later.</p>';
+      });
+    }
+  
+    // Event listener for the newsletter form
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      submitForm(e, this);
     });
-    </script>
+  
+    // Event listener for the contact form
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      submitForm(e, this);
+    });
+  </script>
+  
     
 
 </body>
