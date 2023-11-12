@@ -651,7 +651,7 @@ section {
 
 .about .icon-box .icon i {
   color: #CB62B2;
-  font-size: 32px;
+  font-size: 36px;
 }
 
 .about .icon-box:hover .icon {
@@ -846,6 +846,26 @@ section {
   font-family: "Open Sans", "Raleway", sans-serif;
   font-size: 14px;
 }
+
+.counter-wrapper {
+  display: inline-flex;
+  align-items: baseline; /* Aligns the text baselines */
+  font-size: 20px; /* Adjust as needed */
+}
+
+.dollar-sign {
+  margin-right: 0px; /* Space between dollar sign and number */
+  font-size: 16px; /* Smaller font size for the dollar sign */
+}
+
+.K {
+  font-size: 16px; /* Smaller font size for the K sign */
+}
+
+.percentage {
+  font-size: 16px; /* Smaller font size for the % sign */
+}
+
 
 /*--------------------------------------------------------------
 # Services
