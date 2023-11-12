@@ -1210,6 +1210,7 @@ section {
 # Frequently Asked Questions
 --------------------------------------------------------------*/
 .faq {
+  background: #fff;
   padding-bottom: 30px;
 }
 
@@ -1218,17 +1219,24 @@ section {
 }
 
 .faq .faq-item h4 {
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 15px;
+  margin-right: 10px;
   color: #1C073E;
+  font-style: italic;
+  text-align: right;
 }
 
 /*--------------------------------------------------------------
 # Contact Us
 --------------------------------------------------------------*/
+.contact {
+  background: #f2f1f4;
+}
+
 .contact .info-box {
+  background: #fbfafb;
   color: #1C073E;
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
