@@ -1205,8 +1205,7 @@ section {
   color: #1C073E;
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
-  padding: 20px;
-  margin-bottom: 30px;
+  padding: 40px 50px 30px 50px;
   width: auto; /* Change to auto or a specific width */
   flex: 1; /* Make it flexible in the flex container */
   margin-left: 50px;
