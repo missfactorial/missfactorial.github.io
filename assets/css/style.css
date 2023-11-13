@@ -1546,7 +1546,7 @@ section {
 }
 
 .teamtwo .about-content {
-  padding: 45px;
+  padding: 25px;
 }
 
 .teamtwo .icon-box+.icon-box {
@@ -1560,7 +1560,8 @@ section {
 .teamtwo .member {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 35px;
+
   position: relative;
 }
 
