@@ -1520,3 +1520,126 @@ section {
 #footer .credits a {
   color: #6621B0;
 }
+
+
+/*--------------------------------------------------------------
+# TeamTwo
+--------------------------------------------------------------*/
+.teamtwo {
+  padding-bottom: 30px;
+  background: #f2f1f4;
+}
+
+.teamtwo .container {
+  box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 0.6);
+  background: #eadee7;
+  border-radius: 10px;
+}
+
+.teamtwo .video-box img {
+  padding: 15px 0;
+}
+
+.teamtwo .section-title p {
+  text-align: left;
+  color: #1C073E;
+}
+
+.teamtwo .about-content {
+  padding: 45px;
+}
+
+.teamtwo .icon-box+.icon-box {
+  margin-top: 40px;
+}
+
+.teamtwo .video-box {
+  position: relative;
+}
+
+.teamtwo .member {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.teamtwo .member .pic {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.teamtwo .member img {
+  transition: all ease-in-out 0.4s;
+}
+
+.teamtwo .member:hover img {
+  transform: scale(1.1);
+}
+
+.teamtwo .member .member-info {
+  position: absolute;
+  bottom: -48px;
+  left: 20px;
+  right: 20px;
+  background: linear-gradient(360deg, rgb(28, 7, 62) 0%, rgba(28, 7, 62, 0.9) 35%, rgba(203, 98, 178, 0.8) 100%);
+  padding: 15px 0;
+  border-radius: 4px;
+}
+
+.teamtwo .member h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #fff;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.teamtwo .member h4::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: #fff;
+  bottom: 0;
+  left: calc(50% - 25px);
+}
+
+.teamtwo .member span {
+  font-style: italic;
+  display: block;
+  font-size: 13px;
+  color: #fff;
+}
+
+.teamtwo .member .social {
+  margin-top: 15px;
+}
+
+.teamtwo .member .social a {
+  transition: color 0.3s;
+  color: #fff;
+}
+
+.teamtwo .member .social a:hover {
+  color: #CB62B2;
+}
+
+.teamtwo .member .social i {
+  font-size: 16px;
+  margin: 0 2px;
+}
+
+@keyframes pulsate-btn {
+  0% {
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1, 1);
+    opacity: 0;
+  }
+}
