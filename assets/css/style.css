@@ -1560,8 +1560,7 @@ section {
 .teamtwo .member {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 35px;
-
+  margin-bottom: 5px;
   position: relative;
 }
 
@@ -1580,7 +1579,7 @@ section {
 
 .teamtwo .member .member-info {
   position: absolute;
-  bottom: -48px;
+  bottom: 100px;
   left: 20px;
   right: 20px;
   background: linear-gradient(360deg, rgb(28, 7, 62) 0%, rgba(28, 7, 62, 0.9) 35%, rgba(203, 98, 178, 0.8) 100%);
@@ -1633,21 +1632,16 @@ section {
   margin: 0 2px;
 }
 
-.teamtwo .icon {
-  float: left;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 72px;
-  background: #fbfafb;
-  border-radius: 6px;
-  transition: 0.5s;
-}
-
-.teamtwo .icon i {
-  color: #CB62B2;
-  font-size: 36px;
+.teamtwo .logo {
+  box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 0.6);
+  background: #f2f1f4;
+  border-radius: 5px;
+  height: 40px; /* Adjust the height as needed */
+  width: auto; /* This will maintain the aspect ratio of the logos */
+  padding: 5px; /* Adds space between the logo and the border */
+  box-sizing: border-box; /* Ensures padding is included in the overall dimensions */
+  margin: 5px; /* Adds space around each logo */
+  display: inline-block; /* Align logos in a line, adjust as per layout */
 }
 
 @keyframes pulsate-btn {
