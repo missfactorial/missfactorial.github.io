@@ -1685,7 +1685,6 @@ section {
   }
 
   .teamtwo .about-content {
-    padding: 55px 25px 5px;
     width: 95%; /* Full width for both image and content */
     max-width: none; /* Override any max-width set earlier */
   }
@@ -1697,6 +1696,6 @@ section {
   .teamtwo .about-content {
     order: 1; /* Place text content below the image */
     margin-top: 20px; /* Add space above the text content */
-    padding: 15px; /* Adjust padding for smaller screens */
+    padding: 35px 25px 5px;
   }
 }
