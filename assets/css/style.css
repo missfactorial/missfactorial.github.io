@@ -1696,6 +1696,6 @@ section {
   .teamtwo .about-content {
     order: 1; /* Place text content below the image */
     margin-top: 20px; /* Add space above the text content */
-    padding: 35px 25px 5px;
+    padding: 30px 20px 0px;
   }
 }
