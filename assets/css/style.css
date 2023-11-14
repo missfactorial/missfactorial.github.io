@@ -1560,7 +1560,7 @@ section {
 }
 
 .teamtwo .about-content {
-  padding: 25px;
+  padding: 30px 25px 15px;
   box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 0.6);
   background: #eadee7;
   border-radius: 10px;
@@ -1596,7 +1596,7 @@ section {
 
 .teamtwo .member .member-info {
   position: absolute;
-  bottom: -48px;
+  bottom: -55px;
   left: 20px;
   right: 20px;
   background: linear-gradient(360deg, rgb(28, 7, 62) 0%, rgba(28, 7, 62, 0.9) 35%, rgba(203, 98, 178, 0.8) 100%);
@@ -1681,16 +1681,21 @@ section {
   }
 
   .teamtwo .member {
-    /* Set a fixed width for the member section; adjust as needed */
-    width: auto;
+    max-width: none; /* Override any max-width set earlier */
+  }
+
+  .teamtwo .about-content {
+    width: 95%; /* Full width for both image and content */
+    max-width: none; /* Override any max-width set earlier */
+  }
+
+  .teamtwo .member {
     margin-bottom: 20px; /* Add space below the image */
   }
 
   .teamtwo .about-content {
     order: 1; /* Place text content below the image */
-    width: 100%; /* Full width for text content */
-    margin-top: 30px; /* Add space above the text content */
+    margin-top: 20px; /* Add space above the text content */
     padding: 15px; /* Adjust padding for smaller screens */
   }
 }
-
