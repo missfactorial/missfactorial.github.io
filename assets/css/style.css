@@ -1560,13 +1560,12 @@ section {
 }
 
 .teamtwo .about-content {
-  padding: 35px 25px 15px;
+  padding: 35px 25px 5px;
   box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 0.6);
   background: #eadee7;
   border-radius: 10px;
   flex-grow: 1;
   max-width: calc(100% - 200px - 2%); 
-  z-index: 2;
 }
 
 .teamtwo .icon-box+.icon-box {
@@ -1603,7 +1602,6 @@ section {
   background: linear-gradient(360deg, rgb(28, 7, 62) 0%, rgba(28, 7, 62, 0.9) 35%, rgba(203, 98, 178, 0.8) 100%);
   padding: 15px 0;
   border-radius: 4px;
-  z-index: 1;
 }
 
 .teamtwo .member h4 {
@@ -1687,6 +1685,7 @@ section {
   }
 
   .teamtwo .about-content {
+    padding: 55px 25px 5px;
     width: 95%; /* Full width for both image and content */
     max-width: none; /* Override any max-width set earlier */
   }
