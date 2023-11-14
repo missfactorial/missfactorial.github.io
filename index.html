@@ -466,49 +466,23 @@
 
   <!-- AJAX Script Forms -->
   <script>
-    function submitForm(e, form) {
-      e.preventDefault();
-      var formData = new FormData(form);
-      var formAction = form.action;
-  
-      fetch(formAction, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(response => {
-        if (response.result == 'success') {
-          if (form.id === 'contactForm') {
-            // Update the contact form with a success message
-            form.innerHTML = '<p class="form-success">Thank you for your message, we will be in touch soon!</p>';
-          } else if (form.id === 'newsletterForm') {
-            // Show an alert for the newsletter form
-            alert('Thank you for subscribing to our newsletter!');
-            // Optionally reset the form or update the page with a success message
-            form.reset();
-            // You can also display a success message on the page if preferred
-            // document.getElementById('newsletterMessage').textContent = 'Thank you for subscribing to our newsletter!';
-          }
-        } else {
-          // Update the DOM with an error message for both forms
-          form.innerHTML = '<p class="form-error">There was a problem with your submission. Please try again.</p>';
-        }
-      })
-      .catch(error => {
-        // Update the DOM with a network error message for both forms
-        form.innerHTML = '<p class="form-error">Network error. Please try again later.</p>';
-      });
-    }
-  
-    // Event listener for the newsletter form
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-      submitForm(e, this);
-    });
-  
-    // Event listener for the contact form
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      submitForm(e, this);
-    });
+    function submitForm(e, t) {
+    e.preventDefault();
+    var r = new FormData(t);
+    fetch(t.action, {
+        method: "POST",
+        body: r
+    }).then(e => e.json()).then(e => {
+        "success" == e.result ? "contactForm" === t.id ? t.innerHTML = '<p class="form-success">Thank you for your message, we will be in touch soon!</p>' : "newsletterForm" === t.id && (alert("Thank you for subscribing to our newsletter!"), t.reset()) : t.innerHTML = '<p class="form-error">There was a problem with your submission. Please try again.</p>'
+    }).catch(e => {
+        t.innerHTML = '<p class="form-error">Network error. Please try again later.</p>'
+    })
+}
+document.getElementById("newsletterForm").addEventListener("submit", function(e) {
+    submitForm(e, this)
+}), document.getElementById("contactForm").addEventListener("submit", function(e) {
+    submitForm(e, this)
+});
   </script>
   
   
