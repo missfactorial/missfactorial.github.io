@@ -1536,6 +1536,15 @@ section {
   border-radius: 10px;
 }
 
+.teamtwo .team-row {
+  display: flex;
+  align-items: start; /* Adjust as needed */
+  align-items: start;
+  margin: 0 auto; /* Center the row */
+  max-width: 1366px; /* Adjust this to match the max-width of other sections */
+  width: 100%; /* Full width to allow flexbox centering to take effect */
+}
+
 .teamtwo .video-box img {
   padding: 15px 0;
 }
@@ -1547,6 +1556,11 @@ section {
 
 .teamtwo .about-content {
   padding: 25px;
+  box-shadow: 0 5px 25px 0 rgba(214, 215, 216, 0.6);
+  background: #eadee7;
+  border-radius: 10px;
+  flex-grow: 1;
+  max-width: calc(100% - 200px - 2%); 
 }
 
 .teamtwo .icon-box+.icon-box {
@@ -1559,8 +1573,6 @@ section {
 
 .teamtwo .member {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 5px;
   position: relative;
 }
 
