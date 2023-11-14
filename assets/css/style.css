@@ -1579,7 +1579,7 @@ section {
 
 .teamtwo .member .member-info {
   position: absolute;
-  bottom: 100px;
+  bottom: -48px;
   left: 20px;
   right: 20px;
   background: linear-gradient(360deg, rgb(28, 7, 62) 0%, rgba(28, 7, 62, 0.9) 35%, rgba(203, 98, 178, 0.8) 100%);
