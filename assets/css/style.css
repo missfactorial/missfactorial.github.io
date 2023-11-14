@@ -1672,3 +1672,25 @@ section {
     opacity: 0;
   }
 }
+
+/* Responsive adjustments for screens less than 1040px */
+@media (max-width: 1040px) {
+  .teamtwo .team-row {
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center; /* Center align items */
+  }
+
+  .teamtwo .member {
+    /* Set a fixed width for the member section; adjust as needed */
+    width: auto;
+    margin-bottom: 20px; /* Add space below the image */
+  }
+
+  .teamtwo .about-content {
+    order: 1; /* Place text content below the image */
+    width: 100%; /* Full width for text content */
+    margin-top: 30px; /* Add space above the text content */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+}
+
