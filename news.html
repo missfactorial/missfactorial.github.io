@@ -82,71 +82,89 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Load external header, footer, and blog files via JavaScript -->
-<script>
-  // Function to load external files into a placeholder
-  function loadFile(file, elementId) {
-    fetch(file)
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error('File not found');
-        }
-      })
-      .then(data => {
-        document.getElementById(elementId).innerHTML = data;
-      })
-      .catch(error => {
-        console.log(`Skipping ${file}: ${error.message}`);
-      });
-  }
-
-  // Load header
-  loadFile('header.html', 'header-placeholder');
-
-  // Load footer
-  loadFile('footer.html', 'footer-placeholder');
-
-  // Dynamically load blog files in sequence
-  let blogNumber = 1; // Start from blog 001
-  let maxBlogs = 10; // An arbitrary limit to prevent infinite looping (adjust as needed)
-  
-  function loadBlogs() {
-    let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
-    let blogFile = `blog/${blogId}.html`;
-    let blogElementId = `blog-${blogId}`;
-
-    // Try to load the current blog file
-    fetch(blogFile)
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error('File not found');
-        }
-      })
-      .then(data => {
-        let blogPlaceholder = document.getElementById(blogElementId);
-        if (blogPlaceholder) {
-          blogPlaceholder.innerHTML = data;
-          blogNumber++;
-          if (blogNumber <= maxBlogs) {
-            loadBlogs(); // Load the next blog file
+  <script>
+    // Function to load external files into a placeholder
+    function loadFile(file, elementId) {
+      fetch(file)
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error('File not found');
           }
-        } else {
-          console.log(`Placeholder ${blogElementId} not found`);
-        }
-      })
-      .catch(error => {
-        console.log(`No more blogs to load: ${error.message}`);
+        })
+        .then(data => {
+          document.getElementById(elementId).innerHTML = data;
+        })
+        .catch(error => {
+          console.log(`Skipping ${file}: ${error.message}`);
+        });
+    }
+
+    // Load header
+    loadFile('header.html', 'header-placeholder');
+
+    // Load footer
+    loadFile('footer.html', 'footer-placeholder');
+
+    // Reinitialize Swiper after loading the blogs
+    function reinitializeSwiper() {
+      const swiper = new Swiper('.swiper', {
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        autoplay: {
+          delay: 5000,
+        },
       });
-  }
+    }
 
-  // Start loading blog files
-  loadBlogs();
+    // Dynamically load blog files in sequence
+    let blogNumber = 1; // Start from blog 001
+    let maxBlogs = 10; // Adjust as needed
+    
+    function loadBlogs() {
+      let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
+      let blogFile = `blog/${blogId}.html`;
+      let blogElementId = `blog-${blogId}`;
 
-</script>
-  
+      // Try to load the current blog file
+      fetch(blogFile)
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error('File not found');
+          }
+        })
+        .then(data => {
+          let blogPlaceholder = document.getElementById(blogElementId);
+          if (blogPlaceholder) {
+            blogPlaceholder.innerHTML = data;
+            blogNumber++;
+            if (blogNumber <= maxBlogs) {
+              loadBlogs(); // Load the next blog file
+            }
+
+            // Reinitialize Swiper if the blog contains Swiper elements
+            if (document.querySelector('.swiper')) {
+              reinitializeSwiper();
+            }
+          } else {
+            console.log(`Placeholder ${blogElementId} not found`);
+          }
+        })
+        .catch(error => {
+          console.log(`No more blogs to load: ${error.message}`);
+        });
+    }
+
+    // Start loading blog files
+    loadBlogs();
+  </script>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -157,10 +175,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-
-  
-    
 
 </body>
 
