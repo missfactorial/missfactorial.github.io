@@ -36,51 +36,8 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <div class="logo me-auto">
-        <h1><a href="index.html"><img src="assets/img/MissFactorial AcademyLogoPinkParenthesis.png" alt="" class="img-fluid">&nbsp; Miss Factorial Academy</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/favicon.png" alt="" class="img-fluid"></a> -->
-      </div>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="index.html">Welcome</a></li>
-          <li class="dropdown"><a class="nav-link scrollto" href="#services"><span>Programs</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Private Team Cohort for Businesses</a></li>
-              <li class="dropdown"><a href="#"><span>On-Demand Courses</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Web Scraping and data acquisition</a></li>
-                  <li><a href="#">Python</a></li>
-                  <li><a href="#">Data Literacy</a></li>
-                  <li><a href="#">Data Science</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Bootcamp - Live Training</a></li>
-              <li><a href="#">Data Literacy Outreach</a></li>
-              <li><a href="#">Resource Center</a></li>
-            </ul>
-          </li>
-          <li><a href="">News</a></li>
-          <li><a href="">Upcoming</a></li>
-          <li class="dropdown"><a href=""><span>Switch Language</span><i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">English</a></li>
-              <li><a href="#">Español (coming soon)</a></li>
-              <li><a href="#">Português (coming soon)</a></li>
-              <li><a href="#">Français (coming soon)</a></li>
-            </ul>
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+  <!-- Placeholder for Header -->
+  <div id="header-placeholder"></div>
 
 
 <!-- ======= MAIN ======= -->
@@ -96,62 +53,29 @@
   </main>
 <!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>Miss Factorial Academy</h3>
-            <p>
-              Worldwide, U.S. based LLC<br>
-              Jupiter, FL 33469 USA<br>
-              <strong>Email:</strong> <a href="mailto:viviana@missfactorial.com" style="color: inherit; text-decoration: none;">viviana@missfactorial.com</a><br>
-            </p>
-            <div class="social-links mt-3">
-              <a href="https://www.tiktok.com/@missfactorial" class="tiktok" target=”_blank”><i class="bx bxl-tiktok"></i></a>
-              <a href="https://www.twitch.tv/missfactorial" class="twitch" target=”_blank”><i class="bx bxl-twitch"></i></a>
-              <a href="https://www.youtube.com/@MissFactorialAcademy" class="youtube" target=”_blank”><i class="bx bxl-youtube"></i></a>
-              <a href="https://www.instagram.com/missfactorial" class="instagram" target=”_blank”><i class="bx bxl-instagram"></i></a>
-              <a href="https://www.twitter.com/missfactorial" class="twitter" target=”_blank”><i class="bx bxl-twitter"></i></a>
-              <a href="https://github.com/missfactorial" class="github" target=”_blank”><i class="bx bxl-github"></i></a>
-              <a href="https://www.linkedin.com/company/missfactorial/" target=”_blank” class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-links">
-            <h4>Programs</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Private Team Cohort for Businesses</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">On-Demand Courses</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Bootcamp - Live Training</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Data Literacy Outreach</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Resource Center</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-				<h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#services">Programs</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#team">Team</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#contact">Contact</a></li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </footer><!-- End Footer -->
-
+  <!-- Placeholder for Footer -->
+  <div id="footer-placeholder"></div>
+  
+ 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Load external header and footer via JavaScript -->
+  <script>
+    // Load header
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+
+    // Load footer
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      });
+  </script>
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
