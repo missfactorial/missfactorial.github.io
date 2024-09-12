@@ -416,7 +416,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-">
+          <div class="col-lg-3 col-md-6 footer-links">
 				<h4>Programs</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Private Team Cohort for Businesses</a></li>
@@ -446,27 +446,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- AJAX Script Forms -->
-  <script>
-    function submitForm(e, t) {
-    e.preventDefault();
-    var r = new FormData(t);
-    fetch(t.action, {
-        method: "POST",
-        body: r
-    }).then(e => e.json()).then(e => {
-        "success" == e.result ? "contactForm" === t.id ? t.innerHTML = '<p class="form-success">Thank you for your message, we will be in touch soon!</p>' : "newsletterForm" === t.id && (alert("Thank you for subscribing to our newsletter!"), t.reset()) : t.innerHTML = '<p class="form-error">There was a problem with your submission. Please try again.</p>'
-    }).catch(e => {
-        t.innerHTML = '<p class="form-error">Network error. Please try again later.</p>'
-    })
-}
-document.getElementById("newsletterForm").addEventListener("submit", function(e) {
-    submitForm(e, this)
-}), document.getElementById("contactForm").addEventListener("submit", function(e) {
-    submitForm(e, this)
-});
-  </script>
-  
+
   
     
 
