@@ -120,107 +120,24 @@
 
 
 
-<!-- Script for Manually Loading Blogs and Pagination -->
+<!-- Simple Script to Show Blogs (No Pagination for Now) -->
 <script>
-  const blogsPerPage = 2; // Number of blogs to show per page
-  let totalBlogs = 0;
-  let currentPage = 1; // Start on the first page
-  let blogElements = []; // Array to hold the blog elements (e.g., 'blog-001', 'blog-002')
+  // Check if the blog elements are being correctly selected and displayed
+  function showBlogs() {
+    const blog1 = document.getElementById('blog-001');
+    const blog2 = document.getElementById('blog-002');
 
-  // Function to determine the total number of blogs and create a list of blog elements
-  function determineTotalBlogs() {
-    let blogNumber = 1;
-
-    // Clear the existing blogElements array
-    blogElements = [];
-
-    // Manually add blogs like blog-001, blog-002, etc.
-    while (document.getElementById(`blog-${blogNumber.toString().padStart(3, '0')}`)) {
-      blogElements.push(`blog-${blogNumber.toString().padStart(3, '0')}`);
-      blogNumber++;
-    }
-
-    totalBlogs = blogElements.length; // Set the total number of blogs
-    loadBlogsForPage(currentPage); // Load the blogs for the current page
+    // Ensure the blogs are visible
+    if (blog1) blog1.style.display = 'block';
+    if (blog2) blog2.style.display = 'block';
   }
 
-  // Function to load blogs for the current page into the manual placeholders
-  function loadBlogsForPage(page) {
-    const startBlog = (page - 1) * blogsPerPage; // Calculate the first blog index on this page
-    const endBlog = Math.min(page * blogsPerPage, totalBlogs); // Calculate the last blog index on this page
-
-    // Hide all blog placeholders initially
-    blogElements.forEach((blogId) => {
-      document.getElementById(blogId).style.display = 'none';
-    });
-
-    // Show only the blogs for the current page
-    for (let i = startBlog; i < endBlog; i++) {
-      const blogId = blogElements[i];
-      document.getElementById(blogId).style.display = 'block'; // Show the blog for this page
-    }
-
-    // Update the pagination controls
-    updatePagination(page);
-  }
-
-  // Function to update pagination controls
-  function updatePagination(page) {
-    const totalPages = Math.ceil(totalBlogs / blogsPerPage);
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = ''; // Clear current pagination
-
-    // Hide pagination if there is only one page or fewer blogs than blogsPerPage
-    if (totalBlogs <= blogsPerPage) {
-      paginationContainer.style.display = 'none';
-      return;
-    }
-
-    paginationContainer.style.display = 'flex'; // Show pagination if more than one page is needed
-
-    // Previous button
-    if (page > 1) {
-      const prevButton = document.createElement('a');
-      prevButton.href = '#';
-      prevButton.textContent = 'Previous';
-      prevButton.onclick = function() {
-        loadBlogsForPage(page - 1);
-        return false; // Prevent default link behavior
-      };
-      paginationContainer.appendChild(prevButton);
-    }
-
-    // Page numbers
-    for (let i = 1; i <= totalPages; i++) {
-      const pageButton = document.createElement('a');
-      pageButton.href = '#';
-      pageButton.textContent = i;
-      if (i === page) {
-        pageButton.classList.add('active'); // Highlight the current page
-      }
-      pageButton.onclick = function() {
-        loadBlogsForPage(i);
-        return false; // Prevent default link behavior
-      };
-      paginationContainer.appendChild(pageButton);
-    }
-
-    // Next button
-    if (page < totalPages) {
-      const nextButton = document.createElement('a');
-      nextButton.href = '#';
-      nextButton.textContent = 'Next';
-      nextButton.onclick = function() {
-        loadBlogsForPage(page + 1);
-        return false; // Prevent default link behavior
-      };
-      paginationContainer.appendChild(nextButton);
-    }
-  }
-
-  // Initialize the blogs and pagination
-  determineTotalBlogs();
+  // Run the function after the DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", function() {
+    showBlogs(); // Simply show the blogs on load
+  });
 </script>
+
 
 
 
