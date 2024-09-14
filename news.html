@@ -120,111 +120,64 @@
 
 
 
+<!-- Load blog files via JavaScript -->
 <script>
-  const blogsPerPage = 2; // Number of blogs to display per page
-  let currentPage = 1; // Start with the first page
-  let totalBlogs = 0; // We will determine this dynamically based on the manual placeholders
-
-  // Function to determine the total number of blog placeholders
-  function determineTotalBlogs() {
-    totalBlogs = 0;
-    let blogNumber = 1;
-    
-    // Check each blog placeholder until no more are found
-    while (document.getElementById(`blog-${blogNumber.toString().padStart(3, '0')}`)) {
-      totalBlogs++;
-      blogNumber++;
-    }
+  // Reinitialize Swiper after loading the blogs
+  function reinitializeSwiper() {
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
   }
 
-  // Function to load blogs for the current page
-  function loadBlogsForPage(page) {
-    const startBlog = (page - 1) * blogsPerPage + 1; // First blog to load on this page
-    const endBlog = Math.min(page * blogsPerPage, totalBlogs); // Last blog to load on this page
+  // Dynamically load blog files in sequence
+  let blogNumber = 1; // Start from blog 001
+  let maxBlogs = 10; // Adjust as needed
 
-    // Hide all blogs initially
-    for (let i = 1; i <= totalBlogs; i++) {
-      let blogId = `blog-${i.toString().padStart(3, '0')}`;
-      let blogElement = document.getElementById(blogId);
-      if (blogElement) {
-        blogElement.style.display = 'none';
-      }
-    }
+  function loadBlogs() {
+    let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
+    let blogFile = `blog/${blogId}.html`;
+    let blogElementId = `blog-${blogId}`;
 
-    // Show the blogs for the current page
-    for (let i = startBlog; i <= endBlog; i++) {
-      let blogId = `blog-${i.toString().padStart(3, '0')}`;
-      let blogElement = document.getElementById(blogId);
-      if (blogElement) {
-        blogElement.style.display = 'block';
-      }
-    }
+    // Try to load the current blog file
+    fetch(blogFile)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('File not found');
+        }
+      })
+      .then(data => {
+        let blogPlaceholder = document.getElementById(blogElementId);
+        if (blogPlaceholder) {
+          blogPlaceholder.innerHTML = data;
+          blogNumber++;
+          if (blogNumber <= maxBlogs) {
+            loadBlogs(); // Load the next blog file
+          }
 
-    // Update the pagination controls
-    updatePagination(page);
+          // Reinitialize Swiper if the blog contains Swiper elements
+          if (document.querySelector('.swiper')) {
+            reinitializeSwiper();
+          }
+        } else {
+          console.log(`Placeholder ${blogElementId} not found`);
+        }
+      })
+      .catch(error => {
+        console.log(`No more blogs to load: ${error.message}`);
+      });
   }
 
-  // Function to update the pagination controls
-  function updatePagination(page) {
-    const totalPages = Math.ceil(totalBlogs / blogsPerPage);
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = ''; // Clear current pagination
-
-    // Hide pagination if there's only one page or no blogs
-    if (totalPages <= 1) {
-      paginationContainer.style.display = 'none';
-      return;
-    }
-
-    paginationContainer.style.display = 'flex'; // Show pagination if needed
-
-    // Previous button
-    if (page > 1) {
-      const prevButton = document.createElement('a');
-      prevButton.href = '#';
-      prevButton.textContent = 'Previous';
-      prevButton.onclick = function () {
-        loadBlogsForPage(page - 1);
-        return false; // Prevent default link behavior
-      };
-      paginationContainer.appendChild(prevButton);
-    }
-
-    // Page numbers
-    for (let i = 1; i <= totalPages; i++) {
-      const pageButton = document.createElement('a');
-      pageButton.href = '#';
-      pageButton.textContent = i;
-      if (i === page) {
-        pageButton.classList.add('active'); // Highlight the current page
-      }
-      pageButton.onclick = function () {
-        loadBlogsForPage(i);
-        return false; // Prevent default link behavior
-      };
-      paginationContainer.appendChild(pageButton);
-    }
-
-    // Next button
-    if (page < totalPages) {
-      const nextButton = document.createElement('a');
-      nextButton.href = '#';
-      nextButton.textContent = 'Next';
-      nextButton.onclick = function () {
-        loadBlogsForPage(page + 1);
-        return false; // Prevent default link behavior
-      };
-      paginationContainer.appendChild(nextButton);
-    }
-  }
-
-  // Initialize the script when the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', function () {
-    determineTotalBlogs(); // Count the total number of blog placeholders
-    if (totalBlogs > 0) {
-      loadBlogsForPage(currentPage); // Load the first page of blogs
-    }
-  });
+  // Start loading blog files
+  loadBlogs();
 </script>
 
 
