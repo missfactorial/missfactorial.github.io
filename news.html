@@ -122,22 +122,19 @@
 
 <script>
   const blogsPerPage = 2; // Number of blogs to display per page
-  let totalBlogs = 0;
   let currentPage = 1; // Start with the first page
+  let totalBlogs = 0; // We will determine this dynamically based on the manual placeholders
 
-  // Function to determine how many blogs are present by checking existing placeholders
+  // Function to determine the total number of blog placeholders
   function determineTotalBlogs() {
-    let blogNumber = 1;
-
-    // Reset totalBlogs
     totalBlogs = 0;
-
+    let blogNumber = 1;
+    
+    // Check each blog placeholder until no more are found
     while (document.getElementById(`blog-${blogNumber.toString().padStart(3, '0')}`)) {
       totalBlogs++;
       blogNumber++;
     }
-
-    return totalBlogs;
   }
 
   // Function to load blogs for the current page
@@ -173,13 +170,13 @@
     const paginationContainer = document.getElementById('pagination');
     paginationContainer.innerHTML = ''; // Clear current pagination
 
-    // Hide pagination if there is only one page
-    if (totalBlogs <= blogsPerPage) {
+    // Hide pagination if there's only one page or no blogs
+    if (totalPages <= 1) {
       paginationContainer.style.display = 'none';
       return;
     }
 
-    paginationContainer.style.display = 'flex'; // Show pagination
+    paginationContainer.style.display = 'flex'; // Show pagination if needed
 
     // Previous button
     if (page > 1) {
@@ -221,10 +218,12 @@
     }
   }
 
-  // Initialize blogs and pagination on DOM load
+  // Initialize the script when the DOM is fully loaded
   document.addEventListener('DOMContentLoaded', function () {
-    totalBlogs = determineTotalBlogs(); // Calculate total number of blogs
-    loadBlogsForPage(currentPage); // Load the first page of blogs
+    determineTotalBlogs(); // Count the total number of blog placeholders
+    if (totalBlogs > 0) {
+      loadBlogsForPage(currentPage); // Load the first page of blogs
+    }
   });
 </script>
 
