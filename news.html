@@ -67,6 +67,8 @@
     <div id="blog-001"></div>
     <div id="blog-002"></div>
     
+    <!-- Pagination -->
+<div id="pagination" class="pagination" style="display: none;"></div>
     
     <!-- End Portfolio Details Section -->
 
@@ -83,108 +85,174 @@
  
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Load external header, footer, and blog files via JavaScript -->
+<!-- Load external header and footer via JavaScript -->
 <script>
-  // Function to load external files into a placeholder
-  function loadFile(file, elementId) {
-    fetch(file)
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error('File not found');
-        }
-      })
+  document.addEventListener("DOMContentLoaded", function() {
+    // Load header
+    fetch('header.html')
+      .then(response => response.text())
       .then(data => {
-        document.getElementById(elementId).innerHTML = data;
+        document.getElementById('header-placeholder').innerHTML = data;
 
-        // If the file loaded is the header, reinitialize mobile nav toggle
-        if (elementId === 'header-placeholder') {
-          reinitializeMobileNavToggle();
+        // Reinitialize mobile nav toggle after the header is loaded
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navbar = document.querySelector('#navbar');
+        
+        if (mobileNavToggle && navbar) {
+          mobileNavToggle.addEventListener('click', function() {
+            navbar.classList.toggle('navbar-mobile');
+            this.classList.toggle('bi-list');
+            this.classList.toggle('bi-x');
+          });
         }
-      })
-      .catch(error => {
-        console.log(`Skipping ${file}: ${error.message}`);
       });
+
+    // Load footer
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      });
+  });
+</script>
+
+
+
+<!-- Script for Blog Loading and Pagination -->
+<script>
+  const blogsPerPage = 5;
+  let totalBlogs = 0;
+  let currentPage = 1; // Start on the first page
+
+  // Function to determine the total number of blogs dynamically
+  function determineTotalBlogs() {
+    let blogNumber = 1;
+
+    function checkNextBlog() {
+      const blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
+      const blogFile = `blog/${blogId}.html`;
+
+      // Try to fetch the blog file
+      fetch(blogFile)
+        .then(response => {
+          if (response.ok) {
+            totalBlogs = blogNumber; // Update total blogs
+            blogNumber++;
+            checkNextBlog(); // Check the next blog
+          } else {
+            // No more blogs, proceed to load the first page
+            loadBlogsForPage(currentPage);
+          }
+        })
+        .catch(() => {
+          // In case of any error, assume no more blogs and proceed
+          loadBlogsForPage(currentPage);
+        });
+    }
+
+    checkNextBlog(); // Start checking from the first blog
   }
 
-  // Function to reinitialize the mobile navigation toggle
-  function reinitializeMobileNavToggle() {
-    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-    const navbar = document.querySelector('#navbar');
-    
-    if (mobileNavToggle && navbar) {
-      mobileNavToggle.addEventListener('click', function() {
-        navbar.classList.toggle('navbar-mobile');
-        this.classList.toggle('bi-list');
-        this.classList.toggle('bi-x');
-      });
+  // Function to load blogs for the current page
+  function loadBlogsForPage(page) {
+    const startBlog = (page - 1) * blogsPerPage + 1; // Calculate the first blog on this page
+    const endBlog = Math.min(page * blogsPerPage, totalBlogs); // Calculate the last blog on this page
+
+    // Clear the current blog container
+    document.getElementById('blog-container').innerHTML = '';
+
+    for (let blogNumber = startBlog; blogNumber <= endBlog; blogNumber++) {
+      const blogId = blogNumber.toString().padStart(3, '0'); // e.g., 001, 002, ...
+      const blogFile = `blog/${blogId}.html`;
+      const blogElementId = `blog-${blogId}`;
+
+      // Create a blog placeholder
+      const blogPlaceholder = document.createElement('div');
+      blogPlaceholder.id = blogElementId;
+      document.getElementById('blog-container').appendChild(blogPlaceholder);
+
+      // Load the blog file into the placeholder
+      fetch(blogFile)
+        .then(response => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            throw new Error('File not found');
+          }
+        })
+        .then(data => {
+          document.getElementById(blogElementId).innerHTML = data;
+        })
+        .catch(error => {
+          console.log(`Blog ${blogFile} could not be loaded: ${error.message}`);
+        });
+    }
+
+    // Update the pagination
+    updatePagination(page);
+  }
+
+  // Function to update pagination controls
+  function updatePagination(page) {
+    const totalPages = Math.ceil(totalBlogs / blogsPerPage);
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = ''; // Clear current pagination
+
+    // Hide pagination if there is only one page or fewer blogs than blogsPerPage
+    if (totalBlogs <= blogsPerPage) {
+      paginationContainer.style.display = 'none';
+      return;
+    }
+
+    paginationContainer.style.display = 'flex'; // Show pagination if more than one page is needed
+
+    // Previous button
+    if (page > 1) {
+      const prevButton = document.createElement('a');
+      prevButton.href = '#';
+      prevButton.textContent = 'Previous';
+      prevButton.onclick = function() {
+        loadBlogsForPage(page - 1);
+        return false; // Prevent default link behavior
+      };
+      paginationContainer.appendChild(prevButton);
+    }
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement('a');
+      pageButton.href = '#';
+      pageButton.textContent = i;
+      if (i === page) {
+        pageButton.classList.add('active'); // Highlight the current page
+      }
+      pageButton.onclick = function() {
+        loadBlogsForPage(i);
+        return false; // Prevent default link behavior
+      };
+      paginationContainer.appendChild(pageButton);
+    }
+
+    // Next button
+    if (page < totalPages) {
+      const nextButton = document.createElement('a');
+      nextButton.href = '#';
+      nextButton.textContent = 'Next';
+      nextButton.onclick = function() {
+        loadBlogsForPage(page + 1);
+        return false; // Prevent default link behavior
+      };
+      paginationContainer.appendChild(nextButton);
     }
   }
 
-  // Load header
-  loadFile('header.html', 'header-placeholder');
-
-  // Load footer
-  loadFile('footer.html', 'footer-placeholder');
-
-  // Reinitialize Swiper after loading the blogs
-  function reinitializeSwiper() {
-    const swiper = new Swiper('.swiper', {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      autoplay: {
-        delay: 5000,
-      },
-    });
-  }
-
-  // Dynamically load blog files in sequence
-  let blogNumber = 1; // Start from blog 001
-  let maxBlogs = 10; // Adjust as needed
-
-  function loadBlogs() {
-    let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
-    let blogFile = `blog/${blogId}.html`;
-    let blogElementId = `blog-${blogId}`;
-
-    // Try to load the current blog file
-    fetch(blogFile)
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error('File not found');
-        }
-      })
-      .then(data => {
-        let blogPlaceholder = document.getElementById(blogElementId);
-        if (blogPlaceholder) {
-          blogPlaceholder.innerHTML = data;
-          blogNumber++;
-          if (blogNumber <= maxBlogs) {
-            loadBlogs(); // Load the next blog file
-          }
-
-          // Reinitialize Swiper if the blog contains Swiper elements
-          if (document.querySelector('.swiper')) {
-            reinitializeSwiper();
-          }
-        } else {
-          console.log(`Placeholder ${blogElementId} not found`);
-        }
-      })
-      .catch(error => {
-        console.log(`No more blogs to load: ${error.message}`);
-      });
-  }
-
-  // Start loading blog files
-  loadBlogs();
+  // Start by determining the total number of blogs
+  determineTotalBlogs();
 </script>
+
+
+
+
 
 
   <!-- Vendor JS Files -->
