@@ -84,88 +84,108 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Load external header, footer, and blog files via JavaScript -->
-  <script>
-    // Function to load external files into a placeholder
-    function loadFile(file, elementId) {
-      fetch(file)
-        .then(response => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            throw new Error('File not found');
-          }
-        })
-        .then(data => {
-          document.getElementById(elementId).innerHTML = data;
-        })
-        .catch(error => {
-          console.log(`Skipping ${file}: ${error.message}`);
-        });
-    }
+<script>
+  // Function to load external files into a placeholder
+  function loadFile(file, elementId) {
+    fetch(file)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('File not found');
+        }
+      })
+      .then(data => {
+        document.getElementById(elementId).innerHTML = data;
 
-    // Load header
-    loadFile('header.html', 'header-placeholder');
+        // If the file loaded is the header, reinitialize mobile nav toggle
+        if (elementId === 'header-placeholder') {
+          reinitializeMobileNavToggle();
+        }
+      })
+      .catch(error => {
+        console.log(`Skipping ${file}: ${error.message}`);
+      });
+  }
 
-    // Load footer
-    loadFile('footer.html', 'footer-placeholder');
-
-    // Reinitialize Swiper after loading the blogs
-    function reinitializeSwiper() {
-      const swiper = new Swiper('.swiper', {
-        loop: true,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        autoplay: {
-          delay: 5000,
-        },
+  // Function to reinitialize the mobile navigation toggle
+  function reinitializeMobileNavToggle() {
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navbar = document.querySelector('#navbar');
+    
+    if (mobileNavToggle && navbar) {
+      mobileNavToggle.addEventListener('click', function() {
+        navbar.classList.toggle('navbar-mobile');
+        this.classList.toggle('bi-list');
+        this.classList.toggle('bi-x');
       });
     }
+  }
 
-    // Dynamically load blog files in sequence
-    let blogNumber = 1; // Start from blog 001
-    let maxBlogs = 10; // Adjust as needed
-    
-    function loadBlogs() {
-      let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
-      let blogFile = `blog/${blogId}.html`;
-      let blogElementId = `blog-${blogId}`;
+  // Load header
+  loadFile('header.html', 'header-placeholder');
 
-      // Try to load the current blog file
-      fetch(blogFile)
-        .then(response => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            throw new Error('File not found');
+  // Load footer
+  loadFile('footer.html', 'footer-placeholder');
+
+  // Reinitialize Swiper after loading the blogs
+  function reinitializeSwiper() {
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
+  }
+
+  // Dynamically load blog files in sequence
+  let blogNumber = 1; // Start from blog 001
+  let maxBlogs = 10; // Adjust as needed
+
+  function loadBlogs() {
+    let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
+    let blogFile = `blog/${blogId}.html`;
+    let blogElementId = `blog-${blogId}`;
+
+    // Try to load the current blog file
+    fetch(blogFile)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('File not found');
+        }
+      })
+      .then(data => {
+        let blogPlaceholder = document.getElementById(blogElementId);
+        if (blogPlaceholder) {
+          blogPlaceholder.innerHTML = data;
+          blogNumber++;
+          if (blogNumber <= maxBlogs) {
+            loadBlogs(); // Load the next blog file
           }
-        })
-        .then(data => {
-          let blogPlaceholder = document.getElementById(blogElementId);
-          if (blogPlaceholder) {
-            blogPlaceholder.innerHTML = data;
-            blogNumber++;
-            if (blogNumber <= maxBlogs) {
-              loadBlogs(); // Load the next blog file
-            }
 
-            // Reinitialize Swiper if the blog contains Swiper elements
-            if (document.querySelector('.swiper')) {
-              reinitializeSwiper();
-            }
-          } else {
-            console.log(`Placeholder ${blogElementId} not found`);
+          // Reinitialize Swiper if the blog contains Swiper elements
+          if (document.querySelector('.swiper')) {
+            reinitializeSwiper();
           }
-        })
-        .catch(error => {
-          console.log(`No more blogs to load: ${error.message}`);
-        });
-    }
+        } else {
+          console.log(`Placeholder ${blogElementId} not found`);
+        }
+      })
+      .catch(error => {
+        console.log(`No more blogs to load: ${error.message}`);
+      });
+  }
 
-    // Start loading blog files
-    loadBlogs();
-  </script>
+  // Start loading blog files
+  loadBlogs();
+</script>
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
