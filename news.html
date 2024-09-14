@@ -68,8 +68,7 @@
 <div id="blog-002"></div>
 <!-- More blog placeholders can be added manually as needed -->
 
-<!-- Pagination -->
-<div id="pagination" class="pagination" style="display: none;"></div>
+
 
     
     <!-- End Portfolio Details Section -->
@@ -120,22 +119,64 @@
 
 
 
-<!-- Simple Script to Show Blogs (No Pagination for Now) -->
+<!-- Load blog files via JavaScript -->
 <script>
-  // Check if the blog elements are being correctly selected and displayed
-  function showBlogs() {
-    const blog1 = document.getElementById('blog-001');
-    const blog2 = document.getElementById('blog-002');
-
-    // Ensure the blogs are visible
-    if (blog1) blog1.style.display = 'block';
-    if (blog2) blog2.style.display = 'block';
+  // Reinitialize Swiper after loading the blogs
+  function reinitializeSwiper() {
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
   }
 
-  // Run the function after the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", function() {
-    showBlogs(); // Simply show the blogs on load
-  });
+  // Dynamically load blog files in sequence
+  let blogNumber = 1; // Start from blog 001
+  let maxBlogs = 10; // Adjust as needed
+
+  function loadBlogs() {
+    let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
+    let blogFile = `blog/${blogId}.html`;
+    let blogElementId = `blog-${blogId}`;
+
+    // Try to load the current blog file
+    fetch(blogFile)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('File not found');
+        }
+      })
+      .then(data => {
+        let blogPlaceholder = document.getElementById(blogElementId);
+        if (blogPlaceholder) {
+          blogPlaceholder.innerHTML = data;
+          blogNumber++;
+          if (blogNumber <= maxBlogs) {
+            loadBlogs(); // Load the next blog file
+          }
+
+          // Reinitialize Swiper if the blog contains Swiper elements
+          if (document.querySelector('.swiper')) {
+            reinitializeSwiper();
+          }
+        } else {
+          console.log(`Placeholder ${blogElementId} not found`);
+        }
+      })
+      .catch(error => {
+        console.log(`No more blogs to load: ${error.message}`);
+      });
+  }
+
+  // Start loading blog files
+  loadBlogs();
 </script>
 
 
