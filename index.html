@@ -343,16 +343,27 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Load external header and footer via JavaScript -->
-  <script async>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Load header
       fetch('header.html')
         .then(response => response.text())
         .then(data => {
           document.getElementById('header-placeholder').innerHTML = data;
-          // Initialize your navbar JS here if needed
+
+          // Reinitialize mobile nav toggle after the header is loaded
+          const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+          const navbar = document.querySelector('#navbar');
+          
+          if (mobileNavToggle && navbar) {
+            mobileNavToggle.addEventListener('click', function() {
+              navbar.classList.toggle('navbar-mobile');
+              this.classList.toggle('bi-list');
+              this.classList.toggle('bi-x');
+            });
+          }
         });
-  
+
       // Load footer
       fetch('footer.html')
         .then(response => response.text())
