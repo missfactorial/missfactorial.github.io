@@ -63,26 +63,14 @@
     
     <!-- ======= Portfolio Details Section ======= -->
     
-    <!-- Blog Placeholders -->
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    <div id="blog-001"></div>
-    <div id="blog-002"></div>
-    
-    <!-- Pagination -->
+<!-- Blog Placeholders -->
+<div id="blog-001"></div>
+<div id="blog-002"></div>
+<!-- More blog placeholders can be added manually as needed -->
+
+<!-- Pagination -->
 <div id="pagination" class="pagination" style="display: none;"></div>
+
     
     <!-- End Portfolio Details Section -->
 
@@ -132,77 +120,47 @@
 
 
 
-<!-- Script for Blog Loading and Pagination -->
+<!-- Script for Manually Loading Blogs and Pagination -->
 <script>
-  const blogsPerPage = 5;
+  const blogsPerPage = 2; // Number of blogs to show per page
   let totalBlogs = 0;
   let currentPage = 1; // Start on the first page
+  let blogElements = []; // Array to hold the blog elements (e.g., 'blog-001', 'blog-002')
 
-  // Function to determine the total number of blogs dynamically
+  // Function to determine the total number of blogs and create a list of blog elements
   function determineTotalBlogs() {
     let blogNumber = 1;
 
-    function checkNextBlog() {
-      const blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
-      const blogFile = `blog/${blogId}.html`;
+    // Clear the existing blogElements array
+    blogElements = [];
 
-      // Try to fetch the blog file
-      fetch(blogFile)
-        .then(response => {
-          if (response.ok) {
-            totalBlogs = blogNumber; // Update total blogs
-            blogNumber++;
-            checkNextBlog(); // Check the next blog
-          } else {
-            // No more blogs, proceed to load the first page
-            loadBlogsForPage(currentPage);
-          }
-        })
-        .catch(() => {
-          // In case of any error, assume no more blogs and proceed
-          loadBlogsForPage(currentPage);
-        });
+    // Manually add blogs like blog-001, blog-002, etc.
+    while (document.getElementById(`blog-${blogNumber.toString().padStart(3, '0')}`)) {
+      blogElements.push(`blog-${blogNumber.toString().padStart(3, '0')}`);
+      blogNumber++;
     }
 
-    checkNextBlog(); // Start checking from the first blog
+    totalBlogs = blogElements.length; // Set the total number of blogs
+    loadBlogsForPage(currentPage); // Load the blogs for the current page
   }
 
-  // Function to load blogs for the current page
+  // Function to load blogs for the current page into the manual placeholders
   function loadBlogsForPage(page) {
-    const startBlog = (page - 1) * blogsPerPage + 1; // Calculate the first blog on this page
-    const endBlog = Math.min(page * blogsPerPage, totalBlogs); // Calculate the last blog on this page
+    const startBlog = (page - 1) * blogsPerPage; // Calculate the first blog index on this page
+    const endBlog = Math.min(page * blogsPerPage, totalBlogs); // Calculate the last blog index on this page
 
-    // Clear the current blog container
-    document.getElementById('blog-container').innerHTML = '';
+    // Hide all blog placeholders initially
+    blogElements.forEach((blogId) => {
+      document.getElementById(blogId).style.display = 'none';
+    });
 
-    for (let blogNumber = startBlog; blogNumber <= endBlog; blogNumber++) {
-      const blogId = blogNumber.toString().padStart(3, '0'); // e.g., 001, 002, ...
-      const blogFile = `blog/${blogId}.html`;
-      const blogElementId = `blog-${blogId}`;
-
-      // Create a blog placeholder
-      const blogPlaceholder = document.createElement('div');
-      blogPlaceholder.id = blogElementId;
-      document.getElementById('blog-container').appendChild(blogPlaceholder);
-
-      // Load the blog file into the placeholder
-      fetch(blogFile)
-        .then(response => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            throw new Error('File not found');
-          }
-        })
-        .then(data => {
-          document.getElementById(blogElementId).innerHTML = data;
-        })
-        .catch(error => {
-          console.log(`Blog ${blogFile} could not be loaded: ${error.message}`);
-        });
+    // Show only the blogs for the current page
+    for (let i = startBlog; i < endBlog; i++) {
+      const blogId = blogElements[i];
+      document.getElementById(blogId).style.display = 'block'; // Show the blog for this page
     }
 
-    // Update the pagination
+    // Update the pagination controls
     updatePagination(page);
   }
 
@@ -260,12 +218,9 @@
     }
   }
 
-  // Start by determining the total number of blogs
+  // Initialize the blogs and pagination
   determineTotalBlogs();
 </script>
-
-
-
 
 
 
