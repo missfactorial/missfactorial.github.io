@@ -1,3 +1,0 @@
-Blog #,Type,Title,Organization/Event,Date,City,Location,Description,Images
-0001,Test,Test Blog Post 1,Test Organization,"May 10, 2024","Test City",Test Location,"This is a test blog post to verify that the CSV parsing is working correctly.",
-0002,Test,Test Blog Post 2,Test Organization,"May 9, 2024","Test City",Test Location,"This is another test blog post with a slightly different date to verify sorting.", 
