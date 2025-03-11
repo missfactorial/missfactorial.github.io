@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog System Setup Guide</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #5846f9;
+    }
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .note {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+    ol li, ul li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blog System Setup Guide</h1>
+  
+  <h2>Overview</h2>
+  <p>This guide will help you set up the blog system that reads data from a local CSV file and displays it on your website with pagination.</p>
+  
+  <h2>Step 1: CSV File Setup</h2>
+  <ol>
+    <li>Ensure your <code>news.csv</code> file is in the root directory of your website.</li>
+    <li>Make sure the CSV file has the following column headers in the first row:
+      <ul>
+        <li><code>Blog #</code> - A unique identifier for each blog post (optional)</li>
+        <li><code>Type</code> - The type of event or activity (e.g., "Outreach talk", "Volunteer")</li>
+        <li><code>Title</code> - The title of your blog post</li>
+        <li><code>Organization/Event</code> - The organization or event name</li>
+        <li><code>Date</code> - The date of the post (format: YYYY-MM-DD or Month DD, YYYY)</li>
+        <li><code>City</code> - The city where the event took place</li>
+        <li><code>Location</code> - The specific location of the event</li>
+        <li><code>Description</code> - The main content of your blog post</li>
+        <li><code>Images</code> - Comma-separated list of image URLs (optional)</li>
+      </ul>
+    </li>
+    <li>Fill in your blog posts in the rows below the header row.</li>
+    <li>For text that contains commas, enclose the text in double quotes to ensure proper CSV formatting.</li>
+  </ol>
+  
+  <div class="note">
+    <strong>Note:</strong> When editing the CSV file, be careful to maintain the proper CSV format. If you're using Excel or Google Sheets to edit the file, make sure to export it as CSV with proper encoding.
+  </div>
+  
+  <h2>Step 2: Adding New Blog Posts</h2>
+  <ol>
+    <li>To add a new blog post, simply add a new row to the <code>news.csv</code> file.</li>
+    <li>Fill in the relevant columns for your new post.</li>
+    <li>Save the file and upload it to your website.</li>
+    <li>The blog system will automatically display the new post, sorted by date (newest first).</li>
+  </ol>
+  
+  <h2>CSV Format Example</h2>
+  <pre>
+Blog #,Type,Title,Organization/Event,Date,City,Location,Description,Images
+0050,Lead Instructor,DS4A Career Accelerator program,Correlation One,"May 8, 2024",,Virtual,"We recently completed a training engagement for the DS4A Career Accelerator program, organized by Correlation One.",
+0049,Volunteer,Accessibility Hackathon,Code Your Dreams,"March 9, 2024","Chicago, IL",Google HQ,"Viviana recently participated as volunteer in the 'Hack for Accessibility' event.",
+  </pre>
+  
+  <h2>Troubleshooting</h2>
+  <ul>
+    <li><strong>No posts appear:</strong> Check your browser console for errors. Make sure your CSV file is properly formatted and accessible.</li>
+    <li><strong>CSV parsing errors:</strong> Ensure that any text containing commas is enclosed in double quotes.</li>
+    <li><strong>Images don't load:</strong> Ensure the image URLs are publicly accessible and correctly formatted in the CSV.</li>
+  </ul>
+  
+  <h2>Customization</h2>
+  <p>You can customize the appearance of your blog posts by editing the CSS in <code>assets/css/blog-pagination.css</code>.</p>
+  <p>To change the number of posts per page, modify the <code>POSTS_PER_PAGE</code> constant in <code>assets/js/blog-loader.js</code>.</p>
+  
+</body>
+</html> 
