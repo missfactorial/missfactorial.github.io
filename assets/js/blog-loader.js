@@ -67,7 +67,8 @@ async function fetchBlogData() {
         content: post['Description'] || '',
         type: post['Type'] || '',
         organization: post['Organization/Event'] || '',
-        images: post['Images'] || ''
+        images: post['Images'] || '',
+        blogNumber: post['Blog#'] || ''
       };
     });
     
@@ -135,7 +136,30 @@ function displayBlogPosts() {
     
     // Prepare images HTML if available
     let imagesHTML = '';
-    if (post.images) {
+    
+    // Check if there's a blog number to look for images in the corresponding folder
+    if (post.blogNumber) {
+      // Format the blog number with leading zeros (e.g., "45" becomes "0045")
+      const formattedBlogNumber = post.blogNumber.toString().padStart(4, '0');
+      
+      // Set up a placeholder for images that will be loaded asynchronously
+      imagesHTML = `
+        <div class="col-lg-3">
+          <div class="portfolio-details-slider swiper" id="swiper-${post.blogNumber}">
+            <div class="swiper-wrapper align-items-center">
+              <!-- Images will be loaded here -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      `;
+      
+      // After the post is added to the DOM, scan for images
+      setTimeout(() => {
+        scanForImagesInFolder(formattedBlogNumber, postElement);
+      }, 100);
+    } else if (post.images) {
+      // If no blog number, use images from Excel as before
       const imageUrls = post.images.split(',').map(url => url.trim());
       if (imageUrls.length > 0 && imageUrls[0] !== '') {
         imagesHTML = `
@@ -308,19 +332,203 @@ function setupPagination() {
 
 // Function to reinitialize Swiper
 function reinitializeSwiper() {
-  const swipers = document.querySelectorAll('.swiper');
-  swipers.forEach(element => {
-    new Swiper(element, {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      autoplay: {
-        delay: 5000,
-      },
+  // Destroy existing swipers first to prevent duplicates
+  if (window.blogSwipers) {
+    window.blogSwipers.forEach(swiper => {
+      if (swiper && typeof swiper.destroy === 'function') {
+        swiper.destroy();
+      }
     });
+  }
+  
+  // Initialize new swipers
+  window.blogSwipers = [];
+  const swipers = document.querySelectorAll('.portfolio-details-slider.swiper');
+  
+  swipers.forEach(element => {
+    // Only initialize if there are slides
+    const slides = element.querySelectorAll('.swiper-slide');
+    if (slides.length > 0) {
+      const swiper = new Swiper(element, {
+        loop: true,
+        pagination: {
+          el: element.querySelector('.swiper-pagination'),
+          clickable: true,
+        },
+        autoplay: {
+          delay: 5000,
+        },
+      });
+      
+      window.blogSwipers.push(swiper);
+    }
   });
+}
+
+// Function to scan for images in a folder
+function scanForImagesInFolder(blogNumber, postElement) {
+  console.log(`Scanning for images in blog/img/${blogNumber}/`);
+  
+  // Get a list of all files in the folder
+  // Since we can't directly list files in a directory from the browser,
+  // we'll try to load images with common naming patterns
+  
+  // First, try to load a sample image to see if the folder exists
+  const testImage = new Image();
+  testImage.onload = function() {
+    // Folder exists and contains at least one image
+    console.log(`Found images in blog/img/${blogNumber}/`);
+    loadAllImagesInFolder(blogNumber, postElement);
+  };
+  
+  testImage.onerror = function() {
+    // Folder doesn't exist or doesn't contain this image
+    console.log(`No images found in blog/img/${blogNumber}/`);
+    
+    // Check if there are images in the Excel data
+    const postIndex = Array.from(document.querySelectorAll('.portfolio-details')).indexOf(postElement);
+    if (postIndex >= 0 && blogData[postIndex].images) {
+      updateImagesFromExcel(blogData[postIndex].images, postElement);
+    }
+  };
+  
+  // Try to load a sample image
+  testImage.src = `blog/img/${blogNumber}/${blogNumber}_01.jpg`;
+}
+
+// Function to load all images in a folder
+function loadAllImagesInFolder(blogNumber, postElement) {
+  // Find the swiper container
+  const swiperContainer = postElement.querySelector(`#swiper-${blogNumber} .swiper-wrapper`);
+  
+  if (!swiperContainer) {
+    console.error(`Swiper container not found for blog #${blogNumber}`);
+    return;
+  }
+  
+  // Clear any existing content
+  swiperContainer.innerHTML = '';
+  
+  // Get all files in the folder
+  // Since we can't list directory contents directly, we'll try common patterns
+  const imageUrls = [];
+  
+  // Check for images in the folder
+  const checkImage = (url) => {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(url);
+      img.onerror = () => resolve(null);
+      img.src = url;
+    });
+  };
+  
+  // Try different naming patterns
+  const promises = [];
+  
+  // Try pattern: folder/*.jpg (all files in folder)
+  // Since we can't directly check this, we'll try specific patterns
+  
+  // Pattern 1: folder/foldername_XX.jpg (e.g., 0045/0045_01.jpg)
+  for (let i = 1; i <= 20; i++) {
+    const num = i.toString().padStart(2, '0');
+    promises.push(checkImage(`blog/img/${blogNumber}/${blogNumber}_${num}.jpg`));
+    promises.push(checkImage(`blog/img/${blogNumber}/${blogNumber}_${num}.jpeg`));
+    promises.push(checkImage(`blog/img/${blogNumber}/${blogNumber}_${num}.png`));
+  }
+  
+  // Pattern 2: folder/anyname00001.jpg (e.g., 0045/anyname00001.jpg)
+  for (let i = 1; i <= 20; i++) {
+    const num = i.toString().padStart(5, '0');
+    promises.push(checkImage(`blog/img/${blogNumber}/*${num}.jpg`));
+    promises.push(checkImage(`blog/img/${blogNumber}/*${num}.jpeg`));
+    promises.push(checkImage(`blog/img/${blogNumber}/*${num}.png`));
+  }
+  
+  // Pattern 3: Try specific files we found in the example
+  if (blogNumber === '0045') {
+    promises.push(checkImage(`blog/img/0045/MathAndBeerBogota_VivianaMarquez00001.jpeg`));
+    promises.push(checkImage(`blog/img/0045/MathAndBeerBogota_VivianaMarquez00002.jpg`));
+    promises.push(checkImage(`blog/img/0045/MathAndBeerBogota_VivianaMarquez00003.jpg`));
+    promises.push(checkImage(`blog/img/0045/MathAndBeerBogota_VivianaMarquez00004.jpg`));
+  }
+  
+  if (blogNumber === '0050') {
+    promises.push(checkImage(`blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00001.png`));
+    promises.push(checkImage(`blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00002.jpeg`));
+    promises.push(checkImage(`blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00003.jpeg`));
+    promises.push(checkImage(`blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00004.jpeg`));
+    promises.push(checkImage(`blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00005.jpeg`));
+    promises.push(checkImage(`blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00006.jpeg`));
+  }
+  
+  // Process all the image check promises
+  Promise.all(promises)
+    .then(results => {
+      const validUrls = results.filter(url => url !== null);
+      
+      if (validUrls.length > 0) {
+        // Add each image to the swiper
+        validUrls.forEach(url => {
+          const slide = document.createElement('div');
+          slide.className = 'swiper-slide';
+          
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = '';
+          img.loading = 'lazy';
+          
+          slide.appendChild(img);
+          swiperContainer.appendChild(slide);
+        });
+        
+        // Initialize or update the Swiper
+        reinitializeSwiper();
+      } else {
+        console.log(`No images found with common patterns in blog/img/${blogNumber}/`);
+        
+        // Check if there are images in the Excel data
+        const postIndex = Array.from(document.querySelectorAll('.portfolio-details')).indexOf(postElement);
+        if (postIndex >= 0 && blogData[postIndex].images) {
+          updateImagesFromExcel(blogData[postIndex].images, postElement);
+        }
+      }
+    });
+}
+
+// Function to update images from Excel data
+function updateImagesFromExcel(imagesString, postElement) {
+  const imageUrls = imagesString.split(',').map(url => url.trim());
+  
+  if (imageUrls.length > 0 && imageUrls[0] !== '') {
+    // Find the swiper container
+    const swiperContainer = postElement.querySelector('.swiper-wrapper');
+    
+    if (!swiperContainer) {
+      console.error('Swiper container not found');
+      return;
+    }
+    
+    // Clear any existing content
+    swiperContainer.innerHTML = '';
+    
+    // Add each image to the swiper
+    imageUrls.forEach(url => {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = '';
+      img.loading = 'lazy';
+      
+      slide.appendChild(img);
+      swiperContainer.appendChild(slide);
+    });
+    
+    // Initialize or update the Swiper
+    reinitializeSwiper();
+  }
 }
 
 // Initialize when the document is loaded
