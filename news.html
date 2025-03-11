@@ -28,9 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
-  <!-- Blog Pagination CSS File -->
-  <link href="assets/css/blog-pagination.css" rel="stylesheet">
 
   <!-- Google Contact Form -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -43,69 +40,43 @@
     <!-- Placeholder for Header -->
   <div id="header-placeholder"></div>
 
-  <!-- ======= Breadcrumbs Section ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-
-      <div class="d-flex justify-content-between align-items-center">
-        <h2>News — Our latest adventures in AI!</h2>
-      </div>
-
-    </div>
-  </section><!-- End Breadcrumbs Section -->
-
 
 <!-- ======= MAIN ======= -->
    <main id="main">
-    
-    
-    <!-- ======= Blog Posts Section ======= -->
-    <!-- Blog Container - Will be populated by JavaScript -->
-    <div id="blog-container"></div>
-    
-    <!-- Pagination -->
-    <div class="container">
-      <div id="pagination" class="pagination"></div>
-    </div>
-    <!-- End Blog Posts Section -->
 
-    
-<!-- ======= Contact Us Section ======= -->
-<section id="contact" class="contact section-bg">
-  <div class="container" data-aos="fade-up">
-<div class="section-title">
-      <h2>Book Viviana for your next AI event!</h2>
-      <p>Equipping teams to make data-driven decisions by first understanding your business challenges and goals, then delivering customized, hands-on training that you can apply right away.</p>
-    </div>
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
 
-
-    <div class="row">
-    
-    <div class="col-lg-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-        <div class="info-box ">
-          <i class='bx bx-bot'></i>
-          <h3>Training for everyone</h3>
-          <p>• Teaching non-technical teams to use data</p>
-          <p>• Upskilling data scientists in LLMs and RAG</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>News — Our latest adventures in AI!</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="upcoming.html">Upcoming</a></li>
+          </ol>
         </div>
-      </div>
-      
-        <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
-        <div class="info-box">
-          <i class="bx bx-envelope"></i>
-          <h3>Get a Quote</h3>
-          <p><a href="mailto:viviana@missfactorial.com" style="color: inherit; text-decoration: none;">viviana@missfactorial.com</a></p>
-        </div>
-      </div>
 
-      <div class="col-lg-3 d-flex" data-aos="fade-up">
-        <div class="info-box">
-          <i class="bx bx-map"></i>
-          <h3>Available Worldwide</h3>
-          <p>Virtual & In-Person</p>
-        </div>
       </div>
-    </section><!-- End Contact Us Section -->
+    </section><!-- End Breadcrumbs Section -->
+    
+    
+    <!-- ======= Portfolio Details Section ======= -->
+    
+<!-- Blog Placeholders -->
+<div id="blog-001"></div>
+<div id="blog-002"></div>
+<!-- More blog placeholders can be added manually as needed -->
+
+<!-- Pagination -->
+<div id="pagination" class="pagination" style="display: none;"></div>
+
+    
+    <!-- End Portfolio Details Section -->
+
+    
+
+
 
   </main>
 <!-- End #main -->
@@ -147,6 +118,71 @@
   });
 </script>
 
+
+
+<!-- Load blog files via JavaScript -->
+<script>
+  // Reinitialize Swiper after loading the blogs
+  function reinitializeSwiper() {
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 5000,
+      },
+    });
+  }
+
+  // Dynamically load blog files in sequence
+  let blogNumber = 1; // Start from blog 001
+  let maxBlogs = 10; // Adjust as needed
+
+  function loadBlogs() {
+    let blogId = blogNumber.toString().padStart(3, '0'); // Format blog number (e.g., 001, 002)
+    let blogFile = `blog/${blogId}.html`;
+    let blogElementId = `blog-${blogId}`;
+
+    // Try to load the current blog file
+    fetch(blogFile)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('File not found');
+        }
+      })
+      .then(data => {
+        let blogPlaceholder = document.getElementById(blogElementId);
+        if (blogPlaceholder) {
+          blogPlaceholder.innerHTML = data;
+          blogNumber++;
+          if (blogNumber <= maxBlogs) {
+            loadBlogs(); // Load the next blog file
+          }
+
+          // Reinitialize Swiper if the blog contains Swiper elements
+          if (document.querySelector('.swiper')) {
+            reinitializeSwiper();
+          }
+        } else {
+          console.log(`Placeholder ${blogElementId} not found`);
+        }
+      })
+      .catch(error => {
+        console.log(`No more blogs to load: ${error.message}`);
+      });
+  }
+
+  // Start loading blog files
+  loadBlogs();
+</script>
+
+
+
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
@@ -157,9 +193,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
-  <!-- Blog Loader JS File -->
-  <script src="assets/js/blog-loader.js"></script>
 
 </body>
 

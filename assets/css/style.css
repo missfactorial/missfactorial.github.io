@@ -1,20 +1,6 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-html {
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  color: #444444;
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
-}
-
 .font-primary,body,h1,h2,h3,h4,h5,h6{
   font-family:"Open Sans",Raleway,sans-serif
 }
@@ -1184,9 +1170,7 @@ section{
   align-items:center;
   margin:0 auto;
   max-width:1366px;
-  width:100%;
-  box-sizing: border-box;
-  overflow: hidden;
+  width:100%
 }
 .teamtwo .section-title p2{
   text-align:center;
@@ -1200,9 +1184,7 @@ section{
 .teamtwo .member{
   text-align:center;
   transform: translateY(-28px);
-  position:relative;
-  max-width: 100%;
-  box-sizing: border-box;
+  position:relative
 }
 .teamtwo .member .member-info{
   position:absolute;
@@ -1211,9 +1193,7 @@ section{
   right:20px;
   background:linear-gradient(360deg,#1c073e 0,rgba(28,7,62,.9) 35%,rgba(203,98,178,.8) 100%);
   padding:15px 0;
-  border-radius:4px;
-  box-sizing: border-box;
-  max-width: 100%;
+  border-radius:4px
 }
 .teamtwo .logo{
   box-shadow:0 5px 25px 0 rgba(214,215,216,.6);
@@ -1252,15 +1232,4 @@ section{
       margin-top:20px;
       padding:30px 20px 0
   }
-}
-
-/* Fix for horizontal overflow */
-.container, .container-fluid {
-  overflow-x: hidden;
-}
-
-.row {
-  margin-left: 0;
-  margin-right: 0;
-  max-width: 100%;
 }
