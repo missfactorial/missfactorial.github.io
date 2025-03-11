@@ -155,7 +155,7 @@ function displayBlogPosts() {
       }
     }
     
-    // Create content HTML with white background for the inner content box
+    // Create content HTML
     postElement.innerHTML = `
       <div class="container" data-aos="fade-up">
         <div class="row gy-4">
