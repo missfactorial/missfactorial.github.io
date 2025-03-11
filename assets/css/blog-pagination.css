@@ -34,6 +34,7 @@
 /* Blog Post Styles */
 .portfolio-details {
   padding: 30px 0;
+  transition: background-color 0.3s ease;
 }
 
 .portfolio-details .portfolio-info {
@@ -68,6 +69,11 @@
 
 .section-bg {
   background-color: #f8f9fa;
+}
+
+/* Blog post spacing */
+.portfolio-details + .portfolio-details {
+  margin-top: 20px;
 }
 
 /* Alert Styles */

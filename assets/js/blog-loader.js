@@ -119,6 +119,15 @@ function displayBlogPosts() {
     return;
   }
   
+  // Define an array of background colors for alternating posts
+  const bgColors = [
+    '#f2f1f4', // Light purple-gray (from style.css)
+    '#f8f9fa', // Light gray (from blog-pagination.css)
+    '#f0f7fa', // Light blue
+    '#f7f0fa', // Light purple
+    '#f0faf5'  // Light green
+  ];
+  
   for (let i = startIndex; i < endIndex; i++) {
     const post = blogData[i];
     
@@ -127,10 +136,9 @@ function displayBlogPosts() {
     postElement.id = `post-${i + 1}`;
     postElement.className = 'portfolio-details';
     
-    // Add section-bg class for odd-indexed posts (for alternating background)
-    if (i % 2 !== 0) {
-      postElement.classList.add('section-bg');
-    }
+    // Apply alternating background colors
+    const colorIndex = (i - startIndex) % bgColors.length;
+    postElement.style.backgroundColor = bgColors[colorIndex];
     
     // Prepare images HTML if available
     let imagesHTML = '';
