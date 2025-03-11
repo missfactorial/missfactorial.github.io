@@ -1,5 +1,5 @@
 // Blog display configuration
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 5;
 let currentPage = 1;
 let totalPosts = 0;
 let blogData = [];
@@ -16,9 +16,9 @@ async function fetchBlogData() {
       console.log('SheetJS library loaded successfully');
     }
     
-    // Fetch the XLSX file
-    console.log('Fetching news.xlsx...');
-    const response = await fetch('news.xlsx');
+    // Fetch the XLSX file from the blog folder
+    console.log('Fetching blog/news.xlsx...');
+    const response = await fetch('blog/news.xlsx');
     
     if (!response.ok) {
       throw new Error(`Failed to fetch XLSX data: ${response.status} ${response.statusText}`);
