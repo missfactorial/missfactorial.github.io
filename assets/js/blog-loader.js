@@ -129,10 +129,12 @@ function displayBlogPosts() {
   
   console.log(`Displaying blog posts from ${startIndex + 1} to ${endIndex} (total: ${totalPosts})`);
   
+  // Force a consistent pattern by always starting with white background on each page
   for (let i = startIndex; i < endIndex; i++) {
     const post = blogData[i];
+    const relativeIndex = i - startIndex; // Position on the current page (0-based)
     
-    console.log(`Processing post #${i + 1}:`, post.title);
+    console.log(`Processing post #${i + 1} (relative index: ${relativeIndex}):`, post.title);
     console.log(`Blog# value:`, post.blogNumber);
     
     // Create blog post HTML
@@ -140,12 +142,13 @@ function displayBlogPosts() {
     postElement.id = `post-${i + 1}`;
     
     // Set the base class and add section-bg for alternating posts
-    // Use the absolute index (i) instead of relative position on the page
-    // This ensures the pattern is consistent across all pages
-    if (i % 2 !== 0) {
+    // Always start with white background (no section-bg) for the first post on each page
+    if (relativeIndex % 2 === 1) { // Odd relative index (second, fourth, etc. on the page)
       postElement.className = 'portfolio-details section-bg';
-    } else {
+      console.log(`Post ${i + 1} gets colored background (relative index: ${relativeIndex})`);
+    } else { // Even relative index (first, third, etc. on the page)
       postElement.className = 'portfolio-details';
+      console.log(`Post ${i + 1} gets white background (relative index: ${relativeIndex})`);
     }
     
     // Determine if this post has images
@@ -264,6 +267,8 @@ function setupPagination() {
     e.preventDefault();
     if (currentPage > 1) {
       currentPage--;
+      // Clear the blog container before displaying new posts
+      document.getElementById('blog-container').innerHTML = '';
       displayBlogPosts();
       setupPagination();
       window.scrollTo(0, 0);
@@ -279,6 +284,8 @@ function setupPagination() {
     firstPageLink.addEventListener('click', (e) => {
       e.preventDefault();
       currentPage = 1;
+      // Clear the blog container before displaying new posts
+      document.getElementById('blog-container').innerHTML = '';
       displayBlogPosts();
       setupPagination();
       window.scrollTo(0, 0);
@@ -311,6 +318,8 @@ function setupPagination() {
     pageLink.addEventListener('click', (e) => {
       e.preventDefault();
       currentPage = i;
+      // Clear the blog container before displaying new posts
+      document.getElementById('blog-container').innerHTML = '';
       displayBlogPosts();
       setupPagination();
       window.scrollTo(0, 0);
@@ -334,6 +343,8 @@ function setupPagination() {
     lastPageLink.addEventListener('click', (e) => {
       e.preventDefault();
       currentPage = totalPages;
+      // Clear the blog container before displaying new posts
+      document.getElementById('blog-container').innerHTML = '';
       displayBlogPosts();
       setupPagination();
       window.scrollTo(0, 0);
@@ -352,6 +363,8 @@ function setupPagination() {
     e.preventDefault();
     if (currentPage < totalPages) {
       currentPage++;
+      // Clear the blog container before displaying new posts
+      document.getElementById('blog-container').innerHTML = '';
       displayBlogPosts();
       setupPagination();
       window.scrollTo(0, 0);
@@ -745,4 +758,4 @@ function updateImagesFromExcel(imagesString, postElement) {
 // Initialize when the document is loaded
 document.addEventListener('DOMContentLoaded', function() {
   fetchBlogData();
-}); 
+});
