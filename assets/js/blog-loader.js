@@ -6,64 +6,101 @@ let blogData = [];
 
 // Function to parse CSV data
 function parseCSV(text) {
-  // Split the text into lines
-  const lines = text.split('\n').filter(line => line.trim() !== '');
-  
-  // Extract headers from the first line
-  const headers = lines[0].split(',').map(header => header.trim());
-  
-  // Process each line (skip the header line)
-  const data = [];
-  for (let i = 1; i < lines.length; i++) {
-    // Handle commas within quoted fields
-    const values = [];
-    let currentValue = '';
-    let insideQuotes = false;
+  try {
+    // Split the text into lines
+    const lines = text.split('\n').filter(line => line.trim() !== '');
     
-    for (let j = 0; j < lines[i].length; j++) {
-      const char = lines[i][j];
+    // Extract headers from the first line
+    const headers = lines[0].split(',').map(header => header.trim());
+    
+    // Process each line (skip the header line)
+    const data = [];
+    for (let i = 1; i < lines.length; i++) {
+      // Handle commas within quoted fields
+      const values = [];
+      let currentValue = '';
+      let insideQuotes = false;
       
-      if (char === '"') {
-        insideQuotes = !insideQuotes;
-      } else if (char === ',' && !insideQuotes) {
-        values.push(currentValue.trim());
-        currentValue = '';
-      } else {
-        currentValue += char;
+      for (let j = 0; j < lines[i].length; j++) {
+        const char = lines[i][j];
+        
+        if (char === '"') {
+          insideQuotes = !insideQuotes;
+        } else if (char === ',' && !insideQuotes) {
+          values.push(currentValue.trim());
+          currentValue = '';
+        } else {
+          currentValue += char;
+        }
+      }
+      
+      // Add the last value
+      values.push(currentValue.trim());
+      
+      // Create an object with the headers as keys
+      const entry = {};
+      headers.forEach((header, index) => {
+        if (header) { // Only process non-empty headers
+          entry[header] = values[index] || '';
+        }
+      });
+      
+      // Only add entries with a title or description
+      if (entry['Title'] || entry['Description']) {
+        data.push(entry);
       }
     }
     
-    // Add the last value
-    values.push(currentValue.trim());
-    
-    // Create an object with the headers as keys
-    const entry = {};
-    headers.forEach((header, index) => {
-      if (header) { // Only process non-empty headers
-        entry[header] = values[index] || '';
-      }
-    });
-    
-    // Only add entries with a title or description
-    if (entry['Title'] || entry['Description']) {
-      data.push(entry);
-    }
+    return data;
+  } catch (error) {
+    console.error('Error parsing CSV:', error);
+    throw new Error('Failed to parse CSV data: ' + error.message);
   }
-  
-  return data;
 }
 
 // Function to fetch blog data from CSV file
 async function fetchBlogData() {
+  const blogContainer = document.getElementById('blog-container');
+  
   try {
-    const response = await fetch('news.csv');
+    // First try to load from the root directory
+    let response = await fetch('news.csv');
+    
+    // If that fails, try with the full repository path (for GitHub Pages)
+    if (!response.ok) {
+      console.log('Could not load news.csv from root, trying repository path...');
+      
+      // Get the current path to determine the repository name
+      const pathSegments = window.location.pathname.split('/');
+      let repoPath = '';
+      
+      // If we're on GitHub Pages, the repository name will be in the path
+      if (pathSegments.length > 1 && pathSegments[1] !== '') {
+        repoPath = '/' + pathSegments[1];
+      }
+      
+      response = await fetch(`${repoPath}/news.csv`);
+    }
     
     if (!response.ok) {
-      throw new Error('Failed to fetch CSV data');
+      throw new Error(`Failed to fetch CSV data: ${response.status} ${response.statusText}`);
     }
     
     const csvText = await response.text();
+    
+    if (!csvText || csvText.trim() === '') {
+      throw new Error('CSV file is empty');
+    }
+    
+    console.log('CSV data loaded successfully');
+    
     blogData = parseCSV(csvText);
+    
+    if (blogData.length === 0) {
+      throw new Error('No valid blog posts found in CSV');
+    }
+    
+    console.log(`Parsed ${blogData.length} blog posts from CSV`);
     
     // Map CSV columns to our expected format
     blogData = blogData.map(post => {
@@ -94,9 +131,10 @@ async function fetchBlogData() {
     
   } catch (error) {
     console.error('Error fetching blog data:', error);
-    document.getElementById('blog-container').innerHTML = `
+    blogContainer.innerHTML = `
       <div class="alert alert-danger">
-        Failed to load blog posts. Please try again later.
+        Failed to load blog posts. Please try again later.<br>
+        <small>Error details: ${error.message}</small>
       </div>
     `;
   }

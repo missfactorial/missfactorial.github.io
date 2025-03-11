@@ -34,6 +34,12 @@
       padding: 15px;
       margin: 15px 0;
     }
+    .important {
+      background-color: #f8d7da;
+      border-left: 4px solid #dc3545;
+      padding: 15px;
+      margin: 15px 0;
+    }
     img {
       max-width: 100%;
       height: auto;
@@ -84,6 +90,25 @@
     <li>The blog system will automatically display the new post, sorted by date (newest first).</li>
   </ol>
   
+  <h2>GitHub Pages Deployment</h2>
+  <p>When deploying to GitHub Pages, follow these additional steps to ensure your CSV file is properly loaded:</p>
+  <ol>
+    <li>Make sure the <code>news.csv</code> file is committed to your repository.</li>
+    <li>Verify that the file is in the root directory of your repository (same level as your HTML files).</li>
+    <li>After deploying to GitHub Pages, if you encounter loading issues, use the <code>csv-test.html</code> file to diagnose the problem.</li>
+    <li>If the CSV file isn't loading, check that:
+      <ul>
+        <li>The file name is exactly <code>news.csv</code> (case-sensitive)</li>
+        <li>The file has been properly committed and pushed to the branch that GitHub Pages is using</li>
+        <li>There are no CORS issues (GitHub Pages should handle this automatically for files in the same repository)</li>
+      </ul>
+    </li>
+  </ol>
+  
+  <div class="important">
+    <strong>Important:</strong> GitHub Pages serves content from the repository name path. For example, if your repository is named <code>username.github.io</code>, files are served from the root. However, if your repository has another name like <code>my-blog</code>, files are served from <code>/my-blog/</code>. Our script attempts to handle this automatically.
+  </div>
+  
   <h2>CSV Format Example</h2>
   <pre>
 Blog #,Type,Title,Organization/Event,Date,City,Location,Description,Images
@@ -96,6 +121,7 @@ Blog #,Type,Title,Organization/Event,Date,City,Location,Description,Images
     <li><strong>No posts appear:</strong> Check your browser console for errors. Make sure your CSV file is properly formatted and accessible.</li>
     <li><strong>CSV parsing errors:</strong> Ensure that any text containing commas is enclosed in double quotes.</li>
     <li><strong>Images don't load:</strong> Ensure the image URLs are publicly accessible and correctly formatted in the CSV.</li>
+    <li><strong>GitHub Pages issues:</strong> Use the <code>csv-test.html</code> file to test if your CSV file can be loaded correctly. This will help identify if the issue is with the file path or the file content.</li>
   </ul>
   
   <h2>Customization</h2>
