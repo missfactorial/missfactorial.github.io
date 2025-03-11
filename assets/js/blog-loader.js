@@ -202,8 +202,10 @@ function setupPagination() {
   // Previous button
   const prevButton = document.createElement('a');
   prevButton.href = '#';
-  prevButton.innerHTML = '&laquo;';
+  prevButton.innerHTML = '<i class="bi bi-chevron-left"></i>';
+  prevButton.title = 'Previous Page';
   prevButton.className = currentPage === 1 ? 'disabled' : '';
+  prevButton.setAttribute('aria-label', 'Previous page');
   prevButton.addEventListener('click', (e) => {
     e.preventDefault();
     if (currentPage > 1) {
@@ -214,6 +216,29 @@ function setupPagination() {
     }
   });
   paginationElement.appendChild(prevButton);
+  
+  // First page button (if not in first few pages)
+  if (currentPage > 3 && totalPages > 5) {
+    const firstPageLink = document.createElement('a');
+    firstPageLink.href = '#';
+    firstPageLink.textContent = '1';
+    firstPageLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      currentPage = 1;
+      displayBlogPosts();
+      setupPagination();
+      window.scrollTo(0, 0);
+    });
+    paginationElement.appendChild(firstPageLink);
+    
+    // Ellipsis if needed
+    if (currentPage > 4) {
+      const ellipsis = document.createElement('a');
+      ellipsis.className = 'disabled ellipsis';
+      ellipsis.innerHTML = '&hellip;';
+      paginationElement.appendChild(ellipsis);
+    }
+  }
   
   // Page numbers
   const maxVisiblePages = 5;
@@ -239,11 +264,36 @@ function setupPagination() {
     paginationElement.appendChild(pageLink);
   }
   
+  // Last page button (if not in last few pages)
+  if (currentPage < totalPages - 2 && totalPages > 5) {
+    // Ellipsis if needed
+    if (currentPage < totalPages - 3) {
+      const ellipsis = document.createElement('a');
+      ellipsis.className = 'disabled ellipsis';
+      ellipsis.innerHTML = '&hellip;';
+      paginationElement.appendChild(ellipsis);
+    }
+    
+    const lastPageLink = document.createElement('a');
+    lastPageLink.href = '#';
+    lastPageLink.textContent = totalPages;
+    lastPageLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      currentPage = totalPages;
+      displayBlogPosts();
+      setupPagination();
+      window.scrollTo(0, 0);
+    });
+    paginationElement.appendChild(lastPageLink);
+  }
+  
   // Next button
   const nextButton = document.createElement('a');
   nextButton.href = '#';
-  nextButton.innerHTML = '&raquo;';
+  nextButton.innerHTML = '<i class="bi bi-chevron-right"></i>';
+  nextButton.title = 'Next Page';
   nextButton.className = currentPage === totalPages ? 'disabled' : '';
+  nextButton.setAttribute('aria-label', 'Next page');
   nextButton.addEventListener('click', (e) => {
     e.preventDefault();
     if (currentPage < totalPages) {

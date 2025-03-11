@@ -2,33 +2,45 @@
 .pagination {
   display: flex;
   justify-content: center;
-  margin: 30px 0;
+  margin: 40px 0;
   padding: 0;
 }
 
 .pagination a {
-  color: #5846f9;
+  color: #444;
   float: left;
-  padding: 8px 16px;
+  padding: 10px 16px;
   text-decoration: none;
-  transition: background-color .3s;
-  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
   margin: 0 4px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .pagination a.active {
-  background-color: #5846f9;
+  background-color: #cb62b2;
   color: white;
-  border: 1px solid #5846f9;
+  border: 1px solid #cb62b2;
+  box-shadow: 0 2px 5px rgba(203, 98, 178, 0.3);
 }
 
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
+.pagination a:hover:not(.active):not(.disabled) {
+  background-color: #f8f0f6;
+  border-color: #cb62b2;
+  color: #cb62b2;
 }
 
 .pagination a.disabled {
-  color: #ddd;
+  color: #ccc;
   pointer-events: none;
+  border-color: #e0e0e0;
+}
+
+.pagination a.ellipsis {
+  border: none;
+  padding: 10px 8px;
 }
 
 /* Blog Post Styles */
