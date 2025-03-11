@@ -56,12 +56,12 @@
   <h1>Blog System Setup Guide</h1>
   
   <h2>Overview</h2>
-  <p>This guide will help you set up the blog system that reads data from a local CSV file and displays it on your website with pagination.</p>
+  <p>This guide will help you set up the blog system that reads data from an Excel (XLSX) file and displays it on your website with pagination.</p>
   
-  <h2>Step 1: CSV File Setup</h2>
+  <h2>Step 1: Excel File Setup</h2>
   <ol>
-    <li>Ensure your <code>news.csv</code> file is in the root directory of your website.</li>
-    <li>Make sure the CSV file has the following column headers in the first row:
+    <li>Ensure your <code>news.xlsx</code> file is in the root directory of your website.</li>
+    <li>Make sure the Excel file has the following column headers in the first row:
       <ul>
         <li><code>Blog #</code> - A unique identifier for each blog post (optional)</li>
         <li><code>Type</code> - The type of event or activity (e.g., "Outreach talk", "Volunteer")</li>
@@ -75,50 +75,81 @@
       </ul>
     </li>
     <li>Fill in your blog posts in the rows below the header row.</li>
-    <li>For text that contains commas, enclose the text in double quotes to ensure proper CSV formatting.</li>
+    <li>Save the file in Excel format (.xlsx) - this format handles text with commas, quotes, and special characters much better than CSV.</li>
   </ol>
   
   <div class="note">
-    <strong>Note:</strong> When editing the CSV file, be careful to maintain the proper CSV format. If you're using Excel or Google Sheets to edit the file, make sure to export it as CSV with proper encoding.
+    <strong>Note:</strong> Using Excel format (.xlsx) instead of CSV solves many formatting issues, especially with text that contains commas, quotes, or multiple lines.
   </div>
   
   <h2>Step 2: Adding New Blog Posts</h2>
   <ol>
-    <li>To add a new blog post, simply add a new row to the <code>news.csv</code> file.</li>
+    <li>To add a new blog post, simply add a new row to the <code>news.xlsx</code> file.</li>
     <li>Fill in the relevant columns for your new post.</li>
     <li>Save the file and upload it to your website.</li>
     <li>The blog system will automatically display the new post, sorted by date (newest first).</li>
   </ol>
   
   <h2>GitHub Pages Deployment</h2>
-  <p>When deploying to GitHub Pages, follow these additional steps to ensure your CSV file is properly loaded:</p>
+  <p>When deploying to GitHub Pages, follow these additional steps to ensure your Excel file is properly loaded:</p>
   <ol>
-    <li>Make sure the <code>news.csv</code> file is committed to your repository.</li>
+    <li>Make sure the <code>news.xlsx</code> file is committed to your repository.</li>
     <li>Verify that the file is in the root directory of your repository (same level as your HTML files).</li>
-    <li>After deploying to GitHub Pages, if you encounter loading issues, use the <code>csv-test.html</code> file to diagnose the problem.</li>
+    <li>After deploying to GitHub Pages, if you encounter loading issues, use the <code>test-blog.html</code> file to diagnose the problem.</li>
   </ol>
   
   <div class="note">
-    <strong>Note:</strong> Based on your test results, loading from the root path is working correctly. The system has been updated to use this path exclusively.
+    <strong>Note:</strong> The system uses the SheetJS library to parse Excel files directly in the browser. This library is loaded automatically when needed.
   </div>
   
   <div class="important">
-    <strong>Important:</strong> If you move your website to a different hosting provider or change your GitHub Pages configuration, you may need to revisit how the CSV file is loaded. The current implementation assumes the CSV file is accessible at the root path of your website.
+    <strong>Important:</strong> If you move your website to a different hosting provider or change your GitHub Pages configuration, you may need to revisit how the Excel file is loaded. The current implementation assumes the file is accessible at the root path of your website.
   </div>
   
-  <h2>CSV Format Example</h2>
-  <pre>
-Blog #,Type,Title,Organization/Event,Date,City,Location,Description,Images
-0050,Lead Instructor,DS4A Career Accelerator program,Correlation One,"May 8, 2024",,Virtual,"We recently completed a training engagement for the DS4A Career Accelerator program, organized by Correlation One.",
-0049,Volunteer,Accessibility Hackathon,Code Your Dreams,"March 9, 2024","Chicago, IL",Google HQ,"Viviana recently participated as volunteer in the 'Hack for Accessibility' event.",
-  </pre>
+  <h2>Excel Format Example</h2>
+  <p>Your Excel file should look like this:</p>
+  <table border="1" cellpadding="5" style="border-collapse: collapse; width: 100%;">
+    <tr style="background-color: #f2f2f2;">
+      <th>Blog #</th>
+      <th>Type</th>
+      <th>Title</th>
+      <th>Organization/Event</th>
+      <th>Date</th>
+      <th>City</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Images</th>
+    </tr>
+    <tr>
+      <td>0050</td>
+      <td>Lead Instructor</td>
+      <td>DS4A Career Accelerator program</td>
+      <td>Correlation One</td>
+      <td>May 8, 2024</td>
+      <td></td>
+      <td>Virtual</td>
+      <td>We recently completed a training engagement for the DS4A Career Accelerator program...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0049</td>
+      <td>Volunteer</td>
+      <td>Accessibility Hackathon</td>
+      <td>Code Your Dreams</td>
+      <td>March 9, 2024</td>
+      <td>Chicago, IL</td>
+      <td>Google HQ</td>
+      <td>Viviana recently participated as volunteer in the 'Hack for Accessibility' event...</td>
+      <td></td>
+    </tr>
+  </table>
   
   <h2>Troubleshooting</h2>
   <ul>
-    <li><strong>No posts appear:</strong> Check your browser console for errors. Make sure your CSV file is properly formatted and accessible.</li>
-    <li><strong>CSV parsing errors:</strong> Ensure that any text containing commas is enclosed in double quotes.</li>
-    <li><strong>Images don't load:</strong> Ensure the image URLs are publicly accessible and correctly formatted in the CSV.</li>
-    <li><strong>GitHub Pages issues:</strong> Use the <code>csv-test.html</code> file to test if your CSV file can be loaded correctly. This will help identify if the issue is with the file path or the file content.</li>
+    <li><strong>No posts appear:</strong> Check your browser console for errors. Make sure your Excel file is properly formatted and accessible.</li>
+    <li><strong>Excel parsing errors:</strong> Ensure that your Excel file is saved in .xlsx format (not .xls or .csv).</li>
+    <li><strong>Images don't load:</strong> Ensure the image URLs are publicly accessible and correctly formatted in the Excel file.</li>
+    <li><strong>GitHub Pages issues:</strong> Use the <code>test-blog.html</code> file to test if your Excel file can be loaded correctly. This will help identify if the issue is with the file path or the file content.</li>
   </ul>
   
   <h2>Customization</h2>

@@ -4,110 +4,61 @@ let currentPage = 1;
 let totalPosts = 0;
 let blogData = [];
 
-// Function to parse CSV data
-function parseCSV(text) {
-  try {
-    console.log('Starting CSV parsing...');
-    
-    // Split the text into lines
-    const lines = text.split('\n').filter(line => line.trim() !== '');
-    console.log(`Found ${lines.length} non-empty lines in CSV`);
-    
-    if (lines.length === 0) {
-      throw new Error('CSV file has no content');
-    }
-    
-    // Extract headers from the first line
-    const headers = lines[0].split(',').map(header => header.trim());
-    console.log('CSV Headers:', headers);
-    
-    // Check for required headers
-    const requiredHeaders = ['Title', 'Description'];
-    const missingHeaders = requiredHeaders.filter(header => !headers.includes(header));
-    
-    if (missingHeaders.length > 0) {
-      throw new Error(`Missing required headers in CSV: ${missingHeaders.join(', ')}`);
-    }
-    
-    // Process each line (skip the header line)
-    const data = [];
-    for (let i = 1; i < lines.length; i++) {
-      // Handle commas within quoted fields
-      const values = [];
-      let currentValue = '';
-      let insideQuotes = false;
-      
-      for (let j = 0; j < lines[i].length; j++) {
-        const char = lines[i][j];
-        
-        if (char === '"') {
-          insideQuotes = !insideQuotes;
-        } else if (char === ',' && !insideQuotes) {
-          values.push(currentValue.trim());
-          currentValue = '';
-        } else {
-          currentValue += char;
-        }
-      }
-      
-      // Add the last value
-      values.push(currentValue.trim());
-      
-      // Create an object with the headers as keys
-      const entry = {};
-      headers.forEach((header, index) => {
-        if (header) { // Only process non-empty headers
-          entry[header] = values[index] || '';
-        }
-      });
-      
-      // Only add entries with a title or description
-      if (entry['Title'] || entry['Description']) {
-        data.push(entry);
-      } else {
-        console.log(`Skipping row ${i+1} due to missing Title and Description`);
-      }
-    }
-    
-    console.log(`Successfully parsed ${data.length} blog entries from CSV`);
-    return data;
-  } catch (error) {
-    console.error('Error parsing CSV:', error);
-    throw new Error('Failed to parse CSV data: ' + error.message);
-  }
-}
-
-// Function to fetch blog data from CSV file
+// Function to fetch blog data from XLSX file
 async function fetchBlogData() {
   const blogContainer = document.getElementById('blog-container');
   
   try {
-    // Since the root path is working for the user, let's try that first
-    const response = await fetch('news.csv');
+    // Load the SheetJS library dynamically
+    if (typeof XLSX === 'undefined') {
+      console.log('Loading SheetJS library...');
+      await loadScript('https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js');
+      console.log('SheetJS library loaded successfully');
+    }
+    
+    // Fetch the XLSX file
+    console.log('Fetching news.xlsx...');
+    const response = await fetch('news.xlsx');
     
     if (!response.ok) {
-      throw new Error(`Failed to fetch CSV data: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch XLSX data: ${response.status} ${response.statusText}`);
     }
     
-    const csvText = await response.text();
+    // Convert the response to an ArrayBuffer
+    const data = await response.arrayBuffer();
     
-    if (!csvText || csvText.trim() === '') {
-      throw new Error('CSV file is empty');
+    if (!data || data.byteLength === 0) {
+      throw new Error('XLSX file is empty');
     }
     
-    console.log('CSV data loaded successfully');
-    // Debug: Show first few lines of CSV
-    debugCSV(csvText);
+    console.log('XLSX data loaded successfully');
     
-    blogData = parseCSV(csvText);
+    // Parse the XLSX file
+    const workbook = XLSX.read(data, { type: 'array' });
+    
+    // Get the first sheet
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    
+    // Convert the sheet to JSON
+    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+    
+    if (!jsonData || jsonData.length === 0) {
+      throw new Error('No data found in XLSX file');
+    }
+    
+    console.log(`Parsed ${jsonData.length} rows from XLSX`);
+    
+    // Filter out rows without Title or Description
+    blogData = jsonData.filter(row => row['Title'] || row['Description']);
     
     if (blogData.length === 0) {
-      throw new Error('No valid blog posts found in CSV');
+      throw new Error('No valid blog posts found in XLSX');
     }
     
-    console.log(`Parsed ${blogData.length} blog posts from CSV`);
+    console.log(`Found ${blogData.length} valid blog posts`);
     
-    // Map CSV columns to our expected format
+    // Map XLSX columns to our expected format
     blogData = blogData.map(post => {
       return {
         title: post['Title'] || 'Untitled Post',
@@ -116,7 +67,6 @@ async function fetchBlogData() {
         content: post['Description'] || '',
         type: post['Type'] || '',
         organization: post['Organization/Event'] || '',
-        // We'll handle images separately if they exist in the CSV
         images: post['Images'] || ''
       };
     });
@@ -145,12 +95,14 @@ async function fetchBlogData() {
   }
 }
 
-// Debug function to display CSV content
-function debugCSV(csvText) {
-  const lines = csvText.split('\n').slice(0, 5); // Get first 5 lines
-  console.log('CSV Preview (first 5 lines):');
-  lines.forEach((line, index) => {
-    console.log(`Line ${index + 1}: ${line}`);
+// Helper function to load a script dynamically
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+    document.head.appendChild(script);
   });
 }
 
