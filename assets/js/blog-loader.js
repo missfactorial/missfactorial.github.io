@@ -63,24 +63,8 @@ async function fetchBlogData() {
   const blogContainer = document.getElementById('blog-container');
   
   try {
-    // First try to load from the root directory
-    let response = await fetch('news.csv');
-    
-    // If that fails, try with the full repository path (for GitHub Pages)
-    if (!response.ok) {
-      console.log('Could not load news.csv from root, trying repository path...');
-      
-      // Get the current path to determine the repository name
-      const pathSegments = window.location.pathname.split('/');
-      let repoPath = '';
-      
-      // If we're on GitHub Pages, the repository name will be in the path
-      if (pathSegments.length > 1 && pathSegments[1] !== '') {
-        repoPath = '/' + pathSegments[1];
-      }
-      
-      response = await fetch(`${repoPath}/news.csv`);
-    }
+    // Since the root path is working for the user, let's try that first
+    const response = await fetch('news.csv');
     
     if (!response.ok) {
       throw new Error(`Failed to fetch CSV data: ${response.status} ${response.statusText}`);

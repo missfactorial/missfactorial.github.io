@@ -96,17 +96,14 @@
     <li>Make sure the <code>news.csv</code> file is committed to your repository.</li>
     <li>Verify that the file is in the root directory of your repository (same level as your HTML files).</li>
     <li>After deploying to GitHub Pages, if you encounter loading issues, use the <code>csv-test.html</code> file to diagnose the problem.</li>
-    <li>If the CSV file isn't loading, check that:
-      <ul>
-        <li>The file name is exactly <code>news.csv</code> (case-sensitive)</li>
-        <li>The file has been properly committed and pushed to the branch that GitHub Pages is using</li>
-        <li>There are no CORS issues (GitHub Pages should handle this automatically for files in the same repository)</li>
-      </ul>
-    </li>
   </ol>
   
+  <div class="note">
+    <strong>Note:</strong> Based on your test results, loading from the root path is working correctly. The system has been updated to use this path exclusively.
+  </div>
+  
   <div class="important">
-    <strong>Important:</strong> GitHub Pages serves content from the repository name path. For example, if your repository is named <code>username.github.io</code>, files are served from the root. However, if your repository has another name like <code>my-blog</code>, files are served from <code>/my-blog/</code>. Our script attempts to handle this automatically.
+    <strong>Important:</strong> If you move your website to a different hosting provider or change your GitHub Pages configuration, you may need to revisit how the CSV file is loaded. The current implementation assumes the CSV file is accessible at the root path of your website.
   </div>
   
   <h2>CSV Format Example</h2>
