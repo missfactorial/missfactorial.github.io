@@ -60,6 +60,13 @@ async function fetchBlogData() {
     
     // Map XLSX columns to our expected format
     blogData = blogData.map(post => {
+      // Log the raw data to see what's available
+      console.log('Raw blog post data:', post);
+      
+      // Check for Blog# column with different possible names
+      const blogNumber = post['Blog#'] || post['Blog #'] || post['BlogNumber'] || post['Blog Number'] || '';
+      console.log('Extracted Blog#:', blogNumber);
+      
       return {
         title: post['Title'] || 'Untitled Post',
         date: post['Date'] || '',
@@ -68,7 +75,7 @@ async function fetchBlogData() {
         type: post['Type'] || '',
         organization: post['Organization/Event'] || '',
         images: post['Images'] || '',
-        blogNumber: post['Blog#'] || ''
+        blogNumber: blogNumber
       };
     });
     
@@ -120,8 +127,13 @@ function displayBlogPosts() {
     return;
   }
   
+  console.log(`Displaying blog posts from ${startIndex + 1} to ${endIndex} (total: ${totalPosts})`);
+  
   for (let i = startIndex; i < endIndex; i++) {
     const post = blogData[i];
+    
+    console.log(`Processing post #${i + 1}:`, post.title);
+    console.log(`Blog# value:`, post.blogNumber);
     
     // Create blog post HTML
     const postElement = document.createElement('section');
@@ -139,8 +151,11 @@ function displayBlogPosts() {
     
     // Check if there's a blog number to look for images in the corresponding folder
     if (post.blogNumber) {
+      console.log(`Post has Blog# value: ${post.blogNumber}`);
+      
       // Format the blog number with leading zeros (e.g., "45" becomes "0045")
       const formattedBlogNumber = post.blogNumber.toString().padStart(4, '0');
+      console.log(`Formatted Blog# value: ${formattedBlogNumber}`);
       
       // Set up a placeholder for images that will be loaded asynchronously
       imagesHTML = `
@@ -156,9 +171,12 @@ function displayBlogPosts() {
       
       // After the post is added to the DOM, scan for images
       setTimeout(() => {
+        console.log(`Scanning for images for blog #${formattedBlogNumber}`);
         scanForImagesInFolder(formattedBlogNumber, postElement);
       }, 100);
     } else if (post.images) {
+      console.log(`Post has images from Excel:`, post.images);
+      
       // If no blog number, use images from Excel as before
       const imageUrls = post.images.split(',').map(url => url.trim());
       if (imageUrls.length > 0 && imageUrls[0] !== '') {
@@ -177,6 +195,8 @@ function displayBlogPosts() {
           </div>
         `;
       }
+    } else {
+      console.log(`Post has no Blog# value or images`);
     }
     
     // Create content HTML
@@ -332,8 +352,11 @@ function setupPagination() {
 
 // Function to reinitialize Swiper
 function reinitializeSwiper() {
+  console.log('Reinitializing swipers...');
+  
   // Destroy existing swipers first to prevent duplicates
   if (window.blogSwipers) {
+    console.log(`Destroying ${window.blogSwipers.length} existing swipers`);
     window.blogSwipers.forEach(swiper => {
       if (swiper && typeof swiper.destroy === 'function') {
         swiper.destroy();
@@ -344,35 +367,54 @@ function reinitializeSwiper() {
   // Initialize new swipers
   window.blogSwipers = [];
   const swipers = document.querySelectorAll('.portfolio-details-slider.swiper');
+  console.log(`Found ${swipers.length} swiper elements`);
   
-  swipers.forEach(element => {
+  swipers.forEach((element, index) => {
+    console.log(`Processing swiper #${index + 1}`);
+    
     // Only initialize if there are slides
     const slides = element.querySelectorAll('.swiper-slide');
+    console.log(`Swiper #${index + 1} has ${slides.length} slides`);
+    
     if (slides.length > 0) {
-      const swiper = new Swiper(element, {
-        loop: true,
-        pagination: {
-          el: element.querySelector('.swiper-pagination'),
-          clickable: true,
-        },
-        autoplay: {
-          delay: 5000,
-        },
-      });
-      
-      window.blogSwipers.push(swiper);
+      try {
+        console.log(`Initializing swiper #${index + 1}`);
+        const swiper = new Swiper(element, {
+          loop: slides.length > 1, // Only loop if there's more than one slide
+          pagination: {
+            el: element.querySelector('.swiper-pagination'),
+            clickable: true,
+          },
+          autoplay: slides.length > 1 ? {
+            delay: 5000,
+          } : false, // Only autoplay if there's more than one slide
+        });
+        
+        window.blogSwipers.push(swiper);
+        console.log(`Swiper #${index + 1} initialized successfully`);
+      } catch (error) {
+        console.error(`Error initializing swiper #${index + 1}:`, error);
+      }
+    } else {
+      console.log(`Skipping swiper #${index + 1} (no slides)`);
     }
   });
+  
+  console.log(`Initialized ${window.blogSwipers.length} swipers`);
 }
 
 // Function to scan for images in a folder
 function scanForImagesInFolder(blogNumber, postElement) {
   console.log(`Scanning for images in blog/img/${blogNumber}/`);
   
-  // Get a list of all files in the folder
-  // Since we can't directly list files in a directory from the browser,
-  // we'll try to load images with common naming patterns
+  // For blog numbers 0045 and 0050, we know the images exist, so let's load them directly
+  if (blogNumber === '0045' || blogNumber === '0050') {
+    console.log(`Using direct image loading for known blog #${blogNumber}`);
+    loadKnownImagesForBlog(blogNumber, postElement);
+    return;
+  }
   
+  // For other blog numbers, try the general approach
   // First, try to load a sample image to see if the folder exists
   const testImage = new Image();
   testImage.onload = function() {
@@ -394,6 +436,80 @@ function scanForImagesInFolder(blogNumber, postElement) {
   
   // Try to load a sample image
   testImage.src = `blog/img/${blogNumber}/${blogNumber}_01.jpg`;
+}
+
+// Function to load known images for specific blogs
+function loadKnownImagesForBlog(blogNumber, postElement) {
+  // Find the swiper container
+  const swiperContainer = postElement.querySelector(`#swiper-${blogNumber} .swiper-wrapper`);
+  
+  if (!swiperContainer) {
+    console.error(`Swiper container not found for blog #${blogNumber}`);
+    return;
+  }
+  
+  // Clear any existing content
+  swiperContainer.innerHTML = '';
+  
+  let imageUrls = [];
+  
+  // Add specific images for each blog
+  if (blogNumber === '0045') {
+    imageUrls = [
+      'blog/img/0045/MathAndBeerBogota_VivianaMarquez00001.jpeg',
+      'blog/img/0045/MathAndBeerBogota_VivianaMarquez00002.jpg',
+      'blog/img/0045/MathAndBeerBogota_VivianaMarquez00003.jpg',
+      'blog/img/0045/MathAndBeerBogota_VivianaMarquez00004.jpg'
+    ];
+  } else if (blogNumber === '0050') {
+    imageUrls = [
+      'blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00001.png',
+      'blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00002.jpeg',
+      'blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00003.jpeg',
+      'blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00004.jpeg',
+      'blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00005.jpeg',
+      'blog/img/0050/ConsulateColombiaChicago_VivianaMarquez_MissFactorialAcademy_CodeYourDreams_BriCaplan00006.jpeg'
+    ];
+  }
+  
+  console.log(`Adding ${imageUrls.length} images for blog #${blogNumber}`);
+  
+  // Add each image to the swiper
+  imageUrls.forEach((url, index) => {
+    console.log(`Adding image ${index + 1}: ${url}`);
+    
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = '';
+    img.loading = 'lazy';
+    
+    // Add error handling for images
+    img.onerror = function() {
+      console.error(`Failed to load image: ${url}`);
+      // Try with a different path
+      const altUrl = url.replace('blog/img', '/blog/img');
+      console.log(`Trying alternative path: ${altUrl}`);
+      img.src = altUrl;
+      
+      // If that fails too, remove the slide
+      img.onerror = function() {
+        console.error(`Failed to load image with alternative path: ${altUrl}`);
+        slide.remove();
+      };
+    };
+    
+    slide.appendChild(img);
+    swiperContainer.appendChild(slide);
+  });
+  
+  // Initialize or update the Swiper
+  setTimeout(() => {
+    console.log(`Initializing swiper for blog #${blogNumber}`);
+    reinitializeSwiper();
+  }, 500);
 }
 
 // Function to load all images in a folder
