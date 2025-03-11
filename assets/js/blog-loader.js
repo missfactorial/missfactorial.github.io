@@ -146,13 +146,15 @@ function displayBlogPosts() {
       postElement.className = 'portfolio-details';
     }
     
-    // Prepare images HTML if available
-    let imagesHTML = '';
+    // Determine if this post has images
     let hasImages = false;
+    let imagesHTML = '';
     
     // Check if there's a blog number to look for images in the corresponding folder
-    if (post.blogNumber) {
-      console.log(`Post has Blog# value: ${post.blogNumber}`);
+    if (post.blogNumber && (post.blogNumber === '45' || post.blogNumber === '50' || 
+                           post.blogNumber === '0045' || post.blogNumber === '0050')) {
+      console.log(`Post has Blog# value: ${post.blogNumber} - Will have images`);
+      hasImages = true;
       
       // Format the blog number with leading zeros (e.g., "45" becomes "0045")
       const formattedBlogNumber = post.blogNumber.toString().padStart(4, '0');
@@ -170,8 +172,6 @@ function displayBlogPosts() {
         </div>
       `;
       
-      hasImages = true;
-      
       // After the post is added to the DOM, scan for images
       setTimeout(() => {
         console.log(`Scanning for images for blog #${formattedBlogNumber}`);
@@ -183,6 +183,7 @@ function displayBlogPosts() {
       // If no blog number, use images from Excel as before
       const imageUrls = post.images.split(',').map(url => url.trim());
       if (imageUrls.length > 0 && imageUrls[0] !== '') {
+        hasImages = true;
         imagesHTML = `
           <div class="col-lg-3">
             <div class="portfolio-details-slider swiper">
@@ -197,19 +198,21 @@ function displayBlogPosts() {
             </div>
           </div>
         `;
-        
-        hasImages = true;
       }
     } else {
-      console.log(`Post has no Blog# value or images`);
+      console.log(`Post has no Blog# value or images - Using full width`);
+      hasImages = false;
     }
     
-    // Create content HTML
+    // Create content HTML with appropriate column width
+    const contentColumnClass = hasImages ? 'col-lg-8' : 'col-lg-12';
+    console.log(`Using content column class: ${contentColumnClass} for post: ${post.title}`);
+    
     postElement.innerHTML = `
       <div class="container" data-aos="fade-up">
         <div class="row gy-4">
-          ${imagesHTML}
-          <div class="col-lg-${hasImages ? '8' : '12'}">
+          ${hasImages ? imagesHTML : ''}
+          <div class="${contentColumnClass}">
             <div class="portfolio-info">
               <h3>${post.title || 'Untitled Post'}</h3>
               <ul>
@@ -412,35 +415,19 @@ function reinitializeSwiper() {
 function scanForImagesInFolder(blogNumber, postElement) {
   console.log(`Scanning for images in blog/img/${blogNumber}/`);
   
-  // For blog numbers 0045 and 0050, we know the images exist, so let's load them directly
-  if (blogNumber === '0045' || blogNumber === '0050') {
-    console.log(`Using direct image loading for known blog #${blogNumber}`);
-    loadKnownImagesForBlog(blogNumber, postElement);
+  // We know exactly which blog numbers have images
+  if (blogNumber === '0045' || blogNumber === '0050' || 
+      blogNumber === '45' || blogNumber === '50') {
+    // Format the blog number with leading zeros
+    const formattedBlogNumber = blogNumber.toString().padStart(4, '0');
+    console.log(`Using direct image loading for known blog #${formattedBlogNumber}`);
+    loadKnownImagesForBlog(formattedBlogNumber, postElement);
     return;
   }
   
-  // For other blog numbers, try the general approach
-  // First, try to load a sample image to see if the folder exists
-  const testImage = new Image();
-  testImage.onload = function() {
-    // Folder exists and contains at least one image
-    console.log(`Found images in blog/img/${blogNumber}/`);
-    loadAllImagesInFolder(blogNumber, postElement);
-  };
-  
-  testImage.onerror = function() {
-    // Folder doesn't exist or doesn't contain this image
-    console.log(`No images found in blog/img/${blogNumber}/`);
-    
-    // Check if there are images in the Excel data
-    const postIndex = Array.from(document.querySelectorAll('.portfolio-details')).indexOf(postElement);
-    if (postIndex >= 0 && blogData[postIndex].images) {
-      updateImagesFromExcel(blogData[postIndex].images, postElement);
-    }
-  };
-  
-  // Try to load a sample image
-  testImage.src = `blog/img/${blogNumber}/${blogNumber}_01.jpg`;
+  // For all other blog numbers, we assume they don't have images
+  console.log(`Blog #${blogNumber} is not known to have images - Using full width`);
+  adjustContentColumnWidth(postElement, false);
 }
 
 // Function to load known images for specific blogs
@@ -550,19 +537,42 @@ function loadKnownImagesForBlog(blogNumber, postElement) {
 function adjustContentColumnWidth(postElement, hasImages) {
   if (!postElement) return;
   
+  console.log(`Adjusting column width for post: hasImages=${hasImages}`);
+  
+  // Find the content column
   const contentColumn = postElement.querySelector('.portfolio-info').parentElement;
   if (contentColumn) {
-    // Remove existing col-lg-* classes
-    contentColumn.className = contentColumn.className.replace(/col-lg-\d+/g, '');
-    // Add the appropriate class
-    contentColumn.classList.add(`col-lg-${hasImages ? '8' : '12'}`);
-    
-    // If no images, also hide the image column
-    const imageColumn = postElement.querySelector('.portfolio-details-slider')?.parentElement;
-    if (imageColumn && !hasImages) {
+    // Force the class to be exactly what we want
+    contentColumn.setAttribute('class', hasImages ? 'col-lg-8' : 'col-lg-12');
+    console.log(`Set content column class to: ${contentColumn.className}`);
+  }
+  
+  // Find the image column if it exists
+  const imageColumn = postElement.querySelector('.portfolio-details-slider')?.parentElement;
+  if (imageColumn) {
+    if (hasImages) {
+      // Make sure the image column is visible
+      imageColumn.style.display = 'block';
+      imageColumn.setAttribute('class', 'col-lg-3');
+    } else {
+      // Hide the image column completely
       imageColumn.style.display = 'none';
+      // Also remove it from the DOM to ensure it doesn't affect layout
+      setTimeout(() => {
+        try {
+          imageColumn.remove();
+        } catch (e) {
+          console.error('Error removing image column:', e);
+        }
+      }, 0);
     }
   }
+  
+  // Force a layout recalculation
+  postElement.style.display = 'none';
+  setTimeout(() => {
+    postElement.style.display = '';
+  }, 0);
 }
 
 // Function to load all images in a folder
