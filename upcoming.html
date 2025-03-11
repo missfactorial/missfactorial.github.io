@@ -44,9 +44,6 @@
 <!-- ======= MAIN ======= -->
    <main id="main">
 
-    <!-- Placeholder for Breadcrumbs -->
-    <div id="breadcrumbs-placeholder"></div>
-
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
     <!-- =======<section id="portfolio-details" class="portfolio-details section-bg">======= -->
@@ -196,16 +193,6 @@
               this.classList.toggle('bi-x');
             });
           }
-        });
-
-      // Load breadcrumbs
-      fetch('breadcrumbs.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('breadcrumbs-placeholder').innerHTML = data;
-          // Set the title and current page for this specific page
-          document.getElementById('breadcrumbs-title').textContent = "Upcoming — Where to catch us next!";
-          document.getElementById('current-page').textContent = "Upcoming";
         });
 
       // Load footer
