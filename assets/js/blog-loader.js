@@ -148,6 +148,7 @@ function displayBlogPosts() {
     
     // Prepare images HTML if available
     let imagesHTML = '';
+    let hasImages = false;
     
     // Check if there's a blog number to look for images in the corresponding folder
     if (post.blogNumber) {
@@ -168,6 +169,8 @@ function displayBlogPosts() {
           </div>
         </div>
       `;
+      
+      hasImages = true;
       
       // After the post is added to the DOM, scan for images
       setTimeout(() => {
@@ -194,6 +197,8 @@ function displayBlogPosts() {
             </div>
           </div>
         `;
+        
+        hasImages = true;
       }
     } else {
       console.log(`Post has no Blog# value or images`);
@@ -204,7 +209,7 @@ function displayBlogPosts() {
       <div class="container" data-aos="fade-up">
         <div class="row gy-4">
           ${imagesHTML}
-          <div class="col-lg-${imagesHTML ? '8' : '12'}">
+          <div class="col-lg-${hasImages ? '8' : '12'}">
             <div class="portfolio-info">
               <h3>${post.title || 'Untitled Post'}</h3>
               <ul>
@@ -445,6 +450,8 @@ function loadKnownImagesForBlog(blogNumber, postElement) {
   
   if (!swiperContainer) {
     console.error(`Swiper container not found for blog #${blogNumber}`);
+    // If swiper container not found, adjust the content column to full width
+    adjustContentColumnWidth(postElement, false);
     return;
   }
   
@@ -474,7 +481,15 @@ function loadKnownImagesForBlog(blogNumber, postElement) {
   
   console.log(`Adding ${imageUrls.length} images for blog #${blogNumber}`);
   
+  if (imageUrls.length === 0) {
+    // If no images, adjust the content column to full width
+    adjustContentColumnWidth(postElement, false);
+    return;
+  }
+  
   // Add each image to the swiper
+  let successfulImages = 0;
+  
   imageUrls.forEach((url, index) => {
     console.log(`Adding image ${index + 1}: ${url}`);
     
@@ -498,7 +513,19 @@ function loadKnownImagesForBlog(blogNumber, postElement) {
       img.onerror = function() {
         console.error(`Failed to load image with alternative path: ${altUrl}`);
         slide.remove();
+        
+        // Check if we have any successful images left
+        if (--successfulImages <= 0) {
+          // If no successful images, adjust the content column to full width
+          adjustContentColumnWidth(postElement, false);
+        }
       };
+    };
+    
+    img.onload = function() {
+      successfulImages++;
+      // Ensure the content column is set to 8 (since we have images)
+      adjustContentColumnWidth(postElement, true);
     };
     
     slide.appendChild(img);
@@ -509,7 +536,33 @@ function loadKnownImagesForBlog(blogNumber, postElement) {
   setTimeout(() => {
     console.log(`Initializing swiper for blog #${blogNumber}`);
     reinitializeSwiper();
+    
+    // Check if we have any slides after initialization
+    const slides = swiperContainer.querySelectorAll('.swiper-slide');
+    if (slides.length === 0) {
+      // If no slides, adjust the content column to full width
+      adjustContentColumnWidth(postElement, false);
+    }
   }, 500);
+}
+
+// Function to adjust the content column width based on whether images are present
+function adjustContentColumnWidth(postElement, hasImages) {
+  if (!postElement) return;
+  
+  const contentColumn = postElement.querySelector('.portfolio-info').parentElement;
+  if (contentColumn) {
+    // Remove existing col-lg-* classes
+    contentColumn.className = contentColumn.className.replace(/col-lg-\d+/g, '');
+    // Add the appropriate class
+    contentColumn.classList.add(`col-lg-${hasImages ? '8' : '12'}`);
+    
+    // If no images, also hide the image column
+    const imageColumn = postElement.querySelector('.portfolio-details-slider')?.parentElement;
+    if (imageColumn && !hasImages) {
+      imageColumn.style.display = 'none';
+    }
+  }
 }
 
 // Function to load all images in a folder
@@ -519,6 +572,8 @@ function loadAllImagesInFolder(blogNumber, postElement) {
   
   if (!swiperContainer) {
     console.error(`Swiper container not found for blog #${blogNumber}`);
+    // If swiper container not found, adjust the content column to full width
+    adjustContentColumnWidth(postElement, false);
     return;
   }
   
@@ -598,10 +653,16 @@ function loadAllImagesInFolder(blogNumber, postElement) {
           swiperContainer.appendChild(slide);
         });
         
+        // Adjust the content column width to account for images
+        adjustContentColumnWidth(postElement, true);
+        
         // Initialize or update the Swiper
         reinitializeSwiper();
       } else {
         console.log(`No images found with common patterns in blog/img/${blogNumber}/`);
+        
+        // Adjust the content column to full width since no images were found
+        adjustContentColumnWidth(postElement, false);
         
         // Check if there are images in the Excel data
         const postIndex = Array.from(document.querySelectorAll('.portfolio-details')).indexOf(postElement);
@@ -622,6 +683,8 @@ function updateImagesFromExcel(imagesString, postElement) {
     
     if (!swiperContainer) {
       console.error('Swiper container not found');
+      // If swiper container not found, adjust the content column to full width
+      adjustContentColumnWidth(postElement, false);
       return;
     }
     
@@ -638,12 +701,32 @@ function updateImagesFromExcel(imagesString, postElement) {
       img.alt = '';
       img.loading = 'lazy';
       
+      // Add error handling for images
+      img.onerror = function() {
+        console.error(`Failed to load image from Excel: ${url}`);
+        slide.remove();
+        
+        // Check if we have any slides left
+        if (swiperContainer.querySelectorAll('.swiper-slide').length === 0) {
+          // If no slides, adjust the content column to full width
+          adjustContentColumnWidth(postElement, false);
+        }
+      };
+      
+      img.onload = function() {
+        // Ensure the content column is set to 8 (since we have images)
+        adjustContentColumnWidth(postElement, true);
+      };
+      
       slide.appendChild(img);
       swiperContainer.appendChild(slide);
     });
     
     // Initialize or update the Swiper
     reinitializeSwiper();
+  } else {
+    // No images in Excel data, adjust the content column to full width
+    adjustContentColumnWidth(postElement, false);
   }
 }
 
