@@ -7,11 +7,27 @@ let blogData = [];
 // Function to parse CSV data
 function parseCSV(text) {
   try {
+    console.log('Starting CSV parsing...');
+    
     // Split the text into lines
     const lines = text.split('\n').filter(line => line.trim() !== '');
+    console.log(`Found ${lines.length} non-empty lines in CSV`);
+    
+    if (lines.length === 0) {
+      throw new Error('CSV file has no content');
+    }
     
     // Extract headers from the first line
     const headers = lines[0].split(',').map(header => header.trim());
+    console.log('CSV Headers:', headers);
+    
+    // Check for required headers
+    const requiredHeaders = ['Title', 'Description'];
+    const missingHeaders = requiredHeaders.filter(header => !headers.includes(header));
+    
+    if (missingHeaders.length > 0) {
+      throw new Error(`Missing required headers in CSV: ${missingHeaders.join(', ')}`);
+    }
     
     // Process each line (skip the header line)
     const data = [];
@@ -48,9 +64,12 @@ function parseCSV(text) {
       // Only add entries with a title or description
       if (entry['Title'] || entry['Description']) {
         data.push(entry);
+      } else {
+        console.log(`Skipping row ${i+1} due to missing Title and Description`);
       }
     }
     
+    console.log(`Successfully parsed ${data.length} blog entries from CSV`);
     return data;
   } catch (error) {
     console.error('Error parsing CSV:', error);
@@ -77,6 +96,8 @@ async function fetchBlogData() {
     }
     
     console.log('CSV data loaded successfully');
+    // Debug: Show first few lines of CSV
+    debugCSV(csvText);
     
     blogData = parseCSV(csvText);
     
@@ -124,6 +145,15 @@ async function fetchBlogData() {
   }
 }
 
+// Debug function to display CSV content
+function debugCSV(csvText) {
+  const lines = csvText.split('\n').slice(0, 5); // Get first 5 lines
+  console.log('CSV Preview (first 5 lines):');
+  lines.forEach((line, index) => {
+    console.log(`Line ${index + 1}: ${line}`);
+  });
+}
+
 // Function to display blog posts for the current page
 function displayBlogPosts() {
   const blogContainer = document.getElementById('blog-container');
@@ -144,13 +174,17 @@ function displayBlogPosts() {
     const postElement = document.createElement('section');
     postElement.id = `post-${i + 1}`;
     postElement.className = 'portfolio-details';
-    postElement.classList.add(i % 2 === 0 ? '' : 'section-bg');
+    
+    // Add section-bg class for odd-indexed posts (for alternating background)
+    if (i % 2 !== 0) {
+      postElement.classList.add('section-bg');
+    }
     
     // Prepare images HTML if available
     let imagesHTML = '';
     if (post.images) {
       const imageUrls = post.images.split(',').map(url => url.trim());
-      if (imageUrls.length > 0) {
+      if (imageUrls.length > 0 && imageUrls[0] !== '') {
         imagesHTML = `
           <div class="col-lg-3">
             <div class="portfolio-details-slider swiper">
