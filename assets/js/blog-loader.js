@@ -119,15 +119,6 @@ function displayBlogPosts() {
     return;
   }
   
-  // Define an array of background colors for alternating posts
-  const bgColors = [
-    '#f2f1f4', // Light purple-gray (from style.css)
-    '#f8f9fa', // Light gray (from blog-pagination.css)
-    '#f0f7fa', // Light blue
-    '#f7f0fa', // Light purple
-    '#f0faf5'  // Light green
-  ];
-  
   for (let i = startIndex; i < endIndex; i++) {
     const post = blogData[i];
     
@@ -136,9 +127,10 @@ function displayBlogPosts() {
     postElement.id = `post-${i + 1}`;
     postElement.className = 'portfolio-details';
     
-    // Apply alternating background colors
-    const colorIndex = (i - startIndex) % bgColors.length;
-    postElement.style.backgroundColor = bgColors[colorIndex];
+    // Add section-bg class for alternating posts (every other post)
+    if (i % 2 !== 0) {
+      postElement.classList.add('section-bg');
+    }
     
     // Prepare images HTML if available
     let imagesHTML = '';
@@ -168,7 +160,7 @@ function displayBlogPosts() {
         <div class="row gy-4">
           ${imagesHTML}
           <div class="col-lg-${imagesHTML ? '8' : '12'}">
-            <div class="portfolio-info" style="background-color: white">
+            <div class="portfolio-info">
               <h3>${post.title || 'Untitled Post'}</h3>
               <ul>
                 ${post.type ? `<li><strong>Type</strong>: ${post.type}</li>` : ''}
