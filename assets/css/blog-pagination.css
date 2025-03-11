@@ -39,6 +39,7 @@
 .portfolio-details .portfolio-info {
   padding: 30px;
   box-shadow: 0px 0 30px rgba(88, 70, 249, 0.08);
+  background-color: white;
 }
 
 .portfolio-details .portfolio-info h3 {
@@ -68,11 +69,6 @@
 
 .section-bg {
   background-color: #f2f1f4;
-}
-
-/* Blog post spacing */
-.portfolio-details + .portfolio-details {
-  margin-top: 20px;
 }
 
 /* Alert Styles */

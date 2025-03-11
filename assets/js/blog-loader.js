@@ -125,11 +125,12 @@ function displayBlogPosts() {
     // Create blog post HTML
     const postElement = document.createElement('section');
     postElement.id = `post-${i + 1}`;
-    postElement.className = 'portfolio-details';
     
-    // Add section-bg class for alternating posts (every other post)
+    // Set the base class and add section-bg for alternating posts
     if (i % 2 !== 0) {
-      postElement.classList.add('section-bg');
+      postElement.className = 'portfolio-details section-bg';
+    } else {
+      postElement.className = 'portfolio-details';
     }
     
     // Prepare images HTML if available
@@ -154,7 +155,7 @@ function displayBlogPosts() {
       }
     }
     
-    // Create content HTML
+    // Create content HTML with white background for the inner content box
     postElement.innerHTML = `
       <div class="container" data-aos="fade-up">
         <div class="row gy-4">
