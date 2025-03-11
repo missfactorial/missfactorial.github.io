@@ -44,23 +44,10 @@
 <!-- ======= MAIN ======= -->
    <main id="main">
 
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
+    <!-- Placeholder for Breadcrumbs -->
+    <div id="breadcrumbs-placeholder"></div>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Upcoming — Where to catch us next!</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="upcoming.html">Upcoming</a></li>
-          </ol>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs Section -->
-    
-        <!-- ======= Portfolio Details Section ======= -->
+    <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
     <!-- =======<section id="portfolio-details" class="portfolio-details section-bg">======= -->
       <div class="container" data-aos="fade-up">
@@ -209,6 +196,16 @@
               this.classList.toggle('bi-x');
             });
           }
+        });
+
+      // Load breadcrumbs
+      fetch('breadcrumbs.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('breadcrumbs-placeholder').innerHTML = data;
+          // Set the title and current page for this specific page
+          document.getElementById('breadcrumbs-title').textContent = "Upcoming — Where to catch us next!";
+          document.getElementById('current-page').textContent = "Upcoming";
         });
 
       // Load footer
