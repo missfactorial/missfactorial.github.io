@@ -140,6 +140,8 @@ function displayBlogPosts() {
     postElement.id = `post-${i + 1}`;
     
     // Set the base class and add section-bg for alternating posts
+    // Use the absolute index (i) instead of relative position on the page
+    // This ensures the pattern is consistent across all pages
     if (i % 2 !== 0) {
       postElement.className = 'portfolio-details section-bg';
     } else {
