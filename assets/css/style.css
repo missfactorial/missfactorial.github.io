@@ -486,11 +486,11 @@ section{
   content:""
 }
 .about .icon-box .icon i{
-  color:#1C073E;
+  color:#cb62b2;
   font-size:36px
 }
 .about .icon-box:hover .icon{
-  background:#1C073E
+  background:#cb62b2
 }
 .about .icon-box .title{
   margin-left:95px;
