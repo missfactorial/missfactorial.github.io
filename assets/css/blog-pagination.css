@@ -85,6 +85,10 @@
   background-color: #f2f1f4;
 }
 
+.section-bg-alt {
+  background-color: #FBFAFB;
+}
+
 /* Alert Styles */
 .alert {
   padding: 15px;

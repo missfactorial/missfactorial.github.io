@@ -147,7 +147,7 @@ function displayBlogPosts() {
       postElement.className = 'portfolio-details section-bg';
       console.log(`Post ${i + 1} gets colored background (relative index: ${relativeIndex})`);
     } else { // Even relative index (first, third, etc. on the page)
-      postElement.className = 'portfolio-details';
+      postElement.className = 'portfolio-details section-bg-alt';
       console.log(`Post ${i + 1} gets white background (relative index: ${relativeIndex})`);
     }
     
