@@ -6,6 +6,11 @@
   padding: 0;
 }
 
+/* Pagination section styling */
+section.section-bg-alt {
+  padding: 30px 0;
+}
+
 .pagination a {
   color: #444;
   float: left;
