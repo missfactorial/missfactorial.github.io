@@ -10,7 +10,8 @@
 --------------------------------------------------------------*/
 .navbar .dropdown ul,.navbar-mobile .dropdown ul{
   z-index:99;
-  box-shadow:0 0 30px rgba(127,137,161,.25)
+  box-shadow:0 0 30px rgba(127,137,161,.25);
+  overflow: hidden
 }
 
 /*--------------------------------------------------------------
@@ -146,7 +147,8 @@ a:hover{
   padding:0;
   display:flex;
   list-style:none;
-  align-items:center
+  align-items:center;
+  white-space: nowrap
 }
 .about .video-box,.navbar li,.teamtwo .video-box{
   position:relative
