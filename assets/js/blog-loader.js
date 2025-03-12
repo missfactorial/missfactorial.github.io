@@ -255,6 +255,8 @@ function setupPagination() {
   
   paginationElement.style.display = 'flex';
   paginationElement.innerHTML = '';
+  // Add section-bg-alt class to the pagination element
+  paginationElement.className = 'pagination section-bg-alt';
   
   // Previous button
   const prevButton = document.createElement('a');
