@@ -84,12 +84,6 @@
       border-radius: 8px;
       padding: 15px;
       height: 100%;
-      transition: all 0.3s ease;
-    }
-    .stat-box:hover {
-      transform: translateY(-5px);
-      background-color: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     .stat-box h2 {
       font-size: 2rem;
@@ -149,20 +143,32 @@
       overflow: hidden;
     }
     .faq-question {
-      background-color: #f8f9fa;
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
       padding: 15px 20px;
       cursor: pointer;
       font-weight: 600;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
     .faq-answer {
-      padding: 15px 20px;
-      background-color: #fff;
-      border: 1px solid #f1f1f1;
-      border-top: none;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-top: 1px solid #e0e0e0;
       display: none;
+      margin-top: -8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .faq-answer::before {
+      content: none;
+    }
+    .faq-answer p {
+      margin-bottom: 0;
     }
     .cta-section {
       background: linear-gradient(135deg, #6621b0 0%, #4a1980 100%);
@@ -284,6 +290,13 @@
     .service-card.business-card .benefits-list {
       border-left-color: #6621b0;
     }
+    
+    /* Responsive styles for the member info box */
+    @media (max-width: 992px) {
+      .member {
+        margin-bottom: 100px !important;
+      }
+    }
   </style>
 </head>
 
@@ -356,7 +369,7 @@
     </section>
 
     <!-- ======= Service Options Section ======= -->
-    <section id="service-options" class="service-details py-5">
+    <section id="service-options" class="service-details py-5 bg-light">
       <div class="service-options-container">
         <div class="row justify-content-center mb-5">
           <div class="col-lg-8 text-center">
@@ -370,7 +383,7 @@
               <div class="card-body p-4">
                 <div class="text-center">
                   <div class="icon-circle">
-                    <i class="bi bi-person-workspace" style="color: #6621B0; font-size: 36px;"></i>
+                    <i class="bi bi-person-fill-up" style="color: #6621B0; font-size: 36px;"></i>
                   </div>
                   <h5 class="card-title">AI Career & Upskilling Strategy</h5>
                   <b>🔍 For professionals looking to understand AI and upskill</b><br></br> 
@@ -405,7 +418,7 @@
               <div class="card-body p-4">
                 <div class="text-center">
                   <div class="icon-circle">
-                    <i class="bx bx-building-house" style="color: #6621B0; font-size: 36px;"></i>
+                    <i class="bx bx-buildings" style="color: #6621B0; font-size: 36px;"></i>
                   </div>
                   <h5 class="card-title">AI Strategy for Businesses</h5>
                   <b>💼 For business owners, executives, and teams exploring AI adoption</b><br></br> 
@@ -438,15 +451,88 @@
       </div>
     </section>
 
-   
+    <!-- ======= About Your Advisor Section ======= -->
+    <section id="about-advisor" class="py-5">
+      <div class="container" data-aos="fade-up">
+        
+        <div class="row align-items-start">
+          <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-right">
+            <div class="member" style="text-align: center; position: relative; transform: translateY(0); margin-bottom: 80px;">
+              <div class="pic" style="border-radius: 4px; overflow: hidden;">
+                <img src="../assets/img/VivianaMarquez_2025_Red.png" alt="Viviana Marquez - AI Advisor" class="img-fluid">
+              </div>
+              <div class="member-info" style="position: absolute; bottom: -56px; left: 20px; right: 20px; background: linear-gradient(360deg,#1c073e 0,rgba(28,7,62,.9) 35%,rgba(203,98,178,.8) 100%); padding: 15px 0; border-radius: 4px;">
+                <h4 style="font-weight: 700; margin-bottom: 0; font-size: 16px; color: #fff; position: relative; padding-bottom: 5px;">Viviana Márquez</h4>
+                <span style="font-style: italic; display: block; font-size: 13px; color: #fff;">EdTech Founder | Data Scientist | Lecturer</span>
+                <div class="social" style="margin-top: 8px;">
+                  <a href="https://www.linkedin.com/in/vivianamarquez/" target="_blank" style="color: #fff;"><i class="bi bi-linkedin" style="font-size: 16px; margin: 0 2px;"></i></a>
+                  <a href="https://github.com/vivianamarquez" target="_blank" style="color: #fff;"><i class="bi bi-github" style="font-size: 16px; margin: 0 2px;"></i></a>
+                  <a href="https://drive.google.com/file/u/1/d/1QgwBhK_-UvXeh6Eh6zUdyWZLMGvwo-Ip/view" target="_blank" style="color: #fff;"><i class="bi bi-filetype-pdf" style="font-size: 16px; margin: 0 2px;"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8" data-aos="fade-left">
+            <h4 style="font-weight: 600;">Your AI Advisor: <a href="https://www.linkedin.com/in/vivianamarquez/" target="_blank"><span style="color: #6621b0;">Viviana Márquez</span></a></h4>
+            <p class="mb-4">Guiding businesses and professionals in leveraging AI with clarity, strategy, and real-world impact.</p>
+            
+            <div class="row mt-3">
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-graph-up-arrow me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Industry Experience</h5>
+                    </div>
+                    <p class="mb-0">Real-world experience implementing AI solutions across multiple industries, from startups to Fortune 500 companies.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-marker-tip me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Practical Approach</h5>
+                    </div>
+                    <p class="mb-0">Focused on actionable strategies that deliver real value, not theoretical concepts that never leave the whiteboard.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-translate me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Technical Translator</h5>
+                    </div>
+                    <p class="mb-0">Ability to bridge the gap between complex AI concepts and business value, making the technical accessible to non-technical stakeholders.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-lightbulb me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Right-Sized Solutions</h5>
+                    </div>
+                    <p class="mb-0">Committed to finding the best AI approach—whether in-house development, external tools, or upskilling—ensuring solutions match real needs, not unnecessary complexity.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ======= FAQ Section ======= -->
-    <section class="faq py-5">
+    <section class="faq py-5 bg-light">
       <div class="container" data-aos="fade-up">
         <div class="row justify-content-center mb-5">
           <div class="col-lg-8 text-center">
             <h2 class="mb-4">Frequently Asked Questions</h2>
-            <p>Get answers to common questions about our AI advisory services</p>
           </div>
         </div>
         
@@ -458,7 +544,12 @@
                 <i class="bi bi-chevron-down"></i>
               </div>
               <div class="faq-answer">
-                <p>To make the most of your session, we recommend preparing a list of specific questions or challenges you'd like to address. For career sessions, have your resume and career goals ready. For business sessions, gather information about your current processes and specific areas where you think AI could help.</p>
+                <p>To make the most of your session, we recommend preparing a list of specific questions or challenges you'd like to address. </p>
+                <ul style="padding-left: 20px; margin-top: 10px; margin-bottom: 10px; list-style: none;">
+                  <li><i class="bi bi-check2-square me-2" style="color: #6621b0;"></i>For career sessions, have your resume and career goals ready.</li>
+                  <li><i class="bi bi-check2-square me-2" style="color: #6621b0;"></i>For business sessions, gather information about your current processes and specific areas where you think AI could help.</li>
+                </ul>
+                <p>At the time of booking, we'll ask a few key questions to tailor the session—feel free to share any additional details that you think are relevant.</p>
               </div>
             </div>
             
@@ -481,12 +572,21 @@
                 <p>After your session, you'll receive a summary of the discussion and recommendations, including your personalized roadmap. We also offer follow-up sessions for those who want to track progress or address new challenges that arise during implementation.</p>
               </div>
             </div>
+
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="faq-question">
+                <span>What if I need more than a one-on-one session?</span>
+                <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>If you're looking for deeper AI training, team workshops, or end-to-end AI implementation, we offer enterprise solutions tailored to your needs. Explore our <a href="https://missfactorialacademy.com/services/ai-training-for-business-teams.html">AI Training for Business Teams</a> or <a href="https://missfactorialacademy.com/services/packaged-ai-services.html">Packaged AI Services</a> to find the right fit.</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
-
- 
 
   </main><!-- End #main -->
 
@@ -535,10 +635,14 @@
             answer.style.display = 'none';
             icon.classList.remove('bi-chevron-up');
             icon.classList.add('bi-chevron-down');
+            question.style.borderBottomLeftRadius = '8px';
+            question.style.borderBottomRightRadius = '8px';
           } else {
             answer.style.display = 'block';
             icon.classList.remove('bi-chevron-down');
             icon.classList.add('bi-chevron-up');
+            question.style.borderBottomLeftRadius = '0';
+            question.style.borderBottomRightRadius = '0';
           }
         });
       });
