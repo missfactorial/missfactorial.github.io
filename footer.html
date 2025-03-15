@@ -24,22 +24,15 @@
 
           <div class="col-lg-4 col-md-6 footer-links">
             <h4>Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="services/custom-ai-training.html">Custom AI Training for Business Teams</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services/packaged-ai-services.html">Packaged AI Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services/ai-advisory.html">AI Advisory: 1:1 Sessions</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services/on-demand-courses.html">On-Demand Courses</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services/data-literacy-outreach.html">Data Literacy Outreach</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="services/resource-center.html">Resource Center</a></li>
+            <ul id="footer-services-list">
+              <!-- Service links will be populated by JavaScript -->
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
-				<h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#services">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a class="nav-link scrollto" href="#team">About Us</a></li>
+            <h4>Useful Links</h4>
+            <ul id="footer-useful-links">
+              <!-- Useful links will be populated by JavaScript -->
             </ul>
           </div>
 
@@ -48,4 +41,57 @@
     </div>
 
   </footer><!-- End Footer -->
+  
+<script>
+  // Determine if we're in a subdirectory
+  const isInSubdirectory = window.location.pathname.includes('/services/');
+  
+  // Set the base path
+  const basePath = isInSubdirectory ? '../' : '';
+  
+  // Define service pages
+  const footerServices = [
+    { name: 'Custom AI Training for Business Teams', url: 'custom-ai-training.html' },
+    { name: 'Packaged AI Services', url: 'packaged-ai-services.html' },
+    { name: 'AI Advisory: 1:1 Sessions', url: 'ai-advisory.html' },
+    { name: 'On-Demand Courses', url: 'on-demand-courses.html' },
+    { name: 'Data Literacy Outreach', url: 'data-literacy-outreach.html' },
+    { name: 'Resource Center', url: 'resource-center.html' }
+  ];
+  
+  // Populate services list
+  const footerServicesList = document.getElementById('footer-services-list');
+  footerServices.forEach(service => {
+    const li = document.createElement('li');
+    const icon = document.createElement('i');
+    icon.className = 'bx bx-chevron-right';
+    const a = document.createElement('a');
+    a.href = isInSubdirectory ? service.url : 'services/' + service.url;
+    a.textContent = service.name;
+    li.appendChild(icon);
+    li.appendChild(a);
+    footerServicesList.appendChild(li);
+  });
+  
+  // Define useful links
+  const usefulLinks = [
+    { name: 'Home', url: 'index.html', hash: '' },
+    { name: 'Services', url: 'index.html', hash: '#services' },
+    { name: 'About Us', url: 'index.html', hash: '#team' }
+  ];
+  
+  // Populate useful links
+  const footerUsefulLinks = document.getElementById('footer-useful-links');
+  usefulLinks.forEach(link => {
+    const li = document.createElement('li');
+    const icon = document.createElement('i');
+    icon.className = 'bx bx-chevron-right';
+    const a = document.createElement('a');
+    a.href = basePath + link.url + link.hash;
+    a.textContent = link.name;
+    li.appendChild(icon);
+    li.appendChild(a);
+    footerUsefulLinks.appendChild(li);
+  });
+</script>
   
