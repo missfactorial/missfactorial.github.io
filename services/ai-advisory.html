@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>AI Advisory: 1:1 Sessions | Miss Factorial Academy</title>
+  <meta name="description" content="Get personalized guidance on your AI journey with our one-on-one advisory sessions, tailored to address your specific challenges and opportunities in implementing AI solutions.">
+  <meta name="keywords" content="AI advisory, AI consulting, one-on-one AI sessions, personalized AI guidance, AI strategy, AI implementation, AI for business, Miss Factorial Academy, AI expert consultation, AI roadmap, AI decision-making, AI planning, Viviana Marquez">
+  <meta name="author" content="Miss Factorial Academy | Viviana Márquez" >
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <!-- Google Contact Form -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Custom styles that match the main site's aesthetic -->
+  <style>
+    .hero-section {
+      background: linear-gradient(rgba(40, 58, 90, 0.8), rgba(102, 33, 176, 0.9)), url("../assets/img/hero-bg.jpg") center center;
+      background-size: cover;
+      padding: 120px 0;
+      color: #fff;
+      position: relative;
+    }
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    .hero-section .lead {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: linear-gradient(to top left, #fff 0%, transparent 50%), linear-gradient(to top right, #fff 0%, transparent 50%);
+    }
+    .hero-cta {
+      margin-top: 30px;
+    }
+    .hero-cta .btn {
+      padding: 12px 30px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+    .hero-cta .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+    .service-options-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .service-card {
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: 100%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+      background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+      border-top: 4px solid transparent;
+    }
+    .service-card .card-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-bottom: 20px !important;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(102, 33, 176, 0.25) !important;
+    }
+    .icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      background-color: rgba(102, 33, 176, 0.1);
+    }
+    .testimonial-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      background-color: #f8f9fa;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      padding: 15px 20px;
+      background-color: #fff;
+      border: 1px solid #f1f1f1;
+      border-top: none;
+      display: none;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #6621b0 0%, #4a1980 100%);
+      padding: 60px 0;
+      color: #fff;
+      border-radius: 8px;
+      margin: 60px 0;
+    }
+    .benefits-list {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid #6621b0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      margin-top: 15px;
+    }
+    .benefits-list h5 {
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .benefits-list ul {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+    .benefits-list li {
+      margin-bottom: 12px;
+      list-style-type: none;
+      position: relative;
+      padding-left: 28px;
+      font-size: 0.95rem;
+    }
+    .benefits-list li:last-child {
+      margin-bottom: 0;
+    }
+    .benefits-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #6621b0;
+      font-weight: bold;
+    }
+    .service-card.business-card .benefits-list li:before {
+      color: #6621b0;
+    }
+    .session-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .book-button-container {
+      text-align: center;
+      margin-top: 15px;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+    .service-description {
+      min-height: 120px;
+    }
+    .section-title {
+      color: #333;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #6621b0;
+      bottom: 0;
+      left: calc(50% - 25px);
+    }
+    .section-description {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .badge {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-radius: 30px;
+    }
+    .card-header {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .text-left {
+      text-align: left !important;
+    }
+    .service-card .card-title {
+      color: #6621b0;
+      font-weight: 700;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    .service-card.career-card {
+      border-top-color: #6621b0;
+    }
+    .service-card.business-card {
+      border-top-color: #6621b0;
+    }
+    .service-card.career-card .icon-circle {
+      background-color: rgba(102, 33, 176, 0.1);
+    }
+    .service-card.business-card .icon-circle {
+      background-color: rgba(102, 33, 176, 0.1);
+    }
+    .service-card.career-card .card-title {
+      color: #6621b0;
+    }
+    .service-card.business-card .card-title {
+      color: #6621b0;
+    }
+    .service-card.career-card .benefits-list {
+      border-left-color: #6621b0;
+    }
+    .service-card.business-card .benefits-list {
+      border-left-color: #6621b0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Placeholder for Header -->
+  <div id="header-placeholder"></div>
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>AI Advisory: 1:1 Sessions</h2>
+          <ol>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="https://missfactorialacademy.com/index.html#services">Services</a></li>
+            <li>AI Advisory</li>
+          </ol>
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Hero Section ======= -->
+    <section class="hero-section">
+      <div class="container text-center" data-aos="fade-up">
+        <h1>Personalized AI Advisory Sessions</h1>
+        <p class="lead">Curious about how AI fits into your business or career but don't know where to begin? Get personalized, expert guidance tailored to your specific needs to help you explore AI opportunities, upskill strategically, and make informed decisions in this rapidly evolving field.</p>
+        <div class="hero-cta">
+          <a href="#service-options" class="btn btn-light">Explore Our Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Service Options Section ======= -->
+    <section id="service-options" class="service-details py-5">
+      <div class="service-options-container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-8 text-center">
+            <h2 class="mb-4">Choose the Advisory Session That Best Fits Your Needs</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card h-100 border-0 shadow-sm service-card career-card">
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <div class="icon-circle">
+                    <i class="bi bi-person-workspace" style="color: #6621B0; font-size: 36px;"></i>
+                  </div>
+                  <h5 class="card-title">AI Career & Upskilling Strategy</h5>
+                  <b>🔍 For professionals looking to understand AI and upskill</b><br></br> 
+                  <p class="card-text service-description">Whether you're exploring AI for career growth, upskilling, or pivoting into the field, this 30-minute session will give you a clear roadmap. Get expert insights on how AI fits into your career, what skills to focus on, and how to navigate the rapidly evolving AI landscape.</p>
+                </div>
+                <div class="benefits-list text-left">
+                  <h5 class="mb-3">What You'll Get:</h5>
+                  <ul>
+                    <li>Clarity on how AI impacts your industry and career opportunities</li>
+                    <li>Personalized guidance on AI skills, tools, and learning paths</li>
+                    <li>Insights into AI career trends and future-proofing your skillset</li>
+                    <li>A strategic next step based on your experience and your goals</li>
+                  </ul>
+                </div>
+                <div class="session-details mb-3">
+                  <div>
+                    <span class="text-muted">Session Duration: 30 minutes</span>
+                  </div>
+                  <div>
+                    <p class="mb-0"><span class="text-muted">Price: $100</span></p>
+                  </div>
+                </div>
+                <div class="book-button-container text-center mb-0">
+                  <a href="https://calendly.com/missfactorial/1-1-ai-career-upskilling-strategy-session" target="_blank" class="btn btn-primary btn-lg px-4 py-2 rounded-pill shadow-sm" style="background-color: #6621b0; border-color: #6621b0; font-weight: 600;"><i class="bi bi-calendar-check me-2"></i>Book Your Career Session</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card h-100 border-0 shadow-sm service-card business-card">
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <div class="icon-circle">
+                    <i class="bx bx-building-house" style="color: #6621B0; font-size: 36px;"></i>
+                  </div>
+                  <h5 class="card-title">AI Strategy for Businesses</h5>
+                  <b>💼 For business owners, executives, and teams exploring AI adoption</b><br></br> 
+                  <p class="card-text service-description">In this 1-hour session, we'll assess your industry and business needs to uncover where AI can drive efficiency, innovation, and competitive advantage. Whether you're considering AI automation, data-driven decision-making, or AI-powered products, this session will provide tailored insights and actionable recommendations.</p>
+                </div>
+                <div class="benefits-list text-left">
+                  <h5 class="mb-3">What You'll Get:</h5>
+                  <ul>
+                    <li>A clear understanding of AI's role in your industry and business</li>
+                    <li>Practical AI applications suited to your needs and budget</li>
+                    <li>Key considerations for AI adoption (data, tools, ethics, feasibility)</li>
+                    <li>Guidance on implementation strategies (in-house vs. external solutions)</li>
+                  </ul>
+                </div>
+                <div class="session-details mb-3">
+                  <div>
+                    <span class="text-muted">Session Duration: 60 minutes</span>
+                  </div>
+                  <div>
+                    <p class="mb-0"><span class="text-muted">Price: $500</span></p>
+                  </div>
+                </div>
+                <div class="book-button-container text-center mb-0">
+                  <a href="https://calendly.com/missfactorial/1-1-ai-strategy-session-for-businesses" target="_blank" class="btn btn-primary btn-lg px-4 py-2 rounded-pill shadow-sm" style="background-color: #6621b0; border-color: #6621b0; font-weight: 600;"><i class="bi bi-calendar-check me-2"></i>Book Your Business Session</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+    <!-- ======= FAQ Section ======= -->
+    <section class="faq py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-8 text-center">
+            <h2 class="mb-4">Frequently Asked Questions</h2>
+            <p>Get answers to common questions about our AI advisory services</p>
+          </div>
+        </div>
+        
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="faq-item" data-aos="fade-up">
+              <div class="faq-question">
+                <span>How do I prepare for my advisory session?</span>
+                <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>To make the most of your session, we recommend preparing a list of specific questions or challenges you'd like to address. For career sessions, have your resume and career goals ready. For business sessions, gather information about your current processes and specific areas where you think AI could help.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="faq-question">
+                <span>Do I need technical knowledge to benefit from these sessions?</span>
+                <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>Not at all! Our sessions are designed for people at all technical levels. Whether you're a technical expert or completely new to AI, we'll meet you where you are and provide guidance that matches your understanding and needs.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="faq-question">
+                <span>What happens after the advisory session?</span>
+                <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>After your session, you'll receive a summary of the discussion and recommendations, including your personalized roadmap. We also offer follow-up sessions for those who want to track progress or address new challenges that arise during implementation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ 
+
+  </main><!-- End #main -->
+
+  <!-- Placeholder for Footer -->
+  <div id="footer-placeholder"></div>
+  
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Load external header and footer via JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Load header
+      fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+
+          // Reinitialize mobile nav toggle after the header is loaded
+          const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+          const navbar = document.querySelector('#navbar');
+          
+          if (mobileNavToggle && navbar) {
+            mobileNavToggle.addEventListener('click', function() {
+              navbar.classList.toggle('navbar-mobile');
+              this.classList.toggle('bi-list');
+              this.classList.toggle('bi-x');
+            });
+          }
+        });
+
+      // Load footer
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        });
+        
+      // Initialize FAQ accordion
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          const icon = question.querySelector('i');
+          
+          if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            icon.classList.remove('bi-chevron-up');
+            icon.classList.add('bi-chevron-down');
+          } else {
+            answer.style.display = 'block';
+            icon.classList.remove('bi-chevron-down');
+            icon.classList.add('bi-chevron-up');
+          }
+        });
+      });
+    });
+  </script>
+  
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html> 
