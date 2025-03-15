@@ -78,6 +78,30 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     }
+    /* Styles for the new compact hero section with statistics */
+    .stat-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+    .stat-box:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .stat-box h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    .stat-box p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
     .service-options-container {
       max-width: 1400px;
       margin: 0 auto;
@@ -285,12 +309,48 @@
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Hero Section ======= -->
-    <section class="hero-section">
-      <div class="container text-center" data-aos="fade-up">
-        <h1>Personalized AI Advisory Sessions</h1>
-        <p class="lead">Curious about how AI fits into your business or career but don't know where to begin? Get personalized, expert guidance tailored to your specific needs to help you explore AI opportunities, upskill strategically, and make informed decisions in this rapidly evolving field.</p>
-        <div class="hero-cta">
-          <a href="#service-options" class="btn btn-light">Explore Our Services</a>
+    <section class="py-5" style="background: linear-gradient(rgba(40, 58, 90, 0.8), rgba(102, 33, 176, 0.9)), url('../assets/img/hero-bg.jpg') center center; background-size: cover; color: #fff;">
+      <div class="container" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px;">Personalized<br>AI Advisory Sessions</h1>
+            <p class="mb-4">Get expert guidance tailored to your specific needs to help you navigate the rapidly evolving AI landscape, whether for your career or business.</p>
+            <a href="#service-options" class="btn btn-light rounded-pill px-4 py-2 shadow-sm">Explore Our Services</a>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-0 bg-transparent">
+              <div class="card-body">
+                <h4 class="text-white mb-4">Why AI Advisory Matters Now</h4>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>$407B</h2>
+                      <p>Projected global AI market size by 2027<sup><a href="https://www.forbes.com/advisor/business/ai-statistics/" target="_blank" class="text-white">1</a></sup></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>73%</h2>
+                      <p>Workers report increased productivity with AI<sup><a href="https://www.business.com/articles/ai-usage-smb-workplace-study/" target="_blank" class="text-white">2</a></sup></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>$166K</h2>
+                      <p>Median annual pay for Data Scientists in the U.S.<sup><a href="https://www.glassdoor.com/Salaries/data-scientist-salary-SRCH_KO0,14.htm" target="_blank" class="text-white">3</a></sup></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>36%</h2>
+                      <p>Projected job growth in data science by 2030<sup><a href="https://www.bls.gov/ooh/math/data-scientists.htm" target="_blank" class="text-white">4</a></sup></p>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-white-50 small">Don't miss out on the AI revolution. Invest in expert guidance to position yourself strategically in this high-growth field.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
