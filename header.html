@@ -1,73 +1,30 @@
-<!-- Save this as header.html -->
-<header id="header" class="d-flex align-items-center">
+ <!-- Save this as header.html -->
+ <header id="header" class="d-flex align-items-center">
   <div class="container d-flex align-items-center">
 
     <div class="logo me-auto">
-      <h1><a href="" id="home-link"><img src="" id="logo-img" alt="" class="img-fluid">&nbsp; Miss Factorial Academy</a></h1>
+      <h1><a href="index.html"><img src="assets/img/MissFactorial AcademyLogoPinkParenthesis.png" alt="" class="img-fluid">&nbsp; Miss Factorial Academy</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="" id="home-link-alt"><img src="" id="favicon-img" alt="" class="img-fluid"></a> -->
+      <!-- <a href="index.html"><img src="assets/img/favicon.png" alt="" class="img-fluid"></a> -->
     </div>
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto" href="" id="welcome-link">Welcome</a></li>
-        <li class="dropdown"><a class="nav-link scrollto" href="" id="services-link"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
-          <ul id="services-dropdown">
-            <!-- Service links will be populated by JavaScript -->
+        <li><a class="nav-link scrollto" href="index.html">Welcome</a></li>
+        <li class="dropdown"><a class="nav-link scrollto" href="#services"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="services/custom-ai-training.html">AI Training for Business Teams</a></li>
+            <li><a href="services/packaged-ai-services.html">Packaged AI Services</a></li>
+            <li><a href="services/ai-advisory.html">AI Advisory: 1:1 Sessions</a></li>
+            <li><a href="services/on-demand-courses.html">On-Demand Courses</a></li>
+            <li><a href="services/data-literacy-outreach.html">Data Literacy Outreach</a></li>
+            <li><a href="services/resource-center.html">Resource Center</a></li>
           </ul>
         </li>
-        <!--<li><a href="" id="news-link">News</a></li> -->
+        <!--<li><a href="news.html">News</a></li> -->
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
 
   </div>
 </header><!-- End Header -->
-
-<script>
-  // Determine if we're in a subdirectory
-  const isInSubdirectory = window.location.pathname.includes('/services/');
-  
-  // Set the base path
-  const basePath = isInSubdirectory ? '../' : '';
-  
-  // Update home link
-  document.getElementById('home-link').href = basePath + 'index.html';
-  
-  // Update logo image
-  document.getElementById('logo-img').src = basePath + 'assets/img/MissFactorial AcademyLogoPinkParenthesis.png';
-  
-  // Update favicon image if uncommented
-  // document.getElementById('favicon-img').src = basePath + 'assets/img/favicon.png';
-  // document.getElementById('home-link-alt').href = basePath + 'index.html';
-  
-  // Update welcome link
-  document.getElementById('welcome-link').href = basePath + 'index.html';
-  
-  // Update services link
-  document.getElementById('services-link').href = basePath + 'index.html#services';
-  
-  // Update news link if uncommented
-  // document.getElementById('news-link').href = basePath + 'news.html';
-  
-  // Define service pages
-  const services = [
-    { name: 'AI Training for Business Teams', url: 'custom-ai-training.html' },
-    { name: 'Packaged AI Services', url: 'packaged-ai-services.html' },
-    { name: 'AI Advisory: 1:1 Sessions', url: 'ai-advisory.html' },
-    { name: 'On-Demand Courses', url: 'on-demand-courses.html' },
-    { name: 'Data Literacy Outreach', url: 'data-literacy-outreach.html' },
-    { name: 'Resource Center', url: 'resource-center.html' }
-  ];
-  
-  // Populate services dropdown
-  const servicesDropdown = document.getElementById('services-dropdown');
-  services.forEach(service => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = isInSubdirectory ? service.url : 'services/' + service.url;
-    a.textContent = service.name;
-    li.appendChild(a);
-    servicesDropdown.appendChild(li);
-  });
-</script>
