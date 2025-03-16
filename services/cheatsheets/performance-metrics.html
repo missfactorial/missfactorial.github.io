@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Performance Metrics Cheat Sheet | Miss Factorial Academy</title>
+  <meta name="description" content="Comprehensive performance metrics cheat sheet for data science and machine learning - Miss Factorial Academy">
+  <meta name="keywords" content="performance metrics, machine learning metrics, data science metrics, AI metrics, Miss Factorial Academy">
+  <meta name="author" content="Miss Factorial Academy | Viviana Márquez">
+
+  <!-- Favicons -->
+  <link href="../../assets/img/favicon.png" rel="icon">
+  <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
+
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      }
+    };
+  </script>
+
+  <style>
+    .metrics-table {
+      width: 100%;
+      margin-top: 2rem;
+      border-collapse: collapse;
+    }
+    .metrics-table th, .metrics-table td {
+      padding: 1.5rem;
+      border: 1px solid #f4e6f2;
+      background-color: white;
+      vertical-align: middle;
+    }
+    .metrics-table th {
+      background-color: #cb62b2;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+    .metrics-table td:nth-child(2) {
+      min-width: 250px;
+      background-color: #fff9fc;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .metrics-table td strong {
+      color: #cb62b2;
+      font-weight: 600;
+    }
+    .formula {
+      display: block;
+      margin: 0 auto;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 4px;
+      border: 1px solid #f4e6f2;
+    }
+    .nav-tabs {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #f4e6f2;
+    }
+    .nav-tabs .nav-link {
+      color: #444444;
+      font-weight: 500;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.3s ease;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #cb62b2;
+      border-color: transparent;
+    }
+    .nav-tabs .nav-link.active {
+      color: #cb62b2;
+      font-weight: 600;
+      border-bottom: 2px solid #cb62b2;
+    }
+    .badge {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+    .badge.bg-danger {
+      background-color: #fff2f2 !important;
+      color: #cb62b2;
+      border: 1px solid #f4e6f2;
+    }
+    .badge.bg-success {
+      background-color: #f2fff4 !important;
+      color: #6621b0;
+      border: 1px solid #f4e6f2;
+    }
+    .section-title {
+      margin-bottom: 1.5rem;
+    }
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: #2a2a2a;
+    }
+    .section-title p {
+      margin-bottom: 0;
+      color: #777777;
+    }
+    .table-responsive {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .inner-page {
+      padding: 60px 0;
+    }
+    .breadcrumbs {
+      padding: 30px 0;
+      background: #fdf8fc;
+      margin-top: 88px;
+    }
+    .breadcrumbs h2 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #2a2a2a;
+    }
+    .breadcrumbs ol {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0 0 10px 0;
+      margin: 0;
+      font-size: 14px;
+    }
+    .breadcrumbs ol li + li {
+      padding-left: 10px;
+    }
+    .breadcrumbs ol li + li::before {
+      display: inline-block;
+      padding-right: 10px;
+      color: #cb62b2;
+      content: "/";
+    }
+  </style>
+</head>
+
+<body>
+
+    <section class="inner-page">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Performance Metrics in Machine Learning Cheat Sheet</h2>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="metricsTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="regression-tab" data-bs-toggle="tab" data-bs-target="#regression" type="button" role="tab" aria-controls="regression" aria-selected="true">Regression Metrics</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="classification-tab" data-bs-toggle="tab" data-bs-target="#classification" type="button" role="tab" aria-controls="classification" aria-selected="false">Classification Metrics</button>
+          </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="metricsTabContent">
+          <!-- Regression Metrics Tab -->
+          <div class="tab-pane fade show active" id="regression" role="tabpanel" aria-labelledby="regression-tab">
+            <div class="table-responsive">
+              <div id="metrics-content">
+                <table class="metrics-table">
+                  <thead>
+                    <tr>
+                      <th>Metric</th>
+                      <th>Formula</th>
+                      <th>Description</th>
+                      <th>Advantages</th>
+                      <th>Disadvantages</th>
+                      <th>Interpretation</th>
+                      <th>Minimize or Maximize</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Mean Absolute Error (MAE)</strong></td>
+                      <td class="formula">\[ \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i| \]</td>
+                      <td>Average of absolute differences between actual and predicted.</td>
+                      <td>Less sensitive to outliers</td>
+                      <td>It does not consider the direction of the error and does not emphasize larger errors compared to MSE and RMSE.</td>
+                      <td>Suppose our model has an MAE of 20,000 USD. This means that on average, our predictions on the price of houses are off by 20,000 USD. So, if the model predicts a house to be 500,000 USD, we can expect the actual price to be anywhere between 480,000 USD and 520,000 USD.</td>
+                      <td><span class="badge bg-danger">Minimize</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mean Squared Error (MSE)</strong></td>
+                      <td class="formula">\[ \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \]</td>
+                      <td>Average of squared differences between actual and predicted.</td>
+                      <td>Emphasizes larger errors due to squaring.</td>
+                      <td>Can be sensitive to outliers because it squares the prediction errors.</td>
+                      <td>If the MSE of our model is 1,000,000,000 (USD²), this tells us that the average squared difference between the predicted and actual house prices is 1,000,000,000. However, interpreting MSE in its raw form can be quite difficult due to the square units (USD²), so it's often more helpful to interpret the square root of the MSE (RMSE) instead.</td>
+                      <td><span class="badge bg-danger">Minimize</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Root Mean Squared Error (RMSE)</strong></td>
+                      <td class="formula">\[ \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} \]</td>
+                      <td>Square root of MSE.</td>
+                      <td>Easier to interpret than MSE because RMSE is in the same unit as the target variable.</td>
+                      <td>Like MSE, RMSE increases the weight of the bigger errors due to squaring.</td>
+                      <td>Now, if the RMSE of our model is 31,623 USD (which is the square root of 1,000,000,000), this indicates that the standard deviation of our prediction errors is roughly 31,623 USD. Essentially, this tells us that our predictions are scattered on average by 31,623 USD from the actual house price.</td>
+                      <td><span class="badge bg-danger">Minimize</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mean Absolute Percentage Error (MAPE)</strong></td>
+                      <td class="formula">\[ \frac{100\%}{n} \sum_{i=1}^{n} \left|\frac{y_i - \hat{y}_i}{y_i}\right| \]</td>
+                      <td>Average absolute percent difference between observed and predicted values</td>
+                      <td>Useful when dealing with variables of varying scales</td>
+                      <td>Can lead to divide by zero errors, not suited for values close to zero</td>
+                      <td>If a model predicting house prices has a MAPE of 15%, the model's predictions are off by 15% of the actual price on average</td>
+                      <td><span class="badge bg-danger">Minimize</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>R-Squared (R²)</strong></td>
+                      <td class="formula">\[ 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2} \]</td>
+                      <td>Proportion of the variance in the dependent variable predictable from the independent variable(s)</td>
+                      <td>It can be interpreted as a percentage</td>
+                      <td>Does not inform about the absolute fit of the model, but relative fit to a simple mean model</td>
+                      <td>If a model predicting house prices has an R² of 0.85, the model explains 85% of the variability in house prices from the features</td>
+                      <td><span class="badge bg-success">Maximize</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Adjusted R-Squared</strong></td>
+                      <td class="formula">\[ 1 - (1 - R^2)\frac{n-1}{n-p-1} \]</td>
+                      <td>Like R² but adjusted for the number of predictors in the model</td>
+                      <td>Takes into account the number of predictors</td>
+                      <td>More complex than simple R²</td>
+                      <td>If a model predicting house prices with 3 features has an Adjusted R² of 0.82, after adjusting for the number of predictors, the model explains 82% of the variability in house prices</td>
+                      <td><span class="badge bg-success">Maximize</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Classification Metrics Tab -->
+          <div class="tab-pane fade" id="classification" role="tabpanel" aria-labelledby="classification-tab">
+            <div class="table-responsive">
+              <table class="metrics-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Formula</th>
+                    <th>Description</th>
+                    <th>Advantages</th>
+                    <th>Disadvantages</th>
+                    <th>Interpretation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Accuracy</strong></td>
+                    <td class="formula">\[ \frac{TP + TN}{TP + FP + FN + TN} \]</td>
+                    <td>The proportion of true results among the total number of cases examined.</td>
+                    <td>Easy to interpret.</td>
+                    <td>Can be misleading in imbalanced datasets.</td>
+                    <td>If a model has 90% accuracy, this means that 90 out of 100 predictions are correct.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Precision</strong></td>
+                    <td class="formula">\[ \frac{TP}{TP + FP} \]</td>
+                    <td>The proportion of positive identifications that were actually correct.</td>
+                    <td>Useful when the cost of false positives is high.</td>
+                    <td>Not useful when the class distribution is imbalanced.</td>
+                    <td>If the model's precision is 0.75, this means that 75% of the people the model identified as positive cases are actual positive cases.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Recall (Sensitivity)</strong></td>
+                    <td class="formula">\[ \frac{TP}{TP + FN} \]</td>
+                    <td>The proportion of actual positives that were correctly identified.</td>
+                    <td>Useful when the cost of false negatives is high.</td>
+                    <td>Not particularly useful when the class distribution is heavily skewed towards negatives.</td>
+                    <td>If the model's recall is 0.8, this means that it was able to find 80% of all positive cases.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Specificity</strong></td>
+                    <td class="formula">\[ \frac{TN}{TN + FP} \]</td>
+                    <td>The proportion of actual negatives that were correctly identified.</td>
+                    <td>Useful when the cost of false positives is high.</td>
+                    <td>Not particularly useful when the class distribution is heavily skewed towards positives.</td>
+                    <td>If the model's specificity is 0.7, this means that it correctly identified 70% of all negative cases.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>F1 Score</strong></td>
+                    <td class="formula">\[ 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} \]</td>
+                    <td>The harmonic mean of precision and recall.</td>
+                    <td>Useful for balancing precision and recall and for dealing with imbalanced datasets.</td>
+                    <td>Not interpretable as a statistical measure of the samples.</td>
+                    <td>An F1 score of 0.7 indicates that the model is fairly good at identifying positive cases without labeling too many false positives or missing too many actual positives.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AUC-ROC</strong></td>
+                    <td class="formula">\[ \text{AUC} = \frac{\sum R_{\text{positive}} - \frac{n_{\text{positive}} (n_{\text{positive}} + 1)}{2}}{n_{\text{positive}} \cdot n_{\text{negative}}} \]</td>
+                    <td>The area under the curve when plotting true positive rate (sensitivity) against the false positive rate (1-specificity).</td>
+                    <td>Handles both balanced and imbalanced datasets.</td>
+                    <td>Less interpretable as it summarizes the model's performance across all classification thresholds.</td>
+                    <td>An AUC of 0.9 means that there is 90% chance that the model will be able to distinguish between positive class and negative class.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Log Loss</strong></td>
+                    <td class="formula">\[ -\frac{1}{N} \sum_{i=1}^{N} \left(y_i \log(p_i) + (1-y_i) \log(1-p_i)\right) \]</td>
+                    <td>Measures the performance of a classification model where the prediction is a probability value between 0 and 1.</td>
+                    <td>Takes into account uncertainty in the predictions, useful for probabilistic models.</td>
+                    <td>Sensitive to incorrect confidence levels; penalizes wrong confident predictions heavily.</td>
+                    <td>A lower Log Loss indicates a better model; 0 means perfect predictions.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+
+  <!-- Vendor JS Files -->
+  <script src="../../assets/vendor/aos/aos.js"></script>
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../../assets/js/main.js"></script>
+
+  <!-- Load Header and Footer -->
+  <script>
+    $(document).ready(function() {
+      $("#header-placeholder").load("../../header.html");
+      $("#footer-placeholder").load("../../footer.html");
+    });
+  </script>
+</body>
+</html> 
