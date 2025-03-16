@@ -55,62 +55,75 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Under Construction Section ======= -->
-    <section class="service-details">
-      <div class="container text-center" data-aos="fade-up">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="under-construction-box p-5" style="background: rgba(203, 98, 178, 0.1); border-radius: 15px; margin-bottom: 50px;">
-              <i class="bi bi-journal-richtext" style="font-size: 80px; color: #cb62b2; margin-bottom: 20px;"></i>
-              <h2 style="color: #1c073e; margin-bottom: 20px;">Knowledge Hub Under Development!</h2>
-              <p style="font-size: 18px; margin-bottom: 30px;">We're curating a comprehensive collection of AI and data science resources that will become your go-to knowledge center. Our team is assembling guides, templates, and tools to support your learning journey.</p>
-              <div class="d-flex justify-content-center">
-                <div class="progress" style="height: 10px; width: 70%;">
-                  <div class="progress-bar" role="progressbar" style="width: 60%; background-color: #cb62b2;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <p style="margin-top: 15px; font-style: italic;">60% Complete</p>
-              <a href="../index.html#contact" class="btn btn-primary mt-3" style="background: #cb62b2; border: none; padding: 10px 25px;">Get Notified When Ready</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Under Construction Section -->
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <!-- ======= Store Section ======= -->
+    <section class="store-section">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Explore Our Resource Center</h2>
+          <h2>STEM Merchandise</h2>
+          <p>Show your passion for data science and programming with our exclusive collection</p>
         </div>
 
         <div class="row">
-          <div class="col-lg-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="info-box">
-              <i class='bx bx-book'></i>
-              <h3>Knowledge at Your Fingertips</h3>
-              <p>Discover curated resources to support your learning journey, from recommended books to free educational materials.</p>
-            </div>
-          </div>
-          
-          <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="info-box">
-              <i class="bx bx-envelope"></i>
-              <h3>Resource Inquiries</h3>
-              <p><a href="mailto:viviana@missfactorial.com" style="color: inherit; text-decoration: none;">viviana@missfactorial.com</a></p>
+          <!-- Product Card -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100" style="border-radius: 15px; overflow: hidden; border: none; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+              <!-- Product Image Carousel -->
+              <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" style="background-color: rgba(102, 33, 176, 0.1);">
+                    <img src="store/tshirt_mockups/pandas/pandas_python_tshirt_girly00001.png" class="d-block w-100" alt="Pandas Python T-shirt front view">
+                  </div>
+                  <div class="carousel-item" style="background-color: rgba(102, 33, 176, 0.1);">
+                    <img src="store/tshirt_mockups/pandas/pandas_python_tshirt_girly00002.png" class="d-block w-100" alt="Pandas Python T-shirt back view">
+                  </div>
+                  <div class="carousel-item" style="background-color: rgba(102, 33, 176, 0.1);">
+                    <img src="store/tshirt_mockups/pandas/pandas_python_tshirt_girly00003.png" class="d-block w-100" alt="Pandas Python T-shirt side view">
+                  </div>
+                  <div class="carousel-item" style="background-color: rgba(102, 33, 176, 0.1);">
+                    <img src="store/tshirt_mockups/pandas/pandas_python_tshirt_girly00004.png" class="d-block w-100" alt="Pandas Python T-shirt side view">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              
+              <div class="card-body text-center">
+                <h5 class="card-title" style="color: #1c073e; font-weight: 600;">Pandas Python T-shirt</h5>
+                <p class="card-text">Show your love for data science with this stylish Pandas Python t-shirt. Perfect for coding sessions and tech meetups!</p>
+                <p class="price" style="color: #cb62b2; font-size: 1.25rem; font-weight: 600;">$25.00</p>
+                <div class="size-selector mb-3">
+                  <select class="form-select" id="size-select" style="width: 80%; margin: 0 auto;">
+                    <option value="">Select Size</option>
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">X-Large</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary buy-now" style="background: #cb62b2; border: none; padding: 10px 25px;">Add to Cart</button>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-3 d-flex" data-aos="fade-up">
-            <div class="info-box">
-              <i class="bx bx-store"></i>
-              <h3>STEM Shop</h3>
-              <p>Show your passion with our exclusive merchandise</p>
+          <!-- Coming Soon Card -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100" style="border-radius: 15px; overflow: hidden; border: none; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center" style="min-height: 400px; background: rgba(203, 98, 178, 0.1);">
+                <i class="bi bi-stars" style="font-size: 48px; color: #cb62b2;"></i>
+                <h5 class="card-title mt-3" style="color: #1c073e;">More Products Coming Soon!</h5>
+                <p class="card-text text-center">Stay tuned for additional STEM-themed merchandise.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Store Section -->
 
   </main><!-- End #main -->
 
