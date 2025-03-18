@@ -37,29 +37,30 @@
       align-items: center;
       padding: 2rem;
       text-align: center;
+      background-color: #f2f1f4;
     }
     .error-code {
       font-size: 6rem;
       font-weight: bold;
-      color: #5c9f24;
+      color: #cb62b2;
       margin-bottom: 1rem;
     }
     .error-message {
       font-size: 2rem;
       margin-bottom: 2rem;
-      color: #333;
+      color: #1c073e;
     }
     .back-home {
       display: inline-block;
       padding: 1rem 2rem;
-      background-color: #5c9f24;
+      background-color: #cb62b2;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       transition: background-color 0.3s;
     }
     .back-home:hover {
-      background-color: #4a8019;
+      background-color: #1c073e;
       color: white;
     }
   </style>
@@ -71,6 +72,19 @@
 
   <!-- ======= MAIN ======= -->
   <main id="main">
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Page Not Found</h2>
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>404</li>
+          </ol>
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs Section -->
+
     <div class="error-container">
       <div class="error-code">404</div>
       <h1 class="error-message">Oops! Page Not Found</h1>
