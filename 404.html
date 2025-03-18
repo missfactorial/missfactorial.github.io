@@ -72,18 +72,6 @@
 
   <!-- ======= MAIN ======= -->
   <main id="main">
-    <!-- ======= Breadcrumbs Section ======= -->
-    <section class="breadcrumbs">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Page Not Found</h2>
-          <ol>
-            <li><a href="/">Home</a></li>
-            <li>404</li>
-          </ol>
-        </div>
-      </div>
-    </section><!-- End Breadcrumbs Section -->
 
     <div class="error-container">
       <div class="error-code">404</div>
@@ -101,21 +89,23 @@
 
   <!-- Load external header and footer via JavaScript -->
   <script>
-    // Load header
-    fetch('/header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      })
-      .catch(error => console.error('Error loading header:', error));
+    // Function to load content with absolute paths
+    async function loadContent(elementId, path) {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.text();
+        document.getElementById(elementId).innerHTML = data;
+      } catch (error) {
+        console.error(`Error loading ${path}:`, error);
+      }
+    }
 
-    // Load footer
-    fetch('/footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(error => console.error('Error loading footer:', error));
+    // Load header and footer with absolute paths
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent('header-placeholder', '/header.html');
+      loadContent('footer-placeholder', '/footer.html');
+    });
   </script>
 
   <!-- Vendor JS Files -->
