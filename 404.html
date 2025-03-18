@@ -89,22 +89,62 @@
 
   <!-- Load external header and footer via JavaScript -->
   <script>
-    // Function to load content with absolute paths
+    // Function to get the correct base path considering GitHub Pages
+    function getBasePath() {
+      // Get the path portion of the URL without trailing slash
+      const path = window.location.pathname;
+      // Count the number of path segments to determine depth
+      const depth = path.split('/').filter(Boolean).length;
+      // Build the relative path prefix
+      return depth > 0 ? '../'.repeat(depth) : '/';
+    }
+
+    // Function to load content with correct paths
     async function loadContent(elementId, path) {
       try {
-        const response = await fetch(path);
+        // Remove leading slash if present and combine with base path
+        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+        const fullPath = getBasePath() + cleanPath;
+        
+        const response = await fetch(fullPath, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.text();
-        document.getElementById(elementId).innerHTML = data;
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.innerHTML = data;
+        }
       } catch (error) {
         console.error(`Error loading ${path}:`, error);
+        // Fallback to absolute path if relative path fails
+        try {
+          const absolutePath = `/${path.startsWith('/') ? path.slice(1) : path}`;
+          const response = await fetch(absolutePath, {
+            headers: {
+              'Cache-Control': 'no-cache',
+              'Pragma': 'no-cache'
+            }
+          });
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const data = await response.text();
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.innerHTML = data;
+          }
+        } catch (fallbackError) {
+          console.error(`Fallback also failed for ${path}:`, fallbackError);
+        }
       }
     }
 
-    // Load header and footer with absolute paths
+    // Load header and footer
     document.addEventListener('DOMContentLoaded', () => {
-      loadContent('header-placeholder', '/header.html');
-      loadContent('footer-placeholder', '/footer.html');
+      loadContent('header-placeholder', 'header.html');
+      loadContent('footer-placeholder', 'footer.html');
     });
   </script>
 
