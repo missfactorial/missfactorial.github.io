@@ -91,8 +91,8 @@
   <script>
     // Function to get the correct base path considering GitHub Pages
     function getBasePath() {
-      // Get the path portion of the URL without trailing slash
-      const path = window.location.pathname;
+      // Get the path portion of the URL and remove trailing slash if present
+      const path = window.location.pathname.replace(/\/$/, '');
       // Count the number of path segments to determine depth
       const depth = path.split('/').filter(Boolean).length;
       // Build the relative path prefix
