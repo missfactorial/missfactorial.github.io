@@ -89,24 +89,13 @@
 
   <!-- Load external header and footer via JavaScript -->
   <script>
-    // Function to get the correct base path considering GitHub Pages
-    function getBasePath() {
-      // Get the path portion of the URL and remove trailing slash if present
-      const path = window.location.pathname.replace(/\/$/, '');
-      // Count the number of path segments to determine depth
-      const depth = path.split('/').filter(Boolean).length;
-      // Build the relative path prefix
-      return depth > 0 ? '../'.repeat(depth) : '/';
-    }
-
-    // Function to load content with correct paths
+    // Function to load content
     async function loadContent(elementId, path) {
       try {
-        // Remove leading slash if present and combine with base path
-        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-        const fullPath = getBasePath() + cleanPath;
+        // Always use absolute path from root
+        const absolutePath = `/${path.startsWith('/') ? path.slice(1) : path}`;
         
-        const response = await fetch(fullPath, {
+        const response = await fetch(absolutePath, {
           headers: {
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache'
@@ -120,24 +109,6 @@
         }
       } catch (error) {
         console.error(`Error loading ${path}:`, error);
-        // Fallback to absolute path if relative path fails
-        try {
-          const absolutePath = `/${path.startsWith('/') ? path.slice(1) : path}`;
-          const response = await fetch(absolutePath, {
-            headers: {
-              'Cache-Control': 'no-cache',
-              'Pragma': 'no-cache'
-            }
-          });
-          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-          const data = await response.text();
-          const element = document.getElementById(elementId);
-          if (element) {
-            element.innerHTML = data;
-          }
-        } catch (fallbackError) {
-          console.error(`Fallback also failed for ${path}:`, fallbackError);
-        }
       }
     }
 
