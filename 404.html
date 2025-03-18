@@ -5,93 +5,114 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Miss Factorial Academy | AI binge-worthy courses </title>
-  <meta content="Welcome to Miss Factorial Academy, where AI meets the thrill of a hit series! We blend industry expertise with an engaging, binge-worthy learning experience, empowering individuals from all backgrounds to master data fluency." name="description">
-  <meta content="data science courses, online AI education, self-paced learning, private corporate training, AI bootcamps, tech skills development, programming courses, Python training, artificial intelligence, machine learning, data analysis, data literacy, data storytelling, social good initiatives, Miss Factorial, Miss Factorial Academy, Viviana Marquez, upskilling, reskilling, cursos en español, cursos de inteligencia artificial" name="keywords">
+  <title>404 - Page Not Found | Miss Factorial Academy</title>
+  <meta content="The page you're looking for could not be found - Miss Factorial Academy" name="description">
   <meta content="Miss Factorial" name="author">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
 
-  <!-- Google Contact Form -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+  <style>
+    .error-container {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .error-code {
+      font-size: 6rem;
+      font-weight: bold;
+      color: #5c9f24;
+      margin-bottom: 1rem;
+    }
+    .error-message {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .back-home {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #5c9f24;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .back-home:hover {
+      background-color: #4a8019;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-
   <!-- Placeholder for Header -->
   <div id="header-placeholder"></div>
 
-
-<!-- ======= MAIN ======= -->
-   <main id="main">
-
-    <div class="text-center">
-      <br><br>
-      <h1>Whoops, this page doesn't exist.</h1>
-      <h1>404 error</h1>
-      <br><br>
+  <!-- ======= MAIN ======= -->
+  <main id="main">
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <h1 class="error-message">Oops! Page Not Found</h1>
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="back-home">Back to Home</a>
     </div>
-
   </main>
-<!-- End #main -->
+  <!-- End #main -->
 
   <!-- Placeholder for Footer -->
   <div id="footer-placeholder"></div>
   
- 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Load external header and footer via JavaScript -->
   <script>
     // Load header
-    fetch('header.html')
+    fetch('/header.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
-      });
+      })
+      .catch(error => console.error('Error loading header:', error));
 
     // Load footer
-    fetch('footer.html')
+    fetch('/footer.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('footer-placeholder').innerHTML = data;
-      });
+      })
+      .catch(error => console.error('Error loading footer:', error));
   </script>
 
-
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-
-  
-    
-
+  <script src="/assets/js/main.js"></script>
 </body>
-
 </html>
