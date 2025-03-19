@@ -122,14 +122,16 @@
       box-shadow: 0 15px 35px rgba(102, 33, 176, 0.25) !important;
     }
     .icon-circle {
-      width: 80px;
-      height: 80px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto;
-      background-color: rgba(102, 33, 176, 0.1);
+      background: rgba(102, 33, 176, 0.1);
+      transition: all 0.3s ease;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
     }
     .testimonial-card {
       background-color: #f8f9fa;
@@ -350,90 +352,48 @@
       border-radius: 0 0 12px 12px;
     }
 
-    .icon-circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(102, 33, 176, 0.1);
-      transition: all 0.3s ease;
+    .program-header .d-flex {
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
     }
 
-    .accordion-button:hover .icon-circle {
-      background: rgba(102, 33, 176, 0.15);
-      transform: scale(1.05);
+    .program-header .flex-grow-1 {
+      flex: 1;
     }
 
-    .program-meta {
+    .program-header h3 {
+      color: #1c073e;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .program-header .program-meta {
       display: flex;
-      gap: 8px;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
-    .program-meta .badge {
-      font-size: 0.75rem;
-      padding: 0.5em 1em;
-      background: rgba(102, 33, 176, 0.1) !important;
-      color: #6621b0 !important;
+    .program-header .badge {
+      padding: 0.5rem 1rem;
+      background: rgba(102, 33, 176, 0.1);
+      color: #6621b0;
       font-weight: 500;
     }
 
-    .benefits-list {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 1.25rem;
-      border-left: 4px solid #6621b0;
-      margin-bottom: 1rem;
-    }
-
-    .benefits-list h5 {
-      color: #6621b0;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .benefits-list ul {
-      margin-bottom: 0;
-    }
-
-    .benefits-list li {
-      margin-bottom: 0.75rem;
-      padding-left: 1.75rem;
-      position: relative;
-    }
-
-    .benefits-list li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #6621b0;
-      font-weight: bold;
-    }
-
-    .benefits-list li:last-child {
-      margin-bottom: 0;
-    }
-
-    .accordion-button h3 {
-      color: #1c073e;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
     @media (max-width: 768px) {
-      .accordion-button {
-        padding: 1rem !important;
-      }
-      
-      .program-meta {
+      .program-header .d-flex {
         flex-direction: column;
-        gap: 4px;
+        align-items: center;
+        text-align: center;
       }
-      
-      .program-meta .badge {
-        width: fit-content;
+
+      .icon-circle {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .program-header .program-meta {
+        justify-content: center;
       }
     }
 
@@ -646,13 +606,13 @@
           <!-- Main Content Area -->
           <div class="col-lg-9">
             <div class="tab-content">
-              <!-- AI Fundamentals for Business Leaders -->
+              <!-- Data Fluency for Business Leaders & Teams -->
               <div class="tab-pane fade show active" id="program1">
                 <div class="program-card">
                   <div class="program-header">
                     <div class="d-flex">
                       <div class="icon-circle">
-                        <i class="bi bi-bar-chart-line" style="font-size: 32px; color: #6621b0;"></i>
+                        <i class="bi bi-graph-up" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
                       <div class="flex-grow-1">
                         <h3>Data Fluency for Business Leaders & Teams</h3>
@@ -667,29 +627,30 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>AI Fundamentals & Business Impact</li>
-                      <li>Strategic AI Implementation</li>
-                      <li>ROI & Risk Management</li>
+                      <li>Understanding Data Fundamentals</li>
+                      <li>Data-Driven Decision Making</li>
+                      <li>Data Storytelling & Visualization</li>
+                      <li>Building a Data-Driven Culture</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Make informed decisions about AI investments and lead your organization's digital transformation with confidence.</p>
+                    <p>Empower your team to make confident, data-driven decisions and foster a culture where data is a strategic asset.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Comprehensive Course Materials</li>
-                      <li>Interactive Case Studies</li>
-                      <li>Strategy Workshop</li>
+                      <li>Data Literacy Assessment</li>
+                      <li>Interactive Data Workshops</li>
+                      <li>Custom Industry Case Studies</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <!-- Data-Driven Decision Making -->
+              <!-- Demystifying AI: Practical Uses for Businesses & Teams -->
               <div class="tab-pane fade" id="program2">
                 <div class="program-card">
                   <div class="program-header">
@@ -710,29 +671,30 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>Data Analysis Fundamentals</li>
-                      <li>Data Visualization</li>
-                      <li>Decision Frameworks</li>
+                      <li>AI Fundamentals & Current State</li>
+                      <li>Practical AI Applications in Business</li>
+                      <li>AI Implementation Strategies</li>
+                      <li>ROI & Risk Management</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Transform your decision-making process with data-driven insights and learn to leverage analytics effectively.</p>
+                    <p>Transform complex AI concepts into practical business applications, enabling your team to identify and implement AI opportunities effectively.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Hands-on Analytics Tools</li>
-                      <li>Real-world Scenarios</li>
-                      <li>Team Workshop</li>
+                      <li>AI Readiness Assessment</li>
+                      <li>Industry-Specific Use Cases</li>
+                      <li>Implementation Roadmap</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <!-- AI Implementation for Technical Teams -->
+              <!-- Business Communication for Data Professionals -->
               <div class="tab-pane fade" id="program3">
                 <div class="program-card">
                   <div class="program-header">
@@ -753,29 +715,30 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>AI Model Development</li>
-                      <li>Integration Best Practices</li>
-                      <li>Performance Optimization</li>
+                      <li>Effective Data Storytelling</li>
+                      <li>Stakeholder Communication</li>
+                      <li>Technical to Business Translation</li>
+                      <li>Presentation Skills</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Build and deploy AI solutions efficiently while following industry best practices and standards.</p>
+                    <p>Bridge the gap between technical expertise and business impact by mastering the art of communicating data insights effectively.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Code Examples & Templates</li>
-                      <li>Technical Documentation</li>
-                      <li>Implementation Guide</li>
+                      <li>Communication Style Assessment</li>
+                      <li>Presentation Templates</li>
+                      <li>Practice Sessions</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <!-- AI Ethics & Responsible AI -->
+              <!-- ML/AI Upskilling for Technical Teams -->
               <div class="tab-pane fade" id="program4">
                 <div class="program-card">
                   <div class="program-header">
@@ -796,29 +759,30 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>AI Ethics Principles</li>
-                      <li>Bias & Fairness</li>
-                      <li>Privacy & Security</li>
+                      <li>Advanced ML/AI Concepts</li>
+                      <li>Model Development & Deployment</li>
+                      <li>Best Practices & Optimization</li>
+                      <li>Industry-Standard Tools</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Ensure your AI implementations are ethical, fair, and aligned with regulatory requirements.</p>
+                    <p>Stay ahead of the curve with cutting-edge ML/AI skills and best practices that drive technical excellence and innovation.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Ethics Framework</li>
-                      <li>Case Studies</li>
-                      <li>Compliance Guidelines</li>
+                      <li>Technical Assessment</li>
+                      <li>Code Examples & Templates</li>
+                      <li>Hands-on Projects</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <!-- AI for Marketing & Sales -->
+              <!-- GenAI, LLM & RAG Upskilling for Data Scientists -->
               <div class="tab-pane fade" id="program5">
                 <div class="program-card">
                   <div class="program-header">
@@ -839,29 +803,30 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>AI in Marketing</li>
-                      <li>Sales Analytics</li>
-                      <li>Customer Insights</li>
+                      <li>Large Language Models (LLMs)</li>
+                      <li>Retrieval-Augmented Generation (RAG)</li>
+                      <li>Fine-tuning & Optimization</li>
+                      <li>Advanced Applications</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Leverage AI to enhance customer engagement, optimize campaigns, and drive revenue growth.</p>
+                    <p>Master the latest advancements in Generative AI and LLMs to build cutting-edge applications and stay competitive in the AI landscape.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Marketing Tools Overview</li>
-                      <li>Analytics Dashboard</li>
-                      <li>Strategy Templates</li>
+                      <li>Technical Deep Dives</li>
+                      <li>Implementation Guides</li>
+                      <li>Advanced Projects</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <!-- Custom AI Solutions -->
+              <!-- Hands-On Training in a Tool of Your Choice -->
               <div class="tab-pane fade" id="program6">
                 <div class="program-card">
                   <div class="program-header">
@@ -882,23 +847,24 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>Tailored AI Solutions</li>
-                      <li>Industry-Specific Training</li>
-                      <li>Custom Implementation</li>
+                      <li>Tool-Specific Training</li>
+                      <li>Best Practices & Workflows</li>
+                      <li>Integration & Automation</li>
+                      <li>Advanced Features</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Get a fully customized AI training program that addresses your specific business needs and challenges.</p>
+                    <p>Maximize your team's productivity with expert training in the specific tools and technologies that drive your business forward.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Needs Assessment</li>
-                      <li>Custom Curriculum</li>
-                      <li>Ongoing Support</li>
+                      <li>Tool Assessment</li>
+                      <li>Custom Training Materials</li>
+                      <li>Hands-on Exercises</li>
                     </ul>
                   </div>
                 </div>
@@ -925,23 +891,24 @@
                   <div class="benefits-list">
                     <h5>What It Covers:</h5>
                     <ul>
-                      <li>Interactive AI Games & Challenges</li>
-                      <li>Team-Based AI Projects</li>
+                      <li>AI-Powered Team Challenges</li>
                       <li>Creative AI Applications</li>
+                      <li>Interactive AI Demonstrations</li>
+                      <li>Team Collaboration Exercises</li>
                     </ul>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>Why It's Valuable:</h5>
-                    <p>Build team camaraderie while learning about AI in a fun, engaging environment. Perfect for team retreats or innovation days!</p>
+                    <p>Combine team building with AI education in an engaging, hands-on environment that fosters creativity and collaboration.</p>
                   </div>
 
                   <div class="benefits-list mt-4">
                     <h5>What's Included:</h5>
                     <ul>
-                      <li>Team-Building Activities</li>
-                      <li>AI Challenge Kits</li>
-                      <li>Group Project Materials</li>
+                      <li>Team Challenge Kits</li>
+                      <li>AI Demo Stations</li>
+                      <li>Collaboration Tools</li>
                     </ul>
                   </div>
                 </div>
