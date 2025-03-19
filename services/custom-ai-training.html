@@ -32,6 +32,280 @@
   <!-- Google Contact Form -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+  <!-- Custom styles that match the main site's aesthetic -->
+  <style>
+    .hero-section {
+      background: linear-gradient(rgba(40, 58, 90, 0.8), rgba(102, 33, 176, 0.9)), url("../assets/img/hero-bg.jpg") center center;
+      background-size: cover;
+      padding: 120px 0;
+      color: #fff;
+      position: relative;
+    }
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    .hero-section .lead {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: linear-gradient(to top left, #fff 0%, transparent 50%), linear-gradient(to top right, #fff 0%, transparent 50%);
+    }
+    .hero-cta {
+      margin-top: 30px;
+    }
+    .hero-cta .btn {
+      padding: 12px 30px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+    .hero-cta .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+    /* Styles for the new compact hero section with statistics */
+    .stat-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      height: 100%;
+    }
+    .stat-box h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    .stat-box p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .service-options-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .service-card {
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      height: 100%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+      background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+      border-top: 4px solid transparent;
+    }
+    .service-card .card-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-bottom: 20px !important;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(102, 33, 176, 0.25) !important;
+    }
+    .icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      background-color: rgba(102, 33, 176, 0.1);
+    }
+    .testimonial-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    .faq-answer {
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-top: 1px solid #e0e0e0;
+      display: none;
+      margin-top: -8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    .faq-answer::before {
+      content: none;
+    }
+    .faq-answer p {
+      margin-bottom: 0;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #6621b0 0%, #4a1980 100%);
+      padding: 60px 0;
+      color: #fff;
+      border-radius: 8px;
+      margin: 60px 0;
+    }
+    .benefits-list {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid #6621b0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      margin-top: 15px;
+    }
+    .benefits-list h5 {
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .benefits-list ul {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+    .benefits-list li {
+      margin-bottom: 12px;
+      list-style-type: none;
+      position: relative;
+      padding-left: 28px;
+      font-size: 0.95rem;
+    }
+    .benefits-list li:last-child {
+      margin-bottom: 0;
+    }
+    .benefits-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #6621b0;
+      font-weight: bold;
+    }
+    .service-card.business-card .benefits-list li:before {
+      color: #6621b0;
+    }
+    .session-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+    }
+    .book-button-container {
+      text-align: center;
+      margin-top: 15px;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+    .service-description {
+      min-height: 120px;
+    }
+    .section-title {
+      color: #333;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #6621b0;
+      bottom: 0;
+      left: calc(50% - 25px);
+    }
+    .section-description {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .badge {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-radius: 30px;
+    }
+    .card-header {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .text-left {
+      text-align: left !important;
+    }
+    .service-card .card-title {
+      color: #6621b0;
+      font-weight: 700;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    .service-card.career-card {
+      border-top-color: #6621b0;
+    }
+    .service-card.business-card {
+      border-top-color: #6621b0;
+    }
+    .service-card.career-card .icon-circle {
+      background-color: rgba(102, 33, 176, 0.1);
+    }
+    .service-card.business-card .icon-circle {
+      background-color: rgba(102, 33, 176, 0.1);
+    }
+    .service-card.career-card .card-title {
+      color: #6621b0;
+    }
+    .service-card.business-card .card-title {
+      color: #6621b0;
+    }
+    .service-card.career-card .benefits-list {
+      border-left-color: #6621b0;
+    }
+    .service-card.business-card .benefits-list {
+      border-left-color: #6621b0;
+    }
+    
+    /* Responsive styles for the member info box */
+    @media (max-width: 992px) {
+      .member {
+        margin-bottom: 100px !important;
+      }
+    }
+    .pic:hover img {
+      transform: scale(1.1);
+    }
+    /* Add this new rule to remove the purple line in get-involved section */
+    .get-involved-section .section-title:after {
+      display: none;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -45,15 +319,62 @@
     <section class="breadcrumbs">
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Custom AI Training for Business Teams</h2>
+          <h2>Corporate AI Training</h2>
           <ol>
             <li><a href="../index.html">Home</a></li>
             <li><a href="https://missfactorialacademy.com/index.html#services">Services</a></li>
-            <li>Custom AI Training</li>
+            <li>Corporate AI Training</li>
           </ol>
         </div>
       </div>
     </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Hero Section ======= -->
+    <section class="py-5" style="background: linear-gradient(rgba(40, 58, 90, 0.8), rgba(102, 33, 176, 0.9)), url('../assets/img/hero-bg.jpg') center center; background-size: cover; color: #fff;">
+      <div class="container" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px;">Custom Data and AI Training<br>for Business Teams</h1>
+            <p class="mb-4">Transform your team's capabilities with tailored data and AI training programs designed to address your specific business challenges and goals.</p>
+            <a href="#service-options" class="btn btn-light rounded-pill px-4 py-2 shadow-sm">Explore Our Programs</a>
+          </div>
+          <div class="col-lg-6">
+            <div class="card border-0 bg-transparent">
+              <div class="card-body">
+                <h4 class="text-white mb-4">Why Data and AI Training Matters Now</h4>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>370M TB</h2>
+                      <p>Data generated every day in 2024<sup><a href="https://www.statista.com/statistics/871513/worldwide-data-created/" target="_blank" class="text-white">3</a></sup></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>$407B</h2>
+                      <p>Projected global AI market size by 2027<sup><a href="https://www.forbes.com/advisor/business/ai-statistics/" target="_blank" class="text-white">4</a></sup></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>1.5x</h2>
+                      <p>More likely to achieve above-average growth for companies using analytics<sup><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/b2b-commercial-analytics-what-outperformers-do" target="_blank" class="text-white">1</a></sup></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="stat-box">
+                      <h2>73%</h2>
+                      <p>Workers report increased productivity with AI<sup><a href="https://www.business.com/articles/ai-usage-smb-workplace-study/" target="_blank" class="text-white">2</a></sup></p>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-white-50 small">Don't miss out on the power data and AI can bring. Invest in expert guidance to position your company at the forefront of this high-growth field.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ======= Under Construction Section ======= -->
     <section class="service-details">
@@ -77,40 +398,122 @@
       </div>
     </section><!-- End Under Construction Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <!-- ======= About Your Advisor Section ======= -->
+    <section id="about-advisor" class="py-5 bg-light">
       <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Get Started with Custom AI Training</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="info-box">
-              <i class='bx bx-bot'></i>
-              <h3>Tailored to Your Business Needs</h3>
-              <p>Our custom training programs are designed around your specific business challenges and goals, ensuring maximum relevance and impact.</p>
+        
+        <div class="row align-items-start">
+          <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-right">
+            <div class="member" style="text-align: center; position: relative; transform: translateY(0); margin-bottom: 80px;">
+              <div class="pic" style="border-radius: 4px; overflow: hidden;">
+                <img src="../assets/img/VivianaMarquez_2025_Green.png" alt="Viviana Marquez - AI Training Expert" class="img-fluid" style="transition: transform 0.4s ease-in-out;">
+              </div>
+              <div class="member-info" style="position: absolute; bottom: -56px; left: 20px; right: 20px; background: linear-gradient(360deg,#1c073e 0,rgba(28,7,62,.9) 35%,rgba(203,98,178,.8) 100%); padding: 15px 0; border-radius: 4px;">
+                <h4 style="font-weight: 700; margin-bottom: 0; font-size: 16px; color: #fff; position: relative; padding-bottom: 5px;">Viviana Márquez</h4>
+                <span style="font-style: italic; display: block; font-size: 13px; color: #fff;">EdTech Founder | Data Scientist | Lecturer</span>
+                <div class="social" style="margin-top: 8px;">
+                  <a href="https://www.linkedin.com/in/vivianamarquez/" target="_blank" style="color: #fff;"><i class="bi bi-linkedin" style="font-size: 16px; margin: 0 2px;"></i></a>
+                  <a href="https://github.com/vivianamarquez" target="_blank" style="color: #fff;"><i class="bi bi-github" style="font-size: 16px; margin: 0 2px;"></i></a>
+                  <a href="https://drive.google.com/file/u/1/d/1QgwBhK_-UvXeh6Eh6zUdyWZLMGvwo-Ip/view" target="_blank" style="color: #fff;"><i class="bi bi-filetype-pdf" style="font-size: 16px; margin: 0 2px;"></i></a>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="info-box">
-              <i class="bx bx-envelope"></i>
-              <h3>Get a Quote</h3>
-              <p><a href="mailto:viviana@missfactorial.com" style="color: inherit; text-decoration: none;">viviana@missfactorial.com</a></p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 d-flex" data-aos="fade-up">
-            <div class="info-box">
-              <i class="bx bx-map"></i>
-              <h3>Available Worldwide</h3>
-              <p>Virtual & In-Person</p>
+          <div class="col-lg-8" data-aos="fade-left">
+            <h4 style="font-weight: 600;">Your Corporate Trainer: <a href="https://www.linkedin.com/in/vivianamarquez/" target="_blank"><span style="color: #6621b0;">Viviana Márquez</span></a></h4>
+            <p class="mb-4">Transforming teams through practical data and AI education and hands-on training, making complex data and AI concepts accessible and actionable for business professionals.</p>
+            
+            <div class="row mt-3">
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-people me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Corporate Training Expertise</h5>
+                    </div>
+                    <p class="mb-0">Proven track record in developing and delivering AI training programs for diverse teams, from technical to non-technical professionals, ensuring practical application in real business scenarios.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-lightning-charge me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Interactive Learning</h5>
+                    </div>
+                    <p class="mb-0">Engaging, hands-on training approach that combines theory with practical exercises, ensuring teams can immediately apply data and AI concepts to their daily work.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-building-gear me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Industry-Specific Focus</h5>
+                    </div>
+                    <p class="mb-0">Customized training programs that address your industry's unique challenges and opportunities, with real-world examples and case studies from your sector.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-0 h-100" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa); border-left: 3px solid #6621b0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                  <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-translate me-3" style="color: #6621b0; font-size: 24px;"></i>
+                      <h5 class="mb-0">Technical Translator</h5>
+                    </div>
+                    <p class="mb-0">Equipping your team to bridge the technical-business gap through practical exercises and frameworks that make complex concepts accessible to the business.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- End Contact Section -->
+    </section>
+
+    <!-- ======= Explore More Services Section ======= -->
+    <section class="get-involved-section py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Explore More Services</h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
+              <i class="bx bx-buildings" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">Custom AI Training for Teams</h3>
+              <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Advance your team's expertise with our focused upskilling and reskilling classes in AI, tailored to your specific business challenges and goals, transforming your raw data into actionable results.</p>
+              <div class="mt-3">
+                <a href="custom-ai-training.html" class="btn btn-primary" style="background: #cb62b2; border: none; padding: 10px 25px;">View Training Programs</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
+              <i class="bx bx-package" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">Packaged AI Services</h3>
+              <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Our pakcaged services take you from idea to implementation. Whether it's enhancing data-driven decision-making or seamless AI integration, we handle every step of the process.</p>
+              <div class="mt-3">
+                <a href="packaged-ai-services.html" class="btn btn-primary" style="background: #cb62b2; border: none; padding: 10px 25px;">Explore Services</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
+              <i class="bx bx-microphone" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">Get Viviana as a Speaker</h3>
+              <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Available for keynotes, panels, interviews, and corporate training sessions. AI is shaping the future—let's make sure your audience is part of the conversation.</p>
+              <div class="mt-3">
+                <a href="https://forms.gle/gjvsd1KrcRsb53Bv6" target="_blank" class="btn btn-primary" style="background: #cb62b2; border: none; padding: 10px 25px;">Get a Quote</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Get Involved Section -->
 
   </main><!-- End #main -->
 
