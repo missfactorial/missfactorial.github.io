@@ -475,20 +475,34 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
+    .program-header {
+      margin-bottom: 2rem;
+    }
+
+    .program-header .d-flex {
+      align-items: flex-start;
+    }
+
+    .program-header .icon-circle {
+      margin-right: 1.5rem;
+    }
+
     .program-header h3 {
       color: #1c073e;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
 
-    .icon-circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
+    .program-header .program-meta {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .program-header .badge {
+      padding: 0.5rem 1rem;
       background: rgba(102, 33, 176, 0.1);
+      color: #6621b0;
+      font-weight: 500;
     }
 
     @media (max-width: 991px) {
@@ -577,7 +591,7 @@
             <h2>Our Training Programs</h2>
           </div>
         </div>
-        
+
         <div class="row">
           <!-- Side Navigation -->
           <div class="col-lg-3">
@@ -585,38 +599,44 @@
               <div class="list-group">
                 <a href="#program1" class="list-group-item list-group-item-action active" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-building-gear me-2" style="color: #6621b0;"></i>
-                    <span>AI Fundamentals for Business Leaders</span>
+                    <i class="bi bi-graph-up me-2" style="color: #6621b0;"></i>
+                    <span>Data Fluency for Business Leaders & Teams</span>
                   </div>
                 </a>
                 <a href="#program2" class="list-group-item list-group-item-action" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-graph-up me-2" style="color: #6621b0;"></i>
-                    <span>Data-Driven Decision Making</span>
+                    <i class="bi bi-robot me-2" style="color: #6621b0;"></i>
+                    <span>Demystifying AI: Practical Uses for Businesses & Teams</span>
                   </div>
                 </a>
                 <a href="#program3" class="list-group-item list-group-item-action" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-code-square me-2" style="color: #6621b0;"></i>
-                    <span>AI Implementation for Technical Teams</span>
+                    <i class="bi bi-chat-square-text me-2" style="color: #6621b0;"></i>
+                    <span>Business Communication for Data Professionals</span>
                   </div>
                 </a>
                 <a href="#program4" class="list-group-item list-group-item-action" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-shield-check me-2" style="color: #6621b0;"></i>
-                    <span>AI Ethics & Responsible AI</span>
+                    <i class="bi bi-code-square me-2" style="color: #6621b0;"></i>
+                    <span>ML/AI Upskilling for Technical Teams</span>
                   </div>
                 </a>
                 <a href="#program5" class="list-group-item list-group-item-action" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-bullhorn me-2" style="color: #6621b0;"></i>
-                    <span>AI for Marketing & Sales</span>
+                    <i class="bi bi-translate me-2" style="color: #6621b0;"></i>
+                    <span>GenAI, LLM & RAG Upskilling for Data Scientists</span>
                   </div>
                 </a>
                 <a href="#program6" class="list-group-item list-group-item-action" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-gear-wide-connected me-2" style="color: #6621b0;"></i>
-                    <span>Custom AI Solutions</span>
+                    <i class="bi bi-tools me-2" style="color: #6621b0;"></i>
+                    <span>Hands-On Training in a Tool of Your Choice</span>
+                  </div>
+                </a>
+                <a href="#program7" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-controller me-2" style="color: #6621b0;"></i>
+                    <span>Fun Team Building with AI!</span>
                   </div>
                 </a>
               </div>
@@ -629,16 +649,16 @@
               <!-- AI Fundamentals for Business Leaders -->
               <div class="tab-pane fade show active" id="program1">
                 <div class="program-card">
-                  <div class="program-header mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="icon-circle me-3">
-                        <i class="bi bi-building-gear" style="font-size: 32px; color: #6621b0;"></i>
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-bar-chart-line" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
-                      <div>
-                        <h3>AI Fundamentals for Business Leaders</h3>
+                      <div class="flex-grow-1">
+                        <h3>Data Fluency for Business Leaders & Teams</h3>
                         <div class="program-meta">
-                          <span class="badge rounded-pill" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">For: C-Suite & Business Leaders</span>
-                          <span class="badge rounded-pill ms-2" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">Duration: 2 Days</span>
+                          <span class="badge rounded-pill">For: C-Suite & Business Leaders</span>
+                          <span class="badge rounded-pill">Duration: 2 Days</span>
                         </div>
                       </div>
                     </div>
@@ -666,26 +686,22 @@
                       <li>Strategy Workshop</li>
                     </ul>
                   </div>
-
-                  <div class="text-center mt-4">
-                    <a href="../index.html#contact" class="btn btn-primary rounded-pill px-4 py-2" style="background: #6621b0; border: none;">Get Pricing & Schedule</a>
-                  </div>
                 </div>
               </div>
 
               <!-- Data-Driven Decision Making -->
               <div class="tab-pane fade" id="program2">
                 <div class="program-card">
-                  <div class="program-header mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="icon-circle me-3">
-                        <i class="bi bi-graph-up" style="font-size: 32px; color: #6621b0;"></i>
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-robot" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
-                      <div>
-                        <h3>Data-Driven Decision Making</h3>
+                      <div class="flex-grow-1">
+                        <h3>Demystifying AI: Practical Uses for Businesses & Teams</h3>
                         <div class="program-meta">
-                          <span class="badge rounded-pill" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">For: Managers & Team Leaders</span>
-                          <span class="badge rounded-pill ms-2" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">Duration: 3 Days</span>
+                          <span class="badge rounded-pill">For: Managers & Team Leaders</span>
+                          <span class="badge rounded-pill ms-2">Duration: 3 Days</span>
                         </div>
                       </div>
                     </div>
@@ -713,26 +729,22 @@
                       <li>Team Workshop</li>
                     </ul>
                   </div>
-
-                  <div class="text-center mt-4">
-                    <a href="../index.html#contact" class="btn btn-primary rounded-pill px-4 py-2" style="background: #6621b0; border: none;">Get Pricing & Schedule</a>
-                  </div>
                 </div>
               </div>
 
               <!-- AI Implementation for Technical Teams -->
               <div class="tab-pane fade" id="program3">
                 <div class="program-card">
-                  <div class="program-header mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="icon-circle me-3">
-                        <i class="bi bi-code-square" style="font-size: 32px; color: #6621b0;"></i>
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-chat-square-text" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
-                      <div>
-                        <h3>AI Implementation for Technical Teams</h3>
+                      <div class="flex-grow-1">
+                        <h3>Business Communication for Data Professionals</h3>
                         <div class="program-meta">
-                          <span class="badge rounded-pill" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">For: Technical Teams & Developers</span>
-                          <span class="badge rounded-pill ms-2" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">Duration: 4 Days</span>
+                          <span class="badge rounded-pill">For: Data Professionals & Teams</span>
+                          <span class="badge rounded-pill ms-2">Duration: 3 Days</span>
                         </div>
                       </div>
                     </div>
@@ -760,26 +772,22 @@
                       <li>Implementation Guide</li>
                     </ul>
                   </div>
-
-                  <div class="text-center mt-4">
-                    <a href="../index.html#contact" class="btn btn-primary rounded-pill px-4 py-2" style="background: #6621b0; border: none;">Get Pricing & Schedule</a>
-                  </div>
                 </div>
               </div>
 
               <!-- AI Ethics & Responsible AI -->
               <div class="tab-pane fade" id="program4">
                 <div class="program-card">
-                  <div class="program-header mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="icon-circle me-3">
-                        <i class="bi bi-shield-check" style="font-size: 32px; color: #6621b0;"></i>
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-code-square" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
-                      <div>
-                        <h3>AI Ethics & Responsible AI</h3>
+                      <div class="flex-grow-1">
+                        <h3>ML/AI Upskilling for Technical Teams</h3>
                         <div class="program-meta">
-                          <span class="badge rounded-pill" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">For: All Teams</span>
-                          <span class="badge rounded-pill ms-2" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">Duration: 2 Days</span>
+                          <span class="badge rounded-pill">For: Technical Teams</span>
+                          <span class="badge rounded-pill ms-2">Duration: 3 Days</span>
                         </div>
                       </div>
                     </div>
@@ -807,26 +815,22 @@
                       <li>Compliance Guidelines</li>
                     </ul>
                   </div>
-
-                  <div class="text-center mt-4">
-                    <a href="../index.html#contact" class="btn btn-primary rounded-pill px-4 py-2" style="background: #6621b0; border: none;">Get Pricing & Schedule</a>
-                  </div>
                 </div>
               </div>
 
               <!-- AI for Marketing & Sales -->
               <div class="tab-pane fade" id="program5">
                 <div class="program-card">
-                  <div class="program-header mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="icon-circle me-3">
-                        <i class="bi bi-bullhorn" style="font-size: 32px; color: #6621b0;"></i>
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-translate" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
-                      <div>
-                        <h3>AI for Marketing & Sales</h3>
+                      <div class="flex-grow-1">
+                        <h3>GenAI, LLM & RAG Upskilling for Data Scientists</h3>
                         <div class="program-meta">
-                          <span class="badge rounded-pill" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">For: Marketing & Sales Teams</span>
-                          <span class="badge rounded-pill ms-2" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">Duration: 3 Days</span>
+                          <span class="badge rounded-pill">For: Data Scientists</span>
+                          <span class="badge rounded-pill ms-2">Duration: 3 Days</span>
                         </div>
                       </div>
                     </div>
@@ -854,26 +858,22 @@
                       <li>Strategy Templates</li>
                     </ul>
                   </div>
-
-                  <div class="text-center mt-4">
-                    <a href="../index.html#contact" class="btn btn-primary rounded-pill px-4 py-2" style="background: #6621b0; border: none;">Get Pricing & Schedule</a>
-                  </div>
                 </div>
               </div>
 
               <!-- Custom AI Solutions -->
               <div class="tab-pane fade" id="program6">
                 <div class="program-card">
-                  <div class="program-header mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="icon-circle me-3">
-                        <i class="bi bi-gear-wide-connected" style="font-size: 32px; color: #6621b0;"></i>
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-tools" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
-                      <div>
-                        <h3>Custom AI Solutions</h3>
+                      <div class="flex-grow-1">
+                        <h3>Hands-On Training in a Tool of Your Choice</h3>
                         <div class="program-meta">
-                          <span class="badge rounded-pill" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">For: All Teams</span>
-                          <span class="badge rounded-pill ms-2" style="background: rgba(102, 33, 176, 0.1); color: #6621b0;">Duration: Custom</span>
+                          <span class="badge rounded-pill">For: All Teams</span>
+                          <span class="badge rounded-pill ms-2">Duration: Custom</span>
                         </div>
                       </div>
                     </div>
@@ -901,13 +901,111 @@
                       <li>Ongoing Support</li>
                     </ul>
                   </div>
+                </div>
+              </div>
 
-                  <div class="text-center mt-4">
-                    <a href="../index.html#contact" class="btn btn-primary rounded-pill px-4 py-2" style="background: #6621b0; border: none;">Get Pricing & Schedule</a>
+              <!-- Fun Team Building with AI -->
+              <div class="tab-pane fade" id="program7">
+                <div class="program-card">
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-controller" style="font-size: 32px; color: #6621b0;"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h3>Fun Team Building with AI!</h3>
+                        <div class="program-meta">
+                          <span class="badge rounded-pill">For: All Teams</span>
+                          <span class="badge rounded-pill ms-2">Duration: 1 Day</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="benefits-list">
+                    <h5>What It Covers:</h5>
+                    <ul>
+                      <li>Interactive AI Games & Challenges</li>
+                      <li>Team-Based AI Projects</li>
+                      <li>Creative AI Applications</li>
+                    </ul>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>Why It's Valuable:</h5>
+                    <p>Build team camaraderie while learning about AI in a fun, engaging environment. Perfect for team retreats or innovation days!</p>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>What's Included:</h5>
+                    <ul>
+                      <li>Team-Building Activities</li>
+                      <li>AI Challenge Kits</li>
+                      <li>Group Project Materials</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= Program Features Section ======= -->
+    <section class="py-5 bg-light">
+      <div class="container" data-aos="fade-up">
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="program-features p-4 bg-white rounded-3 shadow-sm" style="border-left: 4px solid #6621b0;">
+              <h4 class="mb-4" style="color: #1c073e; font-weight: 600;">All Our Programs Include:</h4>
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2" style="color: #6621b0;"></i>
+                  <b>Personalized Pre-Training Consultation</b><br>
+                  We take the time to understand your business challenges and goals to ensure a highly relevant learning experience.
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2" style="color: #6621b0;"></i>
+                  <b>Customized Training Materials</b><br>
+                  Tailored slides, real-world examples specific to your industry, and hands-on exercises (including code when applicable).
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2" style="color: #6621b0;"></i>
+                  <b>Post-Training Follow-Up & Impact Assessment</b><br>
+                  We help you measure the effectiveness of the training and provide guidance on applying new skills to maximize ROI.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="program-features p-4 bg-white rounded-3 shadow-sm" style="border-left: 4px solid #6621b0;">
+              <h4 class="mb-4" style="color: #1c073e; font-weight: 600;">Flexible Delivery Options:</h4>
+              <ul class="list-unstyled">
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2" style="color: #6621b0;"></i>
+                  <b>In-Person or Virtual Training</b><br>
+                  Choose the format that works best for your team.
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2" style="color: #6621b0;"></i>
+                  <b>Customizable Schedule & Duration</b><br>
+                  We work around your team's availability to minimize disruption.
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-check-circle-fill me-2" style="color: #6621b0;"></i>
+                  <b>Seamless Integration</b><br>
+                  Our training adapts to your existing tools and workflows, ensuring practical, on-the-job application.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <a href="../index.html#contact" class="btn btn-primary rounded-pill px-5 py-3" style="background: #6621b0; border: none; font-weight: 600; font-size: 1.1rem;">
+              <i class="bi bi-calendar-check me-2"></i>Request a Custom Training Quote
+            </a>
           </div>
         </div>
       </div>
@@ -998,7 +1096,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-4">
             <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
-              <i class="bx bx-buildings" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <i class="bx bx-message-dots" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
               <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">AI Advisory: 1:1 Sessions</h3>
               <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Curious about how AI fits into your business or career but don't know where to begin? Our 1:1 sessions give you personalized guidance to explore AI opportunities, upskill strategically, and make informed decisions.</p>
               <div class="mt-3">
