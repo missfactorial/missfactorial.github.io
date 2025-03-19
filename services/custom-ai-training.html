@@ -923,7 +923,7 @@
     <section class="py-5 bg-light">
       <div class="container" data-aos="fade-up">
         <div class="row mb-4">
-          <div class="col-md-6">
+          <div class="col-md-6 mb-4 mb-md-0">
             <div class="program-features p-4 bg-white rounded-3 shadow-sm" style="border-left: 4px solid #6621b0;">
               <h4 class="mb-4" style="color: #1c073e; font-weight: 600;">All Our Programs Include:</h4>
               <ul class="list-unstyled">
@@ -1143,6 +1143,30 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+
+  <!-- Program Tab Scroll Behavior -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all program tab links
+      const programTabs = document.querySelectorAll('.program-nav .list-group-item');
+      
+      programTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          // Get the target program ID from the href
+          const targetId = this.getAttribute('href');
+          
+          // On mobile, scroll to the program card
+          if (window.innerWidth < 992) { // 992px is the lg breakpoint
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 
