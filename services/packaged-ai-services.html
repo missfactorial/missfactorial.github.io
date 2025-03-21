@@ -32,6 +32,137 @@
   <!-- Google Contact Form -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+  <style>
+    /* Program Navigation and Card Styles */
+    .program-nav {
+      position: sticky;
+      top: 20px;
+    }
+
+    .program-nav .list-group-item {
+      border: none;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px !important;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .program-nav .list-group-item:hover {
+      background: rgba(102, 33, 176, 0.05);
+      transform: translateX(5px);
+    }
+
+    .program-nav .list-group-item.active {
+      background: rgba(102, 33, 176, 0.1);
+      color: #6621b0;
+      border-left: 4px solid #6621b0;
+    }
+
+    .program-nav .list-group-item i {
+      font-size: 1.2rem;
+    }
+
+    .program-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .program-header {
+      margin-bottom: 2rem;
+    }
+
+    .program-header .d-flex {
+      align-items: flex-start;
+    }
+
+    .program-header .icon-circle {
+      margin-right: 1.5rem;
+    }
+
+    .program-header h3 {
+      color: #1c073e;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .program-header .program-meta {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .program-header .badge {
+      padding: 0.5rem 1rem;
+      background: rgba(102, 33, 176, 0.1);
+      color: #6621b0;
+      font-weight: 500;
+    }
+
+    .benefits-list {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid #6621b0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      margin-top: 15px;
+    }
+
+    .benefits-list h5 {
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .benefits-list ul {
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .benefits-list li {
+      margin-bottom: 12px;
+      list-style-type: none;
+      position: relative;
+      padding-left: 28px;
+      font-size: 0.95rem;
+    }
+
+    .benefits-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .benefits-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #6621b0;
+      font-weight: bold;
+    }
+
+    @media (max-width: 991px) {
+      .program-nav {
+        position: static;
+        margin-bottom: 2rem;
+      }
+
+      .program-header .d-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .icon-circle {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .program-header .program-meta {
+        justify-content: center;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -55,62 +186,245 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Under Construction Section ======= -->
-    <section class="service-details">
-      <div class="container text-center" data-aos="fade-up">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="under-construction-box p-5" style="background: rgba(203, 98, 178, 0.1); border-radius: 15px; margin-bottom: 50px;">
-              <i class="bi bi-box-seam" style="font-size: 80px; color: #cb62b2; margin-bottom: 20px;"></i>
-              <h2 style="color: #1c073e; margin-bottom: 20px;">AI Solutions in the Making!</h2>
-              <p style="font-size: 18px; margin-bottom: 30px;">We're packaging powerful AI solutions that will transform your business operations. Our team is putting the finishing touches on ready-to-implement AI services that deliver immediate value.</p>
-              <div class="d-flex justify-content-center">
-                <div class="progress" style="height: 10px; width: 70%;">
-                  <div class="progress-bar" role="progressbar" style="width: 70%; background-color: #cb62b2;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <p style="margin-top: 15px; font-style: italic;">70% Complete</p>
-              <a href="../index.html#contact" class="btn btn-primary mt-3" style="background: #cb62b2; border: none; padding: 10px 25px;">Get Notified When Ready</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- End Under Construction Section -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
+    <!-- ======= Packaged Services Section ======= -->
+    <section class="service-details py-5 bg-light">
       <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Get Started with Packaged AI Services</h2>
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-8 text-center">
+            <h2>Ready-to-Implement AI Solutions</h2>
+          </div>
         </div>
 
         <div class="row">
-          <div class="col-lg-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="info-box">
-              <i class='bx bx-package'></i>
-              <h3>Ready-to-Implement Solutions</h3>
-              <p>Our packaged AI services are designed for quick deployment and immediate impact, with flexible customization options to meet your specific needs.</p>
-            </div>
-          </div>
-          
-          <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="info-box">
-              <i class="bx bx-envelope"></i>
-              <h3>Get a Quote</h3>
-              <p><a href="mailto:viviana@missfactorial.com" style="color: inherit; text-decoration: none;">viviana@missfactorial.com</a></p>
+          <!-- Side Navigation -->
+          <div class="col-lg-3">
+            <div class="program-nav">
+              <div class="list-group">
+                <a href="#service1" class="list-group-item list-group-item-action active" data-bs-toggle="list">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-graph-up me-2" style="color: #6621b0;"></i>
+                    <span>Business Performance Dashboards</span>
+                  </div>
+                </a>
+                <a href="#service2" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-lightning-charge me-2" style="color: #6621b0;"></i>
+                    <span>Predictive Analytics & Decision Intelligence</span>
+                  </div>
+                </a>
+                <a href="#service3" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-people me-2" style="color: #6621b0;"></i>
+                    <span>Segmentation & Behavioral Insights</span>
+                  </div>
+                </a>
+                <a href="#service4" class="list-group-item list-group-item-action" data-bs-toggle="list">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-chat-dots me-2" style="color: #6621b0;"></i>
+                    <span>AI Chatbots & Smart Document Search</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-3 d-flex" data-aos="fade-up">
-            <div class="info-box">
-              <i class="bx bx-map"></i>
-              <h3>Available Worldwide</h3>
-              <p>Virtual & In-Person</p>
+          <!-- Main Content Area -->
+          <div class="col-lg-9">
+            <div class="tab-content">
+              <!-- Business Performance Dashboards -->
+              <div class="tab-pane fade show active" id="service1">
+                <div class="program-card">
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-graph-up" style="font-size: 32px; color: #6621b0;"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h3>Business Performance Dashboards</h3>
+                        <div class="program-meta">
+                          <span class="badge rounded-pill">Ready to Deploy</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>Scenario: <font color="#6621b0">The Data Visibility Challenge</font></h5>
+                    <p>A company struggles to make sense of their data across different departments. Sales teams can't track performance metrics in real-time, marketing can't measure campaign effectiveness, and leadership can't make data-driven decisions. The result? Missed opportunities, inefficient resource allocation, and reactive rather than proactive decision-making.</p>
+                    <p>This is a common scenario in many organizations where valuable data exists but isn't effectively visualized and shared across teams.</p>
+                    <p>👉 <b>Solution:</b> Our interactive dashboards transform raw data into actionable insights, providing real-time visibility into key metrics and enabling data-driven decision-making.</p>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>What It Includes:</h5>
+                    <ul>
+                      <li><b>Real-time Data Integration:</b> Connect to your existing data sources for live updates and insights.</li>
+                      <li><b>Customizable Visualizations:</b> Interactive charts, graphs, and tables tailored to your business needs.</li>
+                      <li><b>Automated Reporting:</b> Schedule and distribute reports automatically to stakeholders.</li>
+                      <li><b>Role-based Access:</b> Control who sees what data with granular permissions.</li>
+                      <li><b>Mobile Responsiveness:</b> Access insights on any device, anywhere.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Predictive Analytics & Decision Intelligence -->
+              <div class="tab-pane fade" id="service2">
+                <div class="program-card">
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-lightning-charge" style="font-size: 32px; color: #6621b0;"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h3>Predictive Analytics & Decision Intelligence</h3>
+                        <div class="program-meta">
+                          <span class="badge rounded-pill">Ready to Deploy</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>Scenario: <font color="#6621b0">The Forecasting Challenge</font></h5>
+                    <p>A company struggles to predict customer demand, leading to inventory issues, missed sales opportunities, and inefficient resource allocation. Traditional forecasting methods are no longer accurate in today's dynamic market conditions.</p>
+                    <p>This scenario highlights the need for advanced predictive analytics that can handle complex market dynamics and provide actionable insights.</p>
+                    <p>👉 <b>Solution:</b> Our predictive analytics solution combines AI models with decision intelligence to help you forecast trends, identify opportunities, and optimize operations.</p>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>What It Includes:</h5>
+                    <ul>
+                      <li><b>Advanced Forecasting Models:</b> AI-powered predictions based on historical data and market trends.</li>
+                      <li><b>Scenario Planning:</b> Simulate different business scenarios to evaluate potential outcomes.</li>
+                      <li><b>Automated Insights:</b> Get actionable recommendations based on predictive models.</li>
+                      <li><b>Performance Monitoring:</b> Track prediction accuracy and model performance over time.</li>
+                      <li><b>Integration Capabilities:</b> Seamlessly connect with your existing business systems.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Segmentation & Behavioral Insights -->
+              <div class="tab-pane fade" id="service3">
+                <div class="program-card">
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-people" style="font-size: 32px; color: #6621b0;"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h3>Segmentation & Behavioral Insights</h3>
+                        <div class="program-meta">
+                          <span class="badge rounded-pill">Ready to Deploy</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>Scenario: <font color="#6621b0">The Customer Understanding Gap</font></h5>
+                    <p>A company's marketing campaigns are underperforming because they're treating all customers the same way. They're missing opportunities to personalize experiences and target specific customer segments effectively.</p>
+                    <p>This scenario demonstrates the importance of understanding customer behavior and preferences to deliver targeted, effective marketing strategies.</p>
+                    <p>👉 <b>Solution:</b> Our segmentation and behavioral insights solution helps you understand your customers better and deliver personalized experiences that drive engagement and growth.</p>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>What It Includes:</h5>
+                    <ul>
+                      <li><b>Customer Segmentation:</b> Identify distinct customer groups based on behavior and characteristics.</li>
+                      <li><b>Behavioral Analysis:</b> Track and analyze customer interactions and preferences.</li>
+                      <li><b>Personalization Engine:</b> Automatically deliver tailored content and experiences.</li>
+                      <li><b>Engagement Tracking:</b> Monitor customer engagement across all touchpoints.</li>
+                      <li><b>ROI Analytics:</b> Measure the impact of personalized marketing efforts.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Chatbots & Smart Document Search -->
+              <div class="tab-pane fade" id="service4">
+                <div class="program-card">
+                  <div class="program-header">
+                    <div class="d-flex">
+                      <div class="icon-circle">
+                        <i class="bi bi-chat-dots" style="font-size: 32px; color: #6621b0;"></i>
+                      </div>
+                      <div class="flex-grow-1">
+                        <h3>AI Chatbots & Smart Document Search</h3>
+                        <div class="program-meta">
+                          <span class="badge rounded-pill">Ready to Deploy</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>Scenario: <font color="#6621b0">The Information Access Challenge</font></h5>
+                    <p>A company's support team is overwhelmed with customer inquiries, and employees spend hours searching through documents to find relevant information. This leads to slow response times, inconsistent answers, and frustrated customers.</p>
+                    <p>This scenario shows how inefficient information access can impact customer service and employee productivity.</p>
+                    <p>👉 <b>Solution:</b> Our AI-powered chatbots and smart document search solution helps you provide instant access to information and automate customer service effectively.</p>
+                  </div>
+
+                  <div class="benefits-list mt-4">
+                    <h5>What It Includes:</h5>
+                    <ul>
+                      <li><b>Intelligent Chatbots:</b> AI-powered customer service automation with natural language understanding.</li>
+                      <li><b>Smart Document Search:</b> Semantic search across all your documents and knowledge bases.</li>
+                      <li><b>Knowledge Base Integration:</b> Connect with your existing documentation and FAQs.</li>
+                      <li><b>Multi-language Support:</b> Handle customer inquiries in multiple languages.</li>
+                      <li><b>Analytics Dashboard:</b> Track chatbot performance and user satisfaction.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- End Packaged Services Section -->
+
+    <!-- ======= Explore More Services Section ======= -->
+    <section class="get-involved-section py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Explore More Services</h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
+              <i class="bx bx-message-dots" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">AI Advisory: 1:1 Sessions</h3>
+              <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Curious about how AI fits into your business or career but don't know where to begin? Our 1:1 sessions give you personalized guidance to explore AI opportunities, upskill strategically, and make informed decisions.</p>
+              <div class="mt-3">
+                <a href="ai-advisory.html" class="btn btn-primary" style="background: #cb62b2; border: none; padding: 10px 25px;">Book Your 1:1 Session</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
+              <i class="bx bx-buildings" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">Custom AI Training for Teams</h3>
+              <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Advance your team's expertise with our focused upskilling training programs in data and AI, tailored to your specific business challenges and goals, transforming your raw data into actionable results.</p>
+              <div class="mt-3">
+                <a href="custom-ai-training.html" class="btn btn-primary" style="background: #cb62b2; border: none; padding: 10px 25px;">View Training Programs</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="info-box" style="background: #fbfafb; color: #1c073e; text-align: center; padding: 20px 0 30px; margin-bottom: 30px; width: 100%; box-shadow: 0 0 30px rgba(214,215,216,.6);">
+              <i class="bx bx-book-open" style="font-size: 32px; color: #cb62b2; border-radius: 50%; padding: 8px; border: 2px dotted #6621b0;"></i>
+              <h3 style="font-size: 20px; color: #1c073e; font-weight: 700; margin: 10px 0;">On-Demand Courses</h3>
+              <p style="padding: 0 25px; line-height: 24px; font-size: 14px; margin-bottom: 0;">Learn at your own pace with our engaging, binge-worthy courses in data science and AI. Perfect for students eager to master new skills on their schedule.</p>
+              <div class="mt-3">
+                <a href="on-demand-courses.html" class="btn btn-primary" style="background: #cb62b2; border: none; padding: 10px 25px;">Browse Courses</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Explore More Services Section -->
 
   </main><!-- End #main -->
 
