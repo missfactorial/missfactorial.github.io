@@ -76,22 +76,30 @@
     }
 
     .program-header .d-flex {
-      align-items: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
 
     .program-header .icon-circle {
-      margin-right: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
     }
 
     .program-header h3 {
       color: #1c073e;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin: 0;
+      line-height: 1.2;
     }
 
     .program-header .program-meta {
       display: flex;
       gap: 0.5rem;
+      margin-top: 0.5rem;
     }
 
     .program-header .badge {
@@ -150,11 +158,12 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        gap: 0.5rem;
       }
 
       .icon-circle {
         margin-right: 0;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
       }
 
       .program-header .program-meta {
@@ -203,13 +212,13 @@
               <div class="list-group">
                 <a href="#service1" class="list-group-item list-group-item-action active" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-graph-up me-2" style="color: #6621b0;"></i>
+                    <i class="bi bi-speedometer2 me-2" style="color: #6621b0;"></i>
                     <span>Business Performance Dashboards</span>
                   </div>
                 </a>
                 <a href="#service2" class="list-group-item list-group-item-action" data-bs-toggle="list">
                   <div class="d-flex align-items-center">
-                    <i class="bi bi-lightning-charge me-2" style="color: #6621b0;"></i>
+                    <i class="bi bi-graph-up-arrow me-2" style="color: #6621b0;"></i>
                     <span>Predictive Analytics & Decision Intelligence</span>
                   </div>
                 </a>
@@ -238,13 +247,10 @@
                   <div class="program-header">
                     <div class="d-flex">
                       <div class="icon-circle">
-                        <i class="bi bi-graph-up" style="font-size: 32px; color: #6621b0;"></i>
+                        <i class="bi bi-speedometer2" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
                       <div class="flex-grow-1">
                         <h3>Business Performance Dashboards</h3>
-                        <div class="program-meta">
-                          <span class="badge rounded-pill">Ready to Deploy</span>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -262,13 +268,10 @@
                   <div class="program-header">
                     <div class="d-flex">
                       <div class="icon-circle">
-                        <i class="bi bi-lightning-charge" style="font-size: 32px; color: #6621b0;"></i>
+                        <i class="bi bi-graph-up-arrow" style="font-size: 32px; color: #6621b0;"></i>
                       </div>
                       <div class="flex-grow-1">
                         <h3>Predictive Analytics & Decision Intelligence</h3>
-                        <div class="program-meta">
-                          <span class="badge rounded-pill">Ready to Deploy</span>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -290,9 +293,6 @@
                       </div>
                       <div class="flex-grow-1">
                         <h3>Segmentation & Behavioral Insights</h3>
-                        <div class="program-meta">
-                          <span class="badge rounded-pill">Ready to Deploy</span>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -314,9 +314,6 @@
                       </div>
                       <div class="flex-grow-1">
                         <h3>AI Chatbots & Smart Document Search</h3>
-                        <div class="program-meta">
-                          <span class="badge rounded-pill">Ready to Deploy</span>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -422,6 +419,30 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+
+  <!-- Program Tab Scroll Behavior -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all program tab links
+      const programTabs = document.querySelectorAll('.program-nav .list-group-item');
+      
+      programTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          // Get the target program ID from the href
+          const targetId = this.getAttribute('href');
+          
+          // On mobile, scroll to the program card
+          if (window.innerWidth < 992) { // 992px is the lg breakpoint
+            e.preventDefault();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 
